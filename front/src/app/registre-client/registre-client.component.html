@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:35 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Jobaway - HTML 5 Template Preview</title>
+
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper ltr">
+
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="j" class="letters-loading">
+                                j
+                            </span>
+                            <span data-text-preloader="o" class="letters-loading">
+                                o
+                            </span>
+                            <span data-text-preloader="b" class="letters-loading">
+                                b
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="w" class="letters-loading">
+                                w
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="y" class="letters-loading">
+                                y
+                            </span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+
+        <!-- page-direction -->
+        <div class="page_direction">
+            <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+            <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+        </div>
+        <!-- page-direction end -->
+
+
+        <!--Search Popup-->
+        <div id="search-popup" class="search-popup">
+            <div class="popup-inner">
+                <div class="upper-box">
+                    <figure class="logo-box"><a href="index.html"><img src="assets/images/logo.png" alt=""></a></figure>
+                    <div class="close-search"><span class="icon-27"></span></div>
+                </div>
+                <div class="overlay-layer"></div>
+                <div class="auto-container">
+                    <div class="search-form">
+                        <form method="post" action="https://azim.hostlin.com/Jobaway/index.html">
+                            <div class="form-group">
+                                <fieldset>
+                                    <input type="search" class="form-control" name="search-input" value="" placeholder="Type your keyword and hit" required >
+                                    <button type="submit"><i class="icon-1"></i></button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- main header -->
+        <app-header></app-header>
+        <!-- main-header end -->
+
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>Chicago 12, Melborne City, USA</li>
+                        <li><a href="tel:+8801682648101">+88 01682648101</a></li>
+                        <li><a href="mailto:info@example.com">info&#64;example.com</a></li>
+                    </ul>
+                </div>
+                <div class="social-links">
+                    <ul class="clearfix">
+                        <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+
+        <!-- page-title -->
+        <section class="page-title centred pt_110">
+            <div class="auto-container">
+                <div class="content-box">
+                    <h1>Inscrivez-vous</h1>
+                   
+                </div>
+            </div>
+        </section>
+        <!-- page-title end -->
+
+
+        <!-- sign-section -->
+        <section class="sign-section pt_110 pb_120">
+            <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-25.png);"></div>
+            <div class="auto-container">
+                <div class="form-inner wide-form">
+                    <form (ngSubmit)="addNewClient()" [formGroup]="clientForm">
+                        <!-- Section 1 : Informations de l'entreprise -->
+                       
+                    
+                        <!-- Section 2 : Contact principal -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-id-card me-2"></i>Informations Personnel</h3>
+                    
+                            <div class="row mb-3">
+                                
+                                <div class="col-md-4">
+                                    <label for="nom" class="form-label required-field">Nom</label>
+<input formControlName="nom" type="text" class="form-control" id="nom" required>
+<small class="text-danger" *ngIf="nom?.touched && nom?.invalid">
+<span *ngIf="nom?.errors?.['required']">Le nom est obligatoire</span>
+<span *ngIf="nom?.errors?.['minlength']">Minimum 2 caractères requis</span>
+</small>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="prenom" class="form-label required-field">Prénom</label>
+                                    <input formControlName="prenom" type="text" class="form-control" id="prenom" required>
+                                    <small class="text-danger" *ngIf="prenom?.touched && prenom?.invalid">
+                                      <span *ngIf="prenom?.errors?.['required']">Le prénom est obligatoire</span>
+                                    </small>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="genre" class="form-label required-field">Genre</label>
+                                    <div class="radio-options horizontal">
+                                        <label class="radio-container">Homme
+                                          <input formControlName="genre" type="radio" value="Homme" required>
+                                          <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">Femme
+                                          <input formControlName="genre" type="radio" value="Femme">
+                                          <span class="checkmark"></span>
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+
+                    
+                            <div class="row mb-3">
+                               
+                                <div class="col-md-6">
+                                    <label for="tlf" class="form-label required-field">Téléphone</label>
+                                    <input formControlName="tlf" type="tel" class="form-control" id="tlf" pattern="[0-9]{8,15}" required>
+                                    <small class="text-danger" *ngIf="tlf?.touched && tlf?.invalid">
+                                      <span *ngIf="tlf?.errors?.['required']">Le téléphone est obligatoire</span>
+                                      <span *ngIf="tlf?.errors?.['pattern']">Format: 8 chiffres</span>
+                                    </small>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cin" class="form-label required-field">Numéro CIN</label>
+                                    <div class="input-group">
+                                      <input formControlName="cin" type="text" class="form-control" id="cin" pattern="[0-9]{8}" required>
+                                    </div>
+                                    <small class="text-muted">Format: 8 caractères numériques</small>
+                                    <small class="text-danger" *ngIf="cin?.touched && cin?.invalid">
+                                      <span *ngIf="cin?.errors?.['required']">Le CIN est obligatoire</span>
+                                      <span *ngIf="cin?.errors?.['pattern']">8 chiffres requis</span>
+                                    </small>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <label for="adresse" class="form-label">Adresse</label>
+<textarea formControlName="adresse" class="form-control" id="adresse" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    
+                       
+                    
+                        <!-- Section 3 : Compte d'accès -->
+                        <div class="form-section">
+                            <h3><i class="fas fa-user-lock me-2"></i>Compte d'Accès</h3>
+                    
+                            <div class="row mb-3">
+                               
+                                    <div class="col-md-6">
+                                        <label for="login" class="form-label required-field">Identifiant</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">&#64;</span>
+                                            <input formControlName="email" type="email" class="form-control" id="email" required>
+                                            <small class="text-danger" *ngIf="email?.touched && email?.invalid">
+                                              <span *ngIf="email?.errors?.['required']">L'email est obligatoire</span>
+                                              <span *ngIf="email?.errors?.['email']">Format d'email invalide</span>
+                                            </small>
+                                        </div>
+                                        
+                                    </div>
+                               
+                                <div class="col-md-6 mp-field">
+                                    <label for="password" class="form-label required-field">Mot de Passe</label>
+                                    <input formControlName="mp" type="password" class="form-control" id="password" required>
+<i class="" id=""></i>
+<small class="text-danger" *ngIf="mp?.touched && mp?.invalid">
+<span *ngIf="mp?.errors?.['required']">Le mot de passe est obligatoire</span>
+<span *ngIf="mp?.errors?.['minlength']">Minimum 6 caractères requis</span>
+</small>
+
+                                </div>
+                                
+                            </div>
+                    
+                        
+                        </div>
+                    
+                        
+                        
+                        <span [innerHTML]="messageCommande"></span>
+                        <!-- Boutons de soumission -->
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-eraser me-1"></i> Réinitialiser
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i> Créer le Compte
+                            </button>
+                        </div>
+                    </form>
+                    
+                   
+                    
+                    <div class="lower-text centred"><p>Vous avez déjà un compte? <a href="loginClient">Connectez-vous ici</a></p></div>
+                </div>
+            </div>
+        </section>
+        
+        <style>
+            .wide-form {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .form-row {
+                display: flex;
+                gap: 20px;
+            }
+            
+            .half-width {
+                flex: 1;
+            }
+            
+            .phone-input-container {
+                display: flex;
+                gap: 10px;
+            }
+            
+            .country-code {
+                width: 180px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background-color: #fff;
+            }
+            
+            .phone-number {
+                flex: 1;
+            }
+            
+            .radio-options {
+                display: flex;
+                gap: 20px;
+            }
+            
+            .radio-options.horizontal {
+                flex-direction: row;
+            }
+            
+            .radio-container {
+                display: flex;
+                align-items: center;
+                position: relative;
+                padding-left: 35px;
+                cursor: pointer;
+                font-size: 16px;
+                user-select: none;
+            }
+            
+            .radio-container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+            
+            .checkmark {
+                position: absolute;
+                left: 0;
+                height: 20px;
+                width: 20px;
+                background-color: #eee;
+                border-radius: 50%;
+                border: 1px solid #ddd;
+            }
+            
+            .radio-container:hover input ~ .checkmark {
+                background-color: #ccc;
+            }
+            
+            .radio-container input:checked ~ .checkmark {
+                background-color: #2196F3;
+            }
+            
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+            
+            .radio-container input:checked ~ .checkmark:after {
+                display: block;
+            }
+            
+            .radio-container .checkmark:after {
+                top: 6px;
+                left: 6px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: white;
+            }
+            
+            select, input {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+        
+            .input-with-icon {
+                position: relative;
+            }
+        
+            .input-icon {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 2;
+            }
+        
+            .input-with-icon input {
+                padding-left: 40px !important;
+            }
+        </style>
+        
+       
+        
+        <!-- subscribe-style-two end -->
+
+
+        <!-- main-footer -->
+        <app-footer></app-footer>
+        <!-- main-footer end -->
+
+
+
+       
+        
+    </div>
+
+
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:35 GMT -->
+</html>

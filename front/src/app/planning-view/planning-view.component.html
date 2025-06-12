@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:41 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Jobaway - Planning</title>
+
+</head>
+
+<body class="boxed_wrapper ltr">
+
+    <!-- preloader -->
+    <div class="loader-wrap">
+        <div class="preloader">
+            <div class="preloader-close"><i class="icon-27"></i></div>
+            <div id="handle-preloader" class="handle-preloader">
+                <div class="animation-preloader">
+                    <div class="spinner"></div>
+                    <div class="txt-loading">
+                        <span data-text-preloader="C" class="letters-loading">C</span>
+                        <span data-text-preloader="O" class="letters-loading">O</span>
+                        <span data-text-preloader="L" class="letters-loading">L</span>
+                        <span data-text-preloader="L" class="letters-loading">L</span>
+                        <span data-text-preloader="A" class="letters-loading">A</span>
+                        <span data-text-preloader="B" class="letters-loading">B</span>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+    <!-- preloader end -->
+
+    <!-- main header -->
+    <app-header></app-header>
+    <!-- main-header end -->
+<!-- planning-view.component.html -->
+<section class="page-title centred pt_110">
+    <div class="auto-container">
+        <div class="content-box">
+            <h1>Programme de la réunion</h1>
+            <ul class="bread-crumb clearfix">
+                
+                
+                <li>Veuillez trouver ci-dessous les dates fixées pour une réunion avec le responsable</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+
+ <!-- planning-section -->
+  <section class="contact-section pt_110 pb_80">
+        <div class="auto-container">
+            <div class="inner-container">
+                <div class="row clearfix">
+                    <div class="col-lg-4 col-md-12 col-sm-12 info-column">
+                        <div class="info-box">
+                            <h3>Actions</h3>
+                           
+                            
+                            <div class="btn-group" role="group" style="display: flex; gap: 10px; margin-top: 10px;">
+                                <button (click)="setView(CalendarView.Month)" 
+                                        class="theme-btn btn-two" style="padding: 8px 15px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                                    Mois
+                                </button>
+                                <button (click)="setView(CalendarView.Week)" 
+                                        class="theme-btn btn-two" style="padding: 8px 15px; background-color: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                                    Semaine
+                                </button>
+                                <button (click)="setView(CalendarView.Day)" 
+                                        class="theme-btn btn-two" style="padding: 8px 15px; background-color: #ff9800; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                                    Jour
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-8 col-md-12 col-sm-12 content-column">
+                        <div class="form-inner">
+                            <!-- Calendrier -->
+                             
+                            <div [ngSwitch]="view" class="calendar-container">
+
+                                <!-- Vue Mois -->
+                                <mwl-calendar-month-view
+                                
+                                    *ngSwitchCase="CalendarView.Month"
+                                    [viewDate]="viewDate"
+                                    [events]="events"
+                                    [refresh]="refresh"
+                                    (dayClicked)="dayClicked($event.day)"
+                                    class="custom-calendar">
+                                </mwl-calendar-month-view>
+
+                                <!-- Vue Semaine -->
+                                <mwl-calendar-week-view
+                                    *ngSwitchCase="CalendarView.Week"
+                                    [viewDate]="viewDate"
+                                    [events]="events"
+                                    [refresh]="refresh"
+                                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                                    class="custom-calendar">
+                                </mwl-calendar-week-view>
+
+                                <!-- Vue Jour -->
+                                <mwl-calendar-day-view
+                                    *ngSwitchCase="CalendarView.Day"
+                                    [viewDate]="viewDate"
+                                    [events]="events"
+                                    [refresh]="refresh"
+                                    (eventClicked)="handleEvent('Clicked', $event.event)"
+                                    class="custom-calendar">
+                                </mwl-calendar-day-view>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+ <!-- main-footer -->
+    <app-footer></app-footer>
+    <!-- main-footer end -->
+
+    
+</body>
+</html>

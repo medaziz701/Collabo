@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    
+<!-- Mirrored from coderthemes.com/attex-bundle/layouts/tables-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 09:39:51 GMT -->
+<head>
+        <meta charset="utf-8" />
+        <title>Datatables | Attex - Bootstrap 5 Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    </head>
+
+    <body>
+        <!-- Begin page -->
+        <div class="wrapper">
+
+            
+            <!-- ========== Topbar Start ========== -->
+            <app-header></app-header>
+            <!-- ========== Topbar End ========== -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-menu></app-menu>
+            <!-- ========== Left Sidebar End ========== -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            
+                                        </ol>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+                         <h4 class="page-title">LISTE - Clients</h4>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                       
+
+                                        <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Nom</th>
+                                                    <th>Prénom</th>
+                                                    <th>Email</th>
+                                                    
+                                                    <th>Téléphone</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let client of listeClient">
+                                                    <td>{{client.id}}</td>
+                                                    <td>{{client.nom}}</td>
+                                                    <td>{{client.prenom}}</td>
+                                                    <td>{{client.email}}</td>
+                                                    
+                                                    <td>{{client.tlf}}</td>
+                                                    <td>
+                                                        <button *ngIf="!client.etat" class="btn btn-sm btn-light btn-3d" (click)="updateClientEtat(client)">
+                                                            <i class="fas fa-lock" style="color: black;"></i>
+                                                          </button>
+                                                          <button *ngIf="client.etat" class="btn btn-sm btn-secondary btn-3d" (click)="updateClientEtat(client)">
+                                                            <i class="fas fa-check" ></i>      
+                                                          </button>
+                                                        <button (click)="DeleteClient(client)"type="submit" class="btn btn-danger">Supprimer</button>
+
+                                                        
+                                                    </td>
+                                                </tr>
+                                                <tr *ngIf="listeClient?.length === 0">
+                                                    <td colspan="7" class="text-center">Aucun client trouvé</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div> <!-- end row-->
+
+
+                        
+
+
+                        
+                        
+                        
+
+
+                       
+
+
+                      
+
+
+                        
+
+                        
+
+                        
+
+
+                       
+
+                       
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <!-- Footer Start -->
+                <app-footer></app-footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Theme Settings -->
+       
+
+    </body>
+
+<!-- Mirrored from coderthemes.com/attex-bundle/layouts/tables-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 09:40:27 GMT -->
+</html>

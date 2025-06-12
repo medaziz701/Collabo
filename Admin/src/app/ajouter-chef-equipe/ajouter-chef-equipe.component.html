@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    
+<!-- Mirrored from coderthemes.com/attex-bundle/layouts/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 09:41:11 GMT -->
+<head>
+        <meta charset="utf-8" />
+        <title>Form Elements | Attex - Bootstrap 5 Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+
+       
+    </head>
+
+    <body>
+        <!-- Begin page -->
+        <div class="wrapper">
+
+            
+            <!-- ========== Topbar Start ========== -->
+            <app-header></app-header>
+            <!-- ========== Topbar End ========== -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-menu></app-menu>
+            <!-- ========== Left Sidebar End ========== -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            
+                                        </ol>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title text-primary" style="font-size: 24px; margin-bottom: 30px;">Ajouter Chef Equipe</h4>
+                                        <form (ngSubmit)="addNewChefEquipe()" [formGroup]="chefEquipeForm">
+                                            <div class="form-section">
+                                                <h3><i class="fas fa-id-card me-2"></i>Informations Personnelles</h3>
+                                        
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                      <label for="cin" class="form-label required-field">Numéro CIN</label>
+                                                      <div class="input-group">
+                                                        <input formControlName="cin" type="text" class="form-control" id="cin" pattern="[0-9]{8}" required>
+                                                      </div>
+                                                      <small class="text-muted">Format: 8 caractères numériques</small>
+                                                      <small class="text-danger" *ngIf="cin?.touched && cin?.invalid">
+                                                        <span *ngIf="cin?.errors?.['required']">Le CIN est obligatoire</span>
+                                                        <span *ngIf="cin?.errors?.['pattern']">8 chiffres requis</span>
+                                                      </small>
+                                                    </div>
+                                                  </div>
+                                        
+                                                  <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                      <label for="nom" class="form-label required-field">Nom</label>
+                                                      <input formControlName="nom" type="text" class="form-control" id="nom" required>
+                                                      <small class="text-danger" *ngIf="nom?.touched && nom?.invalid">
+                                                        <span *ngIf="nom?.errors?.['required']">Le nom est obligatoire</span>
+                                                        <span *ngIf="nom?.errors?.['minlength']">Minimum 2 caractères</span>
+                                                      </small>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="prenom" class="form-label required-field">Prénom</label>
+                                                        <input formControlName="prenom" type="text" class="form-control" id="prenom" required>
+                                                        <small class="text-danger" *ngIf="prenom?.touched && prenom?.invalid">
+                                                          <span *ngIf="prenom?.errors?.['required']">Le prénom est obligatoire</span>
+                                                        </small>
+                                                      
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label for="genre" class="form-label required-field">Genre</label>
+                                                        <select formControlName="genre" class="form-select" id="genre" required>
+                                                          <option value="" disabled selected>Sélectionner</option>
+                                                          <option value="Homme">Homme</option>
+                                                          <option value="Femme">Femme</option>
+                                                        </select>
+                                                        <small class="text-danger" *ngIf="genre?.touched && genre?.invalid">
+                                                          <span *ngIf="genre?.errors?.['required']">Le genre est obligatoire</span>
+                                                        </small>
+                                                      </div>
+                                                    <div class="col-md-6">
+                                                        <label for="dateNaissance" class="form-label">Date de Naissance</label>
+        <input formControlName="dateNaissance" type="date" class="form-control" id="dateNaissance" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <div class="form-section">
+                                                <h3><i class="fas fa-address-book me-2"></i>Coordonnées</h3>
+                                        
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label for="tlf" class="form-label required-field">Téléphone</label>
+        <input formControlName="tlf" type="tel" class="form-control" id="tlf" pattern="\+216[0-9]{8}" placeholder="+216XXXXXXXX" required>
+        <small class="text-muted">Format: +216XXXXXXXX</small>
+        <small class="text-danger" *ngIf="tlf?.touched && tlf?.invalid">
+          <span *ngIf="tlf?.errors?.['required']">Le téléphone est obligatoire</span>
+          <span *ngIf="tlf?.errors?.['pattern']">Format: +216XXXXXXXX</span>
+        </small>
+                                                    </div>
+                                                </div>
+                                        
+                                                <div class="row mb-3">
+                                                    <div class="col-12">
+                                                        <label for="adresse" class="form-label required-field">Adresse Complète</label>
+                                                        <textarea formControlName="adresse" class="form-control" id="adresse" rows="2" required></textarea>
+                                                        <small class="text-danger" *ngIf="adresse?.touched && adresse?.invalid">
+                                                          <span *ngIf="adresse?.errors?.['required']">L'adresse est obligatoire</span>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                            <!-- Section 3 : Informations professionnelles -->
+                                            <!-- Section 3 : Informations Professionnelles -->
+<div class="form-section">
+    <h3><i class="fas fa-briefcase me-2"></i>Informations Professionnelles</h3>
+  
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="datePriseFonction" class="form-label required-field">Date de Prise de Fonction</label>
+        <input formControlName="datePriseFonction" type="date" class="form-control" id="datePriseFonction" required>
+        <small class="text-danger" *ngIf="chefEquipeForm.get('datePriseFonction')?.touched && chefEquipeForm.get('datePriseFonction')?.invalid">
+          <span *ngIf="chefEquipeForm.get('datePriseFonction')?.errors?.['required']">La date de prise de fonction est obligatoire</span>
+        </small>
+      </div>
+      
+      <div class="col-md-6">
+        <label class="form-label required-field">Niveau Hiérarchique</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="niveauHierarchique" id="chefEquipe" value="1" checked required>
+          <label class="form-check-label" for="chefEquipe">Chef d'Équipe</label>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="email" class="form-label required-field">Email Professionnel</label>
+        <div class="input-group">
+          <span class="input-group-text">&#64;</span>
+          <input formControlName="email" type="email" class="form-control" id="email" required>
+        </div>
+        <small class="text-danger" *ngIf="chefEquipeForm.get('email')?.touched && chefEquipeForm.get('email')?.invalid">
+          <span *ngIf="chefEquipeForm.get('email')?.errors?.['required']">L'email est obligatoire</span>
+          <span *ngIf="chefEquipeForm.get('email')?.errors?.['email']">Format d'email invalide</span>
+        </small>
+      </div>
+      
+      <div class="col-md-6">
+        <label for="mp" class="form-label required-field">Mot de Passe</label>
+        <div class="input-group">
+          <input formControlName="mp" type="password" class="form-control" id="mp" required>
+          
+        </div>
+        <small class="text-danger" *ngIf="chefEquipeForm.get('mp')?.touched && chefEquipeForm.get('mp')?.invalid">
+          <span *ngIf="chefEquipeForm.get('mp')?.errors?.['required']">Le mot de passe est obligatoire</span>
+        </small>
+      </div>
+    </div>
+  </div>
+                                        
+                                                
+                                            
+                                        
+                                            <!-- Boutons de soumission -->
+                                            <span [innerHTML]="this.messageCommande"></span>
+                                        
+                                            <div class="d-flex justify-content-end gap-2 mt-4">
+                                                <button type="reset" class="btn btn-secondary">
+                                                    <i class="fas fa-eraser me-1"></i> Réinitialiser
+                                                </button>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save me-1"></i> Enregistrer
+                                                </button>
+                                            </div>
+                                            <small class="text-muted">Le système enverra un lien d'activation par email</small>
+                                        </form>
+                                        
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+
+                        
+                        
+
+                        
+                        
+
+                       
+
+
+                       
+                        
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <!-- Footer Start -->
+               <app-footer></app-footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+        </div>
+        <!-- END wrapper -->
+
+        <!-- Theme Settings -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="theme-settings-offcanvas">
+            <div class="d-flex align-items-center bg-primary p-3 offcanvas-header">
+                <h5 class="text-white m-0">Theme Settings</h5>
+                <button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body p-0">
+                <div data-simplebar class="h-100">
+                    <div class="card mb-0 p-3">
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Customize </strong> the overall color scheme, sidebar menu, etc.
+                        </div>
+
+                        <h5 class="mt-0 fs-16 fw-bold mb-3">Choose Layout</h5>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="form-check form-switch">
+                                <input id="customizer-layout01" name="data-layout" type="checkbox" value="vertical" class="form-check-input">
+                                <label class="form-check-label" for="customizer-layout01">Vertical</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input id="customizer-layout02" name="data-layout" type="checkbox" value="horizontal" class="form-check-input">
+                                <label class="form-check-label" for="customizer-layout02">Horizontal</label>
+                            </div>
+                        </div>
+
+                        <h5 class="my-3 fs-16 fw-bold">Color Scheme</h5>
+
+                        <div class="d-flex flex-column gap-2">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="data-bs-theme" id="layout-color-light" value="light">
+                                <label class="form-check-label" for="layout-color-light">Light</label>
+                            </div>
+
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" name="data-bs-theme" id="layout-color-dark" value="dark">
+                                <label class="form-check-label" for="layout-color-dark">Dark</label>
+                            </div>
+                        </div>
+
+                        <div id="layout-width">
+                            <h5 class="my-3 fs-16 fw-bold">Layout Mode</h5>
+
+                            <div class="d-flex flex-column gap-2">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" name="data-layout-mode" id="layout-mode-fluid" value="fluid">
+                                    <label class="form-check-label" for="layout-mode-fluid">Fluid</label>
+                                </div>
+
+                                <div id="layout-boxed">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="data-layout-mode" id="layout-mode-boxed" value="boxed">
+                                        <label class="form-check-label" for="layout-mode-boxed">Boxed</label>
+                                    </div>
+                                </div>
+
+                                <div id="layout-detached">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" name="data-layout-mode" id="data-layout-detached" value="detached">
+                                        <label class="form-check-label" for="data-layout-detached">Detached</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h5 class="my-3 fs-16 fw-bold">Topbar Color</h5>
+
+                        
+
+                       
+
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>  
+
+        
+
+    </body>
+
+<!-- Mirrored from coderthemes.com/attex-bundle/layouts/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 09:41:11 GMT -->
+</html>

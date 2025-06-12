@@ -1,0 +1,11 @@
+
+
+<div class="comment-box">
+      <div *ngFor="let comment of comments" class="comment">
+        <strong>{{ comment.auteur }}</strong>: {{ comment.contenu }}
+      </div>
+      <textarea [(ngModel)]="newComment"></textarea>
+      <button (click)="addComment()">Envoyer</button>
+    </div>
+
+  

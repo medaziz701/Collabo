@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:41 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Jobaway - HTML 5 Template Preview</title>
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper ltr">
+
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="j" class="letters-loading">
+                                j
+                            </span>
+                            <span data-text-preloader="o" class="letters-loading">
+                                o
+                            </span>
+                            <span data-text-preloader="b" class="letters-loading">
+                                b
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="w" class="letters-loading">
+                                w
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="y" class="letters-loading">
+                                y
+                            </span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+
+        <!-- page-direction -->
+        <div class="page_direction">
+            <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+            <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+        </div>
+        <!-- page-direction end -->
+
+
+        <!--Search Popup-->
+       
+
+
+        <!-- main header -->
+        <app-header></app-header>
+        <!-- main-header end -->
+
+
+        <!-- Mobile Menu  -->
+        
+        <!-- End Mobile Menu -->
+
+
+        <!-- page-title -->
+        <section class="page-title centred pt_110">
+            <div class="auto-container">
+                <div class="content-box">
+                    <h1>Contacter votre equipe !</h1>
+                   
+                </div>
+            </div>
+        </section>
+        <!-- page-title end -->
+
+<!-- Chat Section -->
+
+<!-- End Chat Section -->
+
+<!-- page-title end -->
+
+<!-- Après page-title end -->
+<section class="contact-section pb_110">
+  <div class="auto-container">
+    <div class="row clearfix">
+      <div class="col-lg-8 col-md-12 col-sm-12 offset-lg-2">
+        
+        <!-- Chat simplifié -->
+        <div class="project-chat">
+          <h3 class="chat-title text-center">
+            <i class="fas fa-comments"></i> Chat d'Équipe
+        </h3>
+        
+          
+          <div *ngIf="projetId; else noProject">
+            <!-- Messages -->
+            <div class="chat-messages">
+              <div *ngFor="let message of messages" 
+                   class="message" 
+                   [class.my-message]="message.expediteur?.id === currentUser.id">
+                <div class="message-header">
+                  <strong>{{message.expediteur?.prenom}}</strong>
+                  <span>{{message.dateEnvoi | date:'short'}}</span>
+                </div>
+                <p>{{message.contenu}}</p>
+              </div>
+            </div>
+            
+            <!-- Envoi -->
+            <div class="chat-input">
+              <textarea [(ngModel)]="nouveauMessage" 
+                        placeholder="Écrivez votre message..."
+                        (keydown.enter)="envoyerMessage()"></textarea>
+              <button (click)="envoyerMessage()" class="theme-btn">Envoyer</button>
+            </div>
+          </div>
+          
+          <ng-template #noProject>
+            <div class="no-chat">
+              <p class="text-center"><i class="icon-33"></i> Aucun projet sélectionné</p>
+            </div>
+          </ng-template>
+        </div>
+        <!-- Fin du chat -->
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+       
+<app-footer></app-footer>
+
+        <!-- subscribe-style-two end -->
+
+
+        <!-- main-footer -->
+       
+        <!-- main-footer end -->
+
+
+
+    </div>
+
+
+   
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:42 GMT -->
+</html>

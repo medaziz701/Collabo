@@ -1,0 +1,103 @@
+.about-cards-section {
+    background-color: #f8f9fa;
+}
+
+.about-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.card-inner {
+    padding: 30px;
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.card-header .icon-box {
+    font-size: 50px;
+    color: #6e8efb;
+    margin-bottom: 15px;
+}
+
+.card-header h3 {
+    font-size: 24px;
+    color: #2a2a2a;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.card-header h3:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: #f39c12;
+}
+
+.mission-card {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+}
+
+.mission-card .card-header h3,
+.mission-card .card-header .icon-box {
+    color: white;
+}
+
+.mission-card .card-header h3:after {
+    background: white;
+}
+
+.mission-quote {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.mission-quote i {
+    position: absolute;
+    font-size: 60px;
+    opacity: 0.1;
+    top: -20px;
+    left: -10px;
+}
+
+.mission-quote blockquote {
+    font-size: 18px;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+    padding-left: 30px;
+    border-left: 3px solid rgba(255,255,255,0.3);
+}
+
+.values-card .value-item {
+    margin-bottom: 20px;
+}
+
+.values-card .inner-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    height: 100%;
+    text-align: center;
+}
+
+.values-card h4 {
+    color: #6e8efb;
+    margin-bottom: 10px;
+}

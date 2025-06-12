@@ -1,0 +1,8 @@
+
+
+.btn-group {
+    opacity: 1 !important; /* Force la visibilité */
+    background: #f5f5f5; /* Fond légèrement coloré */
+    padding: 10px;
+    border-radius: 5px;
+}

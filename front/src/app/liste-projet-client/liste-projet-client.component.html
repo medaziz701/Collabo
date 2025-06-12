@@ -1,0 +1,223 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:36 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Jobaway - HTML 5 Template Preview</title>
+
+<!-- Fav Icon -->
+
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper ltr">
+
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="j" class="letters-loading">
+                                j
+                            </span>
+                            <span data-text-preloader="o" class="letters-loading">
+                                o
+                            </span>
+                            <span data-text-preloader="b" class="letters-loading">
+                                b
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="w" class="letters-loading">
+                                w
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="y" class="letters-loading">
+                                y
+                            </span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+
+        
+
+
+        <!-- main header -->
+        <app-header></app-header>
+        <!-- main-header end -->
+
+
+       
+      
+
+
+        <!-- page-title -->
+        <section class="page-title centred pt_110">
+            <div class="auto-container">
+                <div class="content-box">
+                
+                     <h1 style="color: blue;">Projets actif</h1>
+                     <p>Suivi de vos projets en cours</p>
+                    
+                  
+                </div>
+            </div>
+        </section>
+        <!-- page-title end -->
+
+<!-- sidebar-page-container -->
+<section class="sidebar-page-container p_relative pt_110 pb_120">
+  <div class="auto-container">
+      <div class="row clearfix">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="table-responsive">
+                  <table class="table table-bordered table-hover">
+                      <thead class="thead-dark">
+                          <tr>
+                              <th>Projet</th>
+                             
+                              <th>Description</th>
+                              <th>Dates</th>
+                              <th>Feedback</th>
+                              
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let projet of projets">
+                              <td>
+                                  <strong>{{ projet.nom }}</strong>
+                              </td>
+                              
+                              <td>
+                                  {{ projet.description }}
+                              </td>
+                              <td>
+                                  {{ projet.datedeb | date:'dd/MM/yyyy' }} - {{ projet.datefin | date:'dd/MM/yyyy' }}
+                              </td>
+                              <td>
+                                  <!-- Section Feedback dans le tableau -->
+                                  <div class="feedback-section">
+                                      <button (click)="openFeedbackForm(projet.id)" class="btn btn-sm btn-outline-primary mb-2">
+                                          Donner avis
+                                      </button>
+                                      
+                                      <div *ngIf="projet.feedbacks && projet.feedbacks.length > 0">
+                                          <div *ngFor="let feedback of projet.feedbacks" class="mb-2">
+                                              <div class="star-rating mb-1">
+                                                  <span *ngFor="let star of getStarsArray(feedback.noteEtoiles)" 
+                                                        style="color: #ffc107; font-size: 14px;">
+                                                      {{ star ? '★' : '☆' }}
+                                                  </span>
+                                              </div>
+                                              <p class="small mb-1">{{ feedback.commentaire }}</p>
+                                              <small class="text-muted">{{ feedback.dateCreation | date:'dd/MM/yyyy' }}</small>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </td>
+                              
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Modal de feedback (identique à votre version actuelle) -->
+<div class="modal-backdrop" *ngIf="showFeedbackForm" 
+   style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+          background-color: rgba(0,0,0,0.5); z-index: 1040;"></div>
+
+<div class="modal" *ngIf="showFeedbackForm" 
+   style="display: block; position: fixed; top: 50%; left: 50%; 
+          transform: translate(-50%, -50%); z-index: 1050; 
+          width: 90%; max-width: 600px;">
+  <div class="modal-content" style="background: white; padding: 20px; border-radius: 5px;">
+      <div class="modal-header d-flex justify-content-between align-items-center mb-3">
+          <h4 class="mb-0">Donner votre avis</h4>
+          <button (click)="cancelFeedback()" style="background: none; border: none; font-size: 1.5rem;">×</button>
+      </div>
+      <div class="modal-body">
+          <form [formGroup]="feedbackForm">
+              <div class="form-group mb-4">
+                  <label class="d-block mb-2">Note (1-5 étoiles)</label>
+                  <div class="star-rating">
+                      <span *ngFor="let star of [1,2,3,4,5]; let i = index" 
+                            (click)="feedbackForm.patchValue({ noteEtoiles: i+1 })"
+                            style="font-size: 24px; cursor: pointer; color: #ffc107; margin-right: 5px;">
+                          {{ i < feedbackForm.value.noteEtoiles ? '★' : '☆' }}
+                      </span>
+                  </div>
+              </div>
+              
+              <div class="form-group mb-4">
+                  <label class="d-block mb-2">Commentaire</label>
+                  <textarea formControlName="commentaire" class="form-control" rows="4" style="width: 100%;"></textarea>
+                  <small *ngIf="feedbackForm.get('commentaire')?.invalid && feedbackForm.get('commentaire')?.touched" 
+                         class="text-danger">
+                      Le commentaire est requis (max 500 caractères)
+                  </small>
+              </div>
+              
+              <div class="d-flex justify-content-end">
+                  <button (click)="cancelFeedback()" class="btn btn-secondary mr-2">Annuler</button>
+                  <button (click)="submitFeedback()" class="btn btn-primary" [disabled]="feedbackForm.invalid">
+                      Envoyer
+                  </button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+        <!-- sidebar-page-container end -->
+
+
+        <!-- subscribe-style-two -->
+        
+        <!-- subscribe-style-two end -->
+
+
+        <!-- main-footer -->
+        <app-footer></app-footer>
+        <!-- main-footer end -->
+
+
+
+        <!--Scroll to top-->
+        
+        
+    </div>
+
+
+   
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:39 GMT -->
+</html>
+
+

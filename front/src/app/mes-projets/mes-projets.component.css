@@ -1,0 +1,158 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .boxed_wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Prend toute la hauteur de la vue */
+  }
+  
+  /* Contenu principal qui va s'étirer */
+  .sidebar-page-container {
+    flex: 1; /* Prend tout l'espace disponible */
+    padding-bottom: 60px; /* Espace pour le footer */
+  }
+  
+  /* Style du footer */
+  app-footer {
+    margin-top: auto; /* Pousse le footer en bas */
+    width: 100%;
+    background: #f8f9fa; /* Couleur de fond */
+    padding: 20px 0;
+    border-top: 1px solid #e9ecef;
+  }
+  
+ 
+        /* Styles généraux */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        /* Styles du tableau */
+        .project-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            table-layout: auto;
+        }
+
+        .project-table th,
+        .project-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+        }
+
+        /* Couleurs des colonnes */
+        .project-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .project-table th:nth-child(1) { background: #fff3cd; }
+        .project-table th:nth-child(2) { background: #d4edda; }
+        .project-table th:nth-child(3) { background: #f8d7da; }
+        .project-table th:nth-child(4) { background: #d1ecf1; }
+        .project-table th:nth-child(5) { background: #e2e3e5; }
+        .project-table th:nth-child(6) { background: #cce5ff; }
+        .project-table th:nth-child(7) { background: #f5f5f5; }
+        .project-table th:nth-child(8) { background: #d6d8db; }
+        .project-table th:nth-child(9) { background: #e9ecef; }
+        .project-table th:nth-child(10) { background: #f8f9fa; }
+
+        /* Styles des statuts */
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .status-completed { background: #28a745; color: white; }
+        .status-inprogress { background: #ffc107; color: black; }
+        .status-pending { background: #dc3545; color: white; }
+
+        /* Style des dates */
+        .date-cell {
+            white-space: nowrap;
+            min-width: 180px;
+        }
+
+        /* Bouton Éditer */
+        .edit-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #007bff;
+            color: white !important;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .edit-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1600px) {
+            .main-container {
+                margin: 20px;
+                padding: 10px;
+            }
+            
+            .project-table th,
+            .project-table td {
+                padding: 12px;
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .project-table {
+                display: block;
+                overflow-x: visible;
+            }
+            
+            .date-cell {
+                white-space: normal;
+            }
+        }
+
+        
+   
+
+    /* Coloration des cellules de tâche */
+    .project-table td:nth-child(3) {
+        background-color: #f8f0f1;
+        color: #721c24;
+    }
+
+    /* Style des membres d'équipe */
+    .member-item {
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+    
+    .member-specialite {
+        font-style: italic;
+        color: #666;
+    }
