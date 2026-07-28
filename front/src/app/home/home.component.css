@@ -23,3 +23,62 @@
     height: 4px;
     background: linear-gradient(90deg, #4a90e2, #6a5acd, #4a90e2);
 }
+
+/* Custom styles to reduce banner height and element sizes */
+.banner-style-five {
+    min-height: 480px !important;
+}
+
+.banner-style-five .left-column,
+.banner-style-five .right-column {
+    min-height: 480px !important;
+}
+
+.banner-style-five .content-box {
+    padding: 80px 100px !important;
+}
+
+.banner-style-five .content-box h2 {
+    font-size: 51px !important; /* Reduced by 20% from 64px */
+    line-height: 56px !important;
+    margin-bottom: 15px !important;
+}
+
+.banner-style-five .content-box p {
+    font-size: 16px !important; /* Reduced by 20% from 20px */
+    line-height: 24px !important;
+    margin-bottom: 20px !important;
+}
+
+.banner-style-five .banner-btn {
+    padding: 12px 24px !important;
+    font-size: 14px !important;
+    margin-top: 10px !important;
+}
+
+.banner-style-five .bg-layer {
+    object-fit: cover !important;
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 991px) {
+    .banner-style-five .content-box {
+        padding: 60px 50px !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .banner-style-five .content-box {
+        padding: 40px 30px !important;
+    }
+    
+    .banner-style-five .content-box h2 {
+        font-size: 32px !important;
+        line-height: 40px !important;
+    }
+    
+    .banner-style-five .content-box p {
+        font-size: 14px !important;
+        line-height: 20px !important;
+    }
+}
