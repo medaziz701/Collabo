@@ -1,5 +1,5 @@
 [build]
-  command = "cd front && npm install && ng build --configuration production"
+  command = "cd front && npm install && npm run build -- --configuration production"
   publish = "front/dist/front"
 
 [build.environment]
