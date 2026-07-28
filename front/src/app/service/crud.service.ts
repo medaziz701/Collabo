@@ -18,11 +18,11 @@ import { PlanningC } from '../Entity/PlanningC.Entity';
   providedIn: 'root'
 })
 export class CrudService {
-  apiUrl = "http://localhost:8081/api";
-  loginUserUrldev = "http://localhost:8081/api/developpeur/login";
-  loginUserUrlCli = "http://localhost:8081/api/client/login";
-  loginUserUrlChef = "http://localhost:8081/api/chefEquipe/login";
-  GoogleUrl = "http://localhost:8081/api/client/login-google";
+  apiUrl = "https://collabo-30rb.onrender.com/api";
+  loginUserUrldev = "https://collabo-30rb.onrender.com/api/developpeur/login";
+  loginUserUrlCli = "https://collabo-30rb.onrender.com/api/client/login";
+  loginUserUrlChef = "https://collabo-30rb.onrender.com/api/chefEquipe/login";
+  GoogleUrl = "https://collabo-30rb.onrender.com/api/client/login-google";
 
   
   tachesDeveloppeurs: { [key: number]: string } = {};
@@ -182,7 +182,7 @@ getTaches(): Observable<Tache[]> {
 }
 
   getAllProjetsbyChefEquipeId(){
-    return this.http.get<any>( "http://localhost:8081/api/projet/get-all-by-id-ChefEquipe/"+this.getChefEquipeInfo()?.id );
+    return this.http.get<any>( this.apiUrl + "/projet/get-all-by-id-ChefEquipe/"+this.getChefEquipeInfo()?.id );
   }
 
   addClient(client:Client){
