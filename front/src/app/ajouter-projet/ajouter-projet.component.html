@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:41 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Jobaway - HTML 5 Template Preview</title>
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper ltr">
+
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="j" class="letters-loading">
+                                j
+                            </span>
+                            <span data-text-preloader="o" class="letters-loading">
+                                o
+                            </span>
+                            <span data-text-preloader="b" class="letters-loading">
+                                b
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="w" class="letters-loading">
+                                w
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="y" class="letters-loading">
+                                y
+                            </span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+
+        <!-- page-direction -->
+        <div class="page_direction">
+            <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+            <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+        </div>
+        <!-- page-direction end -->
+
+
+        <!--Search Popup-->
+        <div id="search-popup" class="search-popup">
+            <div class="popup-inner">
+                <div class="upper-box">
+                    <figure class="logo-box"><a href="index.html"><img src="assets/images/logo.png" alt=""></a></figure>
+                    <div class="close-search"><span class="icon-27"></span></div>
+                </div>
+                <div class="overlay-layer"></div>
+                <div class="auto-container">
+                    <div class="search-form">
+                        <form method="post" action="https://azim.hostlin.com/Jobaway/index.html">
+                            <div class="form-group">
+                                <fieldset>
+                                    <input type="search" class="form-control" name="search-input" value="" placeholder="Type your keyword and hit" required >
+                                    <button type="submit"><i class="icon-1"></i></button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- main header -->
+        <app-header></app-header>
+        <!-- main-header end -->
+
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>Chicago 12, Melborne City, USA</li>
+                        <li><a href="tel:+8801682648101">+88 01682648101</a></li>
+                        <li><a href="mailto:info@example.com">info&#64;example.com</a></li>
+                    </ul>
+                </div>
+                <div class="social-links">
+                    <ul class="clearfix">
+                        <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+
+        <!-- page-title -->
+       <!-- project-section -->
+<section class="contact-section pt_110 pb_30">
+    <div class="auto-container">
+        <div class="inner-container">
+            <div class="row clearfix">
+                <!-- Colonne de gauche - Actions rapides -->
+                <div class="col-lg-4 col-md-12 col-sm-12 info-column">
+                    <div class="info-box">
+                        <h3>Nouveau Projet</h3>
+                        
+                        
+                       
+                        
+                        <!-- Aide rapide -->
+                        <div class="single-item mt-4">
+                            <h4>Aide</h4>
+                            <ul class="help-list">
+                                <li><i class="fas fa-info-circle me-2"></i> Tous les champs marqués d'un * sont obligatoires</li>
+                                <li><i class="fas fa-users me-2"></i> Sélectionnez au moins 1 développeur</li>
+                                <li><i class="fas fa-check-circle me-2"></i> Vérifiez les dates avant de soumettre</li>
+                                <li><i class="fas fa-file-alt me-2"></i> Ajoutez une description claire du projet</li>
+                                <li><i class="fas fa-tags me-2"></i> Associez le projet à une catégorie pour un meilleur suivi</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Statut du projet -->
+                        
+                       
+                    </div>
+                </div>
+                
+                
+                <div class="col-lg-8 col-md-12 col-sm-12 content-column">
+                    <div class="form-inner">
+                        <form [formGroup]="AjouterForm" (ngSubmit)="addNewProjet()">
+                            <div class="form-section">
+                                <!-- Section Projet -->
+                                <h3>Informations du projet</h3>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label for="nom" class="form-label required-field">Nom du projet</label>
+                                        <input formControlName="nom" type="text" class="form-control" id="nom" required>
+                                        <div *ngIf="nom.invalid && (nom.dirty || nom.touched)" class="text-danger">
+                                            <small *ngIf="nom.errors?.['required']">Le nom du projet est obligatoire</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <!-- Section Client avec gestion d'absence -->
+                                <div class="row mb-3">
+                                    <div class="col-md-6 position-relative">
+                                        <label for="client" class="form-label required-field">Client</label>
+                                        <div *ngIf="listClient?.length > 0; else noClients">
+                                            <select formControlName="client" class="form-control" id="client" required
+                                                    style="appearance: auto; -webkit-appearance: menulist; -moz-appearance: menulist;">
+                                                <option value="" disabled selected>Sélectionnez un client</option>
+                                                <option *ngFor="let client of listClient" [value]="client.id">
+                                                    {{client.nom}} {{client.prenom}}
+                                                </option>
+                                            </select>
+                                            <div *ngIf="client.invalid && (client.dirty || client.touched)" class="text-danger">
+                                                <small *ngIf="client.errors?.['required']">Le client est obligatoire</small>
+                                            </div>
+                                        </div>
+                                        <ng-template #noClients>
+                                            <div class="alert alert-warning">
+                                                Aucun client disponible.
+                                            </div>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="datedeb" class="form-label required-field">Date de début</label>
+                                        <input formControlName="datedeb" type="date" class="form-control" id="datedeb" required>
+                                        <div *ngIf="datedeb.invalid && (datedeb.dirty || datedeb.touched)" class="text-danger">
+                                            <small *ngIf="datedeb.errors?.['required']">La date de début est obligatoire</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="datefin" class="form-label">Date de fin</label>
+                                        <input formControlName="datefin" type="date" class="form-control" id="datefin">
+                                    </div>
+                                </div>
+                            
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label for="description" class="form-label required-field">Description</label>
+                                        <textarea formControlName="description" class="form-control" id="description" rows="3" required></textarea>
+                                        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
+                                            <small *ngIf="description.errors?.['required']">La description est obligatoire</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <!-- Section Equipe -->
+                                <h3 class="mt-4">Création de l'équipe</h3>
+                            
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label for="nomEquipe" class="form-label required-field">Nom de l'équipe</label>
+                                        <input formControlName="nomEquipe" type="text" class="form-control" id="nomEquipe" required>
+                                        <div *ngIf="nomEquipe.invalid && (nomEquipe.dirty || nomEquipe.touched)" class="text-danger">
+                                            <small *ngIf="nomEquipe.errors?.['required']">Le nom de l'équipe est obligatoire</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label for="descriptionEquipe" class="form-label required-field">Description de l'équipe</label>
+                                        <textarea formControlName="descriptionEquipe" class="form-control" id="descriptionEquipe" rows="3" required></textarea>
+                                        <div *ngIf="descriptionEquipe.invalid && (descriptionEquipe.dirty || descriptionEquipe.touched)" class="text-danger">
+                                            <small *ngIf="descriptionEquipe.errors?.['required']">La description de l'équipe est obligatoire</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <label for="domaineSpecialisation" class="form-label required-field">Domaine de spécialisation</label>
+                                        <input formControlName="domaineSpecialisation" type="text" class="form-control" id="domaineSpecialisation" required>
+                                        <div *ngIf="domaineSpecialisation.invalid && (domaineSpecialisation.dirty || domaineSpecialisation.touched)" class="text-danger">
+                                            <small *ngIf="domaineSpecialisation.errors?.['required']">Le domaine de spécialisation est obligatoire</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <!-- Section Développeurs avec gestion d'absence -->
+                                <h3 class="mt-4">Sélection des développeurs</h3>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        <div *ngIf="listDeveloppeurs?.length > 0; else noDevs">
+                                            <div class="list-group">
+                                                <div *ngFor="let dev of listDeveloppeurs" class="list-group-item">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               [id]="'dev-' + dev.id"
+                                                               (change)="toggleDeveloppeurSelection(dev.id!)"
+                                                               [checked]="isDeveloppeurSelected(dev.id!)">
+                                                        <label class="form-check-label" [for]="'dev-' + dev.id">
+                                                            {{ dev.nom }} {{ dev.prenom }} - {{ dev.specialite }}
+                                                        </label>
+                                                    </div>
+                                                    <div *ngIf="isDeveloppeurSelected(dev.id!)" class="mt-2">
+                                                        <label [for]="'tache-' + dev.id" class="form-label">Tâche pour {{ dev.prenom }}</label>
+                                                        <input type="text"
+                                                               class="form-control mb-2"
+                                                               [id]="'tache-' + dev.id"
+                                                               (input)="updateTacheForDeveloppeur(dev.id!, $event, 'description')">
+                                                        
+                                                        <label [for]="'date-limite-' + dev.id" class="form-label">Date limite</label>
+                                                        <input type="date"
+                                                               class="form-control"
+                                                               [id]="'date-limite-' + dev.id"
+                                                               (change)="updateTacheForDeveloppeur(dev.id!, $event, 'dateLimite')">
+                                                    </div>
+                                                   
+                                                    
+
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ng-template #noDevs>
+                                            <div class="alert alert-warning">
+                                                Aucun développeur disponible.
+                                            </div>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                                
+                                <!-- Section Image -->
+                               
+                                <div *ngIf="messageCommande" [innerHTML]="messageCommande"></div>
+                            
+                                <div class="d-flex justify-content-end gap-2 mt-4">
+                                    <button type="button" (click)="cancel()" class="btn btn-secondary">
+                                        <i class="fas fa-eraser me-1"></i> Annuler
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="AjouterForm.invalid">
+                                        <i class="fas fa-save me-1"></i> Enregistrer
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- contact-section end -->
+
+
+      
+
+
+        <!-- subscribe-style-two -->
+       
+        <!-- subscribe-style-two end -->
+
+
+        <!-- main-footer -->
+        <app-footer></app-footer>
+        <!-- main-footer end -->
+
+
+
+     
+        
+    </div>
+
+
+   
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:42 GMT -->
+</html>

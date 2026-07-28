@@ -1,0 +1,42 @@
+.leftside-menu {
+    width: 250px; 
+}
+
+#leftside-menu-container {
+    padding: 20px 0;
+}
+
+.side-nav {
+    font-size: 1.1rem;
+}
+
+.side-nav-item .side-nav-link {
+    padding: 12px 20px;
+}
+
+.side-nav-title {
+    padding: 15px 20px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+
+/* Logo grand format */
+.logo-lg img {
+    width: 150px; /* Par exemple, ajuster la taille selon ce que tu veux */
+    height: auto; /* Pour garder les proportions */
+}
+
+/* Logo petit format */
+.logo-sm img {
+    width: 100px; /* Pour le logo mobile ou petit écran */
+    height: auto; 
+}
+
+
+
+.side-nav-separator {
+  margin: 40px 0 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+

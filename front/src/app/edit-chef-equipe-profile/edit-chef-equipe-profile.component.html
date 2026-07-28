@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:41 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Jobaway - HTML 5 Template Preview</title>
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper ltr">
+
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="j" class="letters-loading">
+                                j
+                            </span>
+                            <span data-text-preloader="o" class="letters-loading">
+                                o
+                            </span>
+                            <span data-text-preloader="b" class="letters-loading">
+                                b
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="w" class="letters-loading">
+                                w
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="y" class="letters-loading">
+                                y
+                            </span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+
+        <!-- page-direction -->
+        <div class="page_direction">
+            <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+            <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+        </div>
+        <!-- page-direction end -->
+
+
+        <!--Search Popup-->
+        <div id="search-popup" class="search-popup">
+            <div class="popup-inner">
+                <div class="upper-box">
+                    <figure class="logo-box"><a href="index.html"><img src="assets/images/logo.png" alt=""></a></figure>
+                    <div class="close-search"><span class="icon-27"></span></div>
+                </div>
+                <div class="overlay-layer"></div>
+                <div class="auto-container">
+                    <div class="search-form">
+                        <form method="post" action="https://azim.hostlin.com/Jobaway/index.html">
+                            <div class="form-group">
+                                <fieldset>
+                                    <input type="search" class="form-control" name="search-input" value="" placeholder="Type your keyword and hit" required >
+                                    <button type="submit"><i class="icon-1"></i></button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- main header -->
+        <app-header></app-header>
+        <!-- main-header end -->
+
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>Chicago 12, Melborne City, USA</li>
+                        <li><a href="tel:+8801682648101">+88 01682648101</a></li>
+                        <li><a href="mailto:info@example.com">info&#64;example.com</a></li>
+                    </ul>
+                </div>
+                <div class="social-links">
+                    <ul class="clearfix">
+                        <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+
+        <!-- page-title -->
+        <section class="page-title centred pt_110">
+            <div class="auto-container">
+                <div class="content-box">
+                    <h1>Modifier Votre profil</h1>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- page-title end -->
+
+
+
+
+        
+
+<!-- edit-chef-equipe-profile.component.html -->
+<!-- Intégrez ceci dans votre template Jobaway à la place de la section contact -->
+<section class="contact-section pt_110 pb_30">
+    <div class="auto-container">
+        <div class="inner-container">
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12 col-sm-12 info-column">
+                    <div class="info-box">
+                        <h3>Informations du profil</h3>
+                        <div class="single-item">
+                            <div class="icon-box"><i class="icon-user"></i></div>
+                            <h4>Vos données</h4>
+                            <p>Toutes vos informations personnelles sont sécurisées</p>
+                        </div>
+                        <div class="single-item">
+                            <div class="icon-box"><i class="icon-lock"></i></div>
+                            <h4>Sécurité</h4>
+                            <p>Nous utilisons le chiffrement SSL</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 col-md-12 col-sm-12 content-column">
+                    <div class="form-inner">
+                        <h2 class="text-center mb-4">Modifier mon profil</h2>
+                        
+                        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="contact-form">
+                            <div class="alert alert-success" *ngIf="successMessage">
+                                {{ successMessage }}
+                            </div>
+                            <div class="alert alert-danger" *ngIf="errorMessage">
+                                {{ errorMessage }}
+                            </div>
+
+                            <div class="row clearfix">
+                                <!-- Ligne 1 -->
+                                <div class="col-md-6 form-group">
+                                    <label>Nom</label>
+                                    <input type="text" formControlName="nom" class="form-control" placeholder="Votre nom">
+                                </div>
+                                
+                                <div class="col-md-6 form-group">
+                                    <label>Prénom</label>
+                                    <input type="text" formControlName="prenom" class="form-control" placeholder="Votre prénom">
+                                </div>
+
+                                <!-- Ligne 2 -->
+                                <div class="col-md-6 form-group">
+                                    <label>Email</label>
+                                    <input type="email" formControlName="email" class="form-control" placeholder="Votre email">
+                                </div>
+                                
+                                <div class="col-md-6 form-group">
+                                    <label>Téléphone</label>
+                                    <input type="text" formControlName="tlf" class="form-control" placeholder="Votre téléphone">
+                                </div>
+
+                                <!-- Ligne 3 -->
+                                <div class="col-12 form-group">
+                                    <label>Adresse</label>
+                                    <input type="text" formControlName="adresse" class="form-control" placeholder="Votre adresse">
+                                </div>
+
+                                <!-- Ligne 4 -->
+                                <div class="col-md-6 form-group">
+                                    <label>Genre</label>
+                                    <div class="radio-options">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" formControlName="genre" 
+                                                   id="homme" value="Homme" [checked]="profileForm.get('genre')?.value === 'Homme'">
+                                            <label class="form-check-label" for="homme">Homme</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" formControlName="genre" 
+                                                   id="femme" value="Femme" [checked]="profileForm.get('genre')?.value === 'Femme'">
+                                            <label class="form-check-label" for="femme">Femme</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="mp" class="form-label">Nouveau mot de passe (Laissez-le si vous ne voulez pas le changer)</label>
+                                    <input type="password" class="form-control" id="mp" formControlName="mp">
+                                    
+                                  </div>
+                      
+                            
+
+                                <!-- Bouton -->
+                                <div class="col-12 form-group text-center mt-4">
+                                    <button type="submit" class="theme-btn btn-one" [disabled]="!profileForm.valid">
+                                        Enregistrer les modifications
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>
+
+   
+    </div>
+
+
+   
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:42 GMT -->
+</html>

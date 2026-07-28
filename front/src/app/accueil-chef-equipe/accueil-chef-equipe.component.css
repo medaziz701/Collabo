@@ -1,0 +1,310 @@
+/* Styles pour le titre de la page */
+.page-title.centred {
+    padding: 80px 0 40px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 40px;
+}
+
+.content-box h1 {
+    color: #1a365d;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.content-box h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #3B82F6;
+    border-radius: 2px;
+}
+
+.content-box p {
+    color: #64748b;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* Styles pour le conteneur principal */
+.container {
+  padding: 40px 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f8fafc;
+}
+
+/* Styles pour les cartes de projet */
+.projet-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 100px; /* Augmentez le padding */
+  margin-bottom: 100px; /* Augmentez la marge inférieure */
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transform: scale(1.05);
+  min-height: 300px; /* Ajoutez une hauteur minimale */
+}
+
+.projet-card:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.projet-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #3B82F6 0%, #1D4ED8 100%);
+}
+
+.projet-card h2 {
+  color: #1e293b;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+  position: relative;
+  padding-left: 20px;
+}
+
+.projet-card h2::before {
+  content: '📌';
+  position: absolute;
+  left: -10px;
+  top: -2px;
+}
+
+/* Styles pour la barre de progression */
+.progress-container {
+  margin: 25px 0;
+  position: relative;
+}
+
+.progress-bar {
+  height: 16px;
+  background: #f1f5f9;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress {
+  background: linear-gradient(90deg, #4F46E5 0%, #6366F1 100%);
+  height: 100%;
+  border-radius: 20px;
+  position: relative;
+}
+
+.progress::after {
+  content: attr(data-progress);
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Styles pour les statistiques */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.stats strong {
+  font-weight: bold;
+}
+
+/* Styles pour les statuts */
+.statut {
+  font-weight: bold;
+}
+
+.statut.TERMINE {
+  color: green;
+}
+
+.statut.EN_COURS {
+  color: orange;
+}
+
+.statut.ANNULE {
+  color: red;
+}
+
+/* Styles pour les descriptions */
+.description {
+  font-weight: bold;
+}
+
+/* Styles pour les icônes des statistiques */
+.completed-stat::before {
+  content: '✔';
+  margin-right: 8px;
+  color: #22c55e;
+}
+
+.pending-stat::before {
+  content: '⏳';
+  margin-right: 8px;
+  color: #f59e0b;
+}
+
+/* Styles pour les conteneurs de tâches */
+.taches-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Styles pour les éléments de tâche */
+.tache-item {
+  padding: 20px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.tache-item:hover {
+  transform: translateX(5px);
+}
+
+.tache-item.completed {
+  background: #f0fdf4;
+  border-left: 4px solid #22c55e;
+}
+
+.tache-item.pending {
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+}
+
+.tache-item h4 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+/* Styles pour les icônes des tâches */
+.tache-item.completed::after {
+  content: '✓';
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #22c55e;
+  font-size: 1.2rem;
+}
+
+.tache-item.pending::after {
+  content: '→';
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #f59e0b;
+  font-size: 1.2rem;
+}
+
+/* Styles pour la typographie */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #475569;
+}
+
+h1, h2, h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Styles pour le conteneur principal */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .boxed_wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Prend toute la hauteur de la vue */
+  }
+
+  /* Contenu principal qui va s'étirer */
+  .sidebar-page-container {
+    flex: 1; /* Prend tout l'espace disponible */
+    padding-bottom: 60px; /* Espace pour le footer */
+  }
+  
+.spacer {
+    margin: 30px 0; /* Ajoute une marge de 20 pixels en haut et en bas */
+  }
+  /* Style du footer */
+  app-footer {
+    margin-top: auto; /* Pousse le footer en bas */
+    width: 100%;
+    background: #f8f9fa; /* Couleur de fond */
+    padding: 20px 0;
+    border-top: 1px solid #e9ecef;
+  }
+/* Styles pour les statistiques */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 0;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.stats strong {
+  font-weight: bold;
+}
+
+/* Styles pour les icônes des statistiques */
+.completed-stat::before {
+  content: '✔';
+  margin-right: 8px;
+  color: #22c55e;
+}
+
+.pending-stat::before {
+  content: '⏳';
+  margin-right: 8px;
+  color: #f59e0b;
+}
+
+.comment-modal {
+  background: white;
+  padding: 15px;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.comment-item {
+  margin: 10px 0;
+  padding: 10px;
+  background: #f8f9fa;
+}

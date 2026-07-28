@@ -1,0 +1,135 @@
+<header class="main-header header-style-five">
+    <!-- header-top -->
+    <div class="header-top">
+        <div class="outer-container">
+            <div class="top-inner">
+                <ul class="info">
+                    <li>
+                        <img src="assets/assets/images/icons/icon-6.png" alt="">
+                        Call: <a href="tel:912345432">+(216) 56 -111 -523</a>
+                    </li>
+                    <li>
+                        <img src="assets/assets/images/icons/icon-7.png" alt="">
+                        Mail : <a href="mailto:contact@collaborapro.com">supportCollaboraPro&#64;gmail.com</a>
+
+                    </li>
+                </ul>
+                <p *ngIf="!isDeveloppeurIn && !isChefEquipeIn && !isClientIn"><span >Bienvenue sur CollaboraPro   : </span >    facilite désormais la collaboration et le suivi des projets en temps réel.</p>
+
+                <p *ngIf=" isDeveloppeurIn"  ><span >Bienvenue </span > dans votre espace de développement !</p> 
+                 
+                    <p *ngIf=" isChefEquipeIn"  ><span >Bienvenue </span >  dans votre espace de gestion, Chef !</p>
+                       
+
+                        <p *ngIf=" isClientIn"  ><span >Bienvenue </span >   cher client, heureux de vous voir !</p> 
+
+                    
+
+                    
+                            
+                            
+                            
+
+                <div class="right-column">
+                    <div class="language-picker js-language-picker mr_30" data-trigger-class="btn btn--subtle">
+                        
+                    </div>
+                    <ul class="social-links">
+                        <li><span>Share:</span></li>
+                        <li><a href="index-2.html"><i class="icon-22"></i></a></li>
+                        <li><a href="index-2.html"><i class="icon-23"></i></a></li>
+                        <li><a href="index-2.html"><i class="icon-24"></i></a></li>
+                        <li><a href="index-2.html"><i class="icon-25"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- header-lower -->
+    <div class="header-lower">
+        <div class="outer-container">
+            <div class="outer-box">
+                <figure class="logo-box"><a href="index.html"><img src="assets/assets/images/logo.png" alt="" width="200" height="40"></a></figure>
+ 
+                <div class="menu-area">
+                    <!--Mobile Navigation Toggler-->
+                    <div class="mobile-nav-toggler">
+                        <i class="icon-bar"></i>
+                        <i class="icon-bar"></i>
+                        <i class="icon-bar"></i>
+                    </div>
+                    <nav class="main-menu navbar-expand-md navbar-light clearfix">
+                        <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
+                            <ul class="navigation clearfix">
+           
+                                <li *ngIf="isChefEquipeIn"><a href="accueilChef">Accueil</a></li> 
+                                 <li *ngIf="isDeveloppeurIn"><a href="accueildeveloppeur">Accueil</a></li> 
+                                  <li *ngIf="isClientIn"><a href="accueilClient">Accueil</a></li> 
+
+                                <li ><a href="aboutUS">Qui sommes-nous ?</a></li>
+                                <li *ngIf="isChefEquipeIn || isDeveloppeurIn "><a href="chatvideo">Rejoindre réunion</a></li>
+                                <li *ngIf=" isChefEquipeIn"><a href="Rendezvous">Calendrier réunion</a></li>
+                                <li *ngIf="isDeveloppeurIn" class=""><a href="vueRendezVous">Calendrier réunion</a></li>
+
+                                <li *ngIf=" isDeveloppeurIn"><a href="projetchat">Discussion Equipe</a></li>
+
+                                <li *ngIf="isClientIn " class=""><a href="listeProjClient">Mes Projets</a></li>
+                                
+                                <!-- Afficher "Nos Projets" pour chef d'équipe et client, "Détails du projet" pour développeur -->
+                                <li *ngIf="isChefEquipeIn " class=""><a href="listeProjets">Voir projets</a></li>
+                                <li *ngIf="isDeveloppeurIn" class=""><a href="MesProjet">Projet affecté</a></li>
+                                
+                                
+                                <!-- Afficher "Ajouter un projet" pour chef d'équipe, "Documents" pour développeur -->
+                                <li *ngIf="isChefEquipeIn" class=""><a href="AjouterProjet">Créer projet</a></li>
+                                
+                                
+                                
+
+                                <li><a href="contact">Contactez-nous</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="menu-right-content">
+                    
+                    
+                       
+                        <div *ngIf="userInfo" class="user-profile-dropdown" (click)="toggleProfileMenu()">
+                            <div class="user-avatar">
+                                <span>{{ userInfo.prenom?.charAt(0) }}{{ userInfo.nom?.charAt(0) }}</span>
+                              
+                            </div>
+                            <div class="dropdown-menu" [class.show]="showProfileMenu">
+                                <a href="profil"  class="dropdown-item">
+                                    <i class="fas fa-user"></i> Mon Profil
+                                </a>
+                                <a  href="editProfil" class="dropdown-item">
+                                    <i class="fas fa-edit"></i> Modifier Profil
+                                </a>
+                               
+                            </div>
+                        </div>
+                    <div class="btn-box">
+                        <a *ngIf="isChefEquipeIn  || isDeveloppeurIn || isClientIn" (click)="logout()">Déconnexion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--sticky Header-->
+    <div class="sticky-header">
+        <div class="outer-container">
+            <div class="outer-box">
+                <figure class="logo-box"><a href="index.html"><img src="assets/assets/images/LOGO.png" alt=""></a></figure>
+                <div class="menu-area">
+                    <nav class="main-menu clearfix">
+                        <!--Keep This Empty / Menu will come through Javascript-->
+                    </nav>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</header>

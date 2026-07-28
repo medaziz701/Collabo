@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:35 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Jobaway - HTML 5 Template Preview</title>
+
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper ltr">
+
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="j" class="letters-loading">
+                                j
+                            </span>
+                            <span data-text-preloader="o" class="letters-loading">
+                                o
+                            </span>
+                            <span data-text-preloader="b" class="letters-loading">
+                                b
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="w" class="letters-loading">
+                                w
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="y" class="letters-loading">
+                                y
+                            </span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+
+        <!-- page-direction -->
+        <div class="page_direction">
+            <div class="demo-rtl direction_switch"><button class="rtl">RTL</button></div>
+            <div class="demo-ltr direction_switch"><button class="ltr">LTR</button></div>
+        </div>
+        <!-- page-direction end -->
+
+
+        <!--Search Popup-->
+        <div id="search-popup" class="search-popup">
+            <div class="popup-inner">
+                <div class="upper-box">
+                    <figure class="logo-box"><a href="index.html"><img src="assets/images/logo.png" alt=""></a></figure>
+                    <div class="close-search"><span class="icon-27"></span></div>
+                </div>
+                <div class="overlay-layer"></div>
+                <div class="auto-container">
+                    <div class="search-form">
+                        <form method="post" action="https://azim.hostlin.com/Jobaway/index.html">
+                            <div class="form-group">
+                                <fieldset>
+                                    <input type="search" class="form-control" name="search-input" value="" placeholder="Type your keyword and hit" required >
+                                    <button type="submit"><i class="icon-1"></i></button>
+                                </fieldset>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- main header -->
+       <app-header></app-header>
+        <!-- main-header end -->
+
+
+        <!-- Mobile Menu  -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <div class="close-btn"><i class="fas fa-times"></i></div>
+            <nav class="menu-box">
+                <div class="nav-logo"><a href="index.html"><img src="assets/images/logo-2.png" alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+                <div class="contact-info">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>Chicago 12, Melborne City, USA</li>
+                        <li><a href="tel:+8801682648101">+88 01682648101</a></li>
+                        <li><a href="mailto:info@example.com">info&#64;example.com</a></li>
+                    </ul>
+                </div>
+                <div class="social-links">
+                    <ul class="clearfix">
+                        <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
+                        <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End Mobile Menu -->
+
+
+        <!-- page-title -->
+        <section class="page-title centred pt_110">
+            <div class="auto-container">
+                <div class="content-box">
+                    <h1>Inscrivez-vous</h1>
+                  
+                </div>
+            </div>
+        </section>
+        <!-- page-title end -->
+
+
+        <!-- sign-section -->
+        <section class="sign-section pt_110 pb_120">
+            <div class="pattern-layer" style="background-image: url(assets/images/shape/shape-25.png);"></div>
+            <div class="auto-container">
+                <div class="form-inner wide-form">
+                    <form (ngSubmit)="addNewDeveloppeur()" [formGroup]="developpeurForm">
+                        <div class="form-row">
+                            <div class="form-group half-width">
+                                <label for="nom">Nom</label>
+                                <div class="input-with-icon">
+                                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#999">
+                                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                    </svg>
+                                    <input  formControlName="nom" type="text" name="nom" required>
+                                    <small class="text-danger" *ngIf="nom?.touched && nom?.invalid && nom?.errors?.['required']">
+                                        Le nom est obligatoire.
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="form-group half-width">
+                                <label for="prenom">Prénom</label>
+                                <div class="input-with-icon">
+                                    <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#999">
+                                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                    </svg>
+                                    <input formControlName="prenom" type="text" name="prenom" required>
+                                    <small class="text-danger" *ngIf="prenom?.touched && prenom?.invalid && prenom?.errors?.['required']">
+                                        Le prénom est obligatoire.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Téléphone</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#999">
+                                    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                                </svg>
+                                <input formControlName="tlf" type="tel" name="tlf" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cin" class="form-label required-field">Numéro CIN</label>
+                            <div class="input-with-icon">
+                                <!-- Icône d'identification -->
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#999">
+                                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                                </svg>
+                                
+                                <input 
+                                  formControlName="cin" 
+                                  type="text" 
+                                  class="form-control" 
+                                  id="cin" 
+                                  pattern="[0-9]{8}" 
+                                  required
+                                  
+                                >
+                              </div>
+                            <small class="text-muted">Format: 8 caractères numériques</small>
+                            <small class="text-danger" *ngIf="cin?.touched && cin?.invalid">
+                              <span *ngIf="cin?.errors?.['required']">Le CIN est obligatoire</span>
+                              <span *ngIf="cin?.errors?.['pattern']">8 chiffres requis</span>
+                            </small>
+                          </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#999">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                                <input formControlName="email" type="email" name="email" required>
+                                <small class="text-danger" *ngIf="email?.touched && email?.invalid">
+                                    <span *ngIf="email?.errors?.['required']">L'email est obligatoire.</span>
+                                    <span *ngIf="email?.errors?.['email']">Veuillez entrer une adresse e-mail valide.</span>
+                                </small>
+                            </div>
+                        </div>
+                      
+                        
+                        <div class="form-group">
+                            <label>Adresse</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#999">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                               
+                                 <input formControlName="adresse" type="text" name="adresse" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Spécialité</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#999">
+                                    <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+                                </svg>
+                                <input formControlName="specialite" type="text" required>
+                            </div>
+                            <small *ngIf="specialite?.invalid && specialite?.touched" class="text-danger">
+                                Ce champ est obligatoire.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="mp">Mot de passe</label>
+                            <div class="input-with-icon">
+                                <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="#999">
+                                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                                </svg>
+                                <input formControlName="mp" type="password" name="mp" id="password" required>
+                                <small class="text-danger" *ngIf="mp?.touched && mp?.invalid && mp?.errors?.['required']">
+                                    Le mot de passe est obligatoire.
+                                </small>
+                            </div>
+                        </div>
+                        
+                       
+                        
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <div class="radio-options horizontal">
+                              <label class="radio-container">Homme
+                                <input formControlName="genre" type="radio" value="Homme" required>
+                                <span class="checkmark"></span>
+                              </label>
+                              <label class="radio-container">Femme
+                                <input formControlName="genre" type="radio" value="Femme">
+                                <span class="checkmark"></span>
+                              </label>
+                            </div>
+                          </div>
+                        <span [innerHTML]="this.messageCommande"></span>
+                        
+                        <div class="form-group message-btn">
+                            <button type="submit" class="theme-btn btn-one">S'inscrire</button>
+                        </div>
+                        
+                      
+                      
+                    </form>
+                    
+                    <div class="other-option">
+                        <div class="check-box">
+                            <input class="check" type="checkbox" id="checkbox1">
+                            <label for="checkbox1">Se souvenir de moi</label>
+                        </div>
+                    </div>
+                    
+                    <div class="lower-text centred"><p>Vous avez déjà un compte? <a href="logindeveloppeur">Connectez-vous ici</a></p></div>
+                </div>
+            </div>
+        </section>
+        
+        <style>
+            .wide-form {
+                max-width: 800px;
+                margin: 0 auto;
+            }
+            
+            .form-row {
+                display: flex;
+                gap: 20px;
+            }
+            
+            .half-width {
+                flex: 1;
+            }
+            
+            .phone-input-container {
+                display: flex;
+                gap: 10px;
+            }
+            
+            .country-code {
+                width: 180px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background-color: #fff;
+            }
+            
+            .phone-number {
+                flex: 1;
+            }
+            
+            .radio-options {
+                display: flex;
+                gap: 20px;
+            }
+            
+            .radio-options.horizontal {
+                flex-direction: row;
+            }
+            
+            .radio-container {
+                display: flex;
+                align-items: center;
+                position: relative;
+                padding-left: 35px;
+                cursor: pointer;
+                font-size: 16px;
+                user-select: none;
+            }
+            
+            .radio-container input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+            }
+            
+            .checkmark {
+                position: absolute;
+                left: 0;
+                height: 20px;
+                width: 20px;
+                background-color: #eee;
+                border-radius: 50%;
+                border: 1px solid #ddd;
+            }
+            
+            .radio-container:hover input ~ .checkmark {
+                background-color: #ccc;
+            }
+            
+            .radio-container input:checked ~ .checkmark {
+                background-color: #2196F3;
+            }
+            
+            .checkmark:after {
+                content: "";
+                position: absolute;
+                display: none;
+            }
+            
+            .radio-container input:checked ~ .checkmark:after {
+                display: block;
+            }
+            
+            .radio-container .checkmark:after {
+                top: 6px;
+                left: 6px;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: white;
+            }
+            
+            select, input {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+        
+            .input-with-icon {
+                position: relative;
+            }
+        
+            .input-icon {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 2;
+            }
+        
+            .input-with-icon input {
+                padding-left: 40px !important;
+            }
+        </style>
+        
+       
+        
+        <!-- subscribe-style-two end -->
+
+
+        <!-- main-footer -->
+        <app-footer></app-footer>
+        <!-- main-footer end -->
+
+
+
+        
+    </div>
+
+
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:35 GMT -->
+</html>

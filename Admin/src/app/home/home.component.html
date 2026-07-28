@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    
+<!-- Mirrored from coderthemes.com/attex-bundle/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 09:40:38 GMT -->
+<head>
+        <meta charset="utf-8" />
+        <title>Dashboard | Admin - Bootstrap 5 Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+
+      
+    </head>
+
+    <body>
+        <!-- Begin page -->
+        <div class="wrapper">
+
+            
+            <!-- ========== Topbar Start ========== -->
+            <app-header></app-header>
+            <!-- ========== Topbar End ========== -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <app-menu></app-menu>
+            <!-- ========== Left Sidebar End ========== -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">                                    
+                                    <div class="page-title-right">
+                                        <form class="d-flex">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control shadow border-0" id="dash-daterange">
+                                                <span class="input-group-text bg-primary border-primary text-white">
+                                                    <i class="ri-calendar-todo-fill fs-13"></i>
+                                                </span>
+                                            </div>
+                                            <a href="javascript: void(0);" class="btn btn-primary ms-2">
+                                                <i class="ri-refresh-line"></i>
+                                            </a>
+                                        </form>
+                                    </div>
+                                    <h4 class="page-title">Dashboard</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-1 row-cols-xxl-5 row-cols-lg-3 row-cols-md-2">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="flex-grow-1 overflow-hidden">
+                                                <h5 class="text-muted fw-normal mt-0" title="Nombre de chefs d'équipe">Chefs d'équipe</h5>
+                                                <h3 class="my-3">{{tot_chefEquipe}}</h3>
+                                                <p class="mb-0 text-muted text-truncate">
+                                                    <span class="badge bg-info me-1">Total</span>
+                                                    <span>Gestion des équipes</span>
+                                                </p>
+                                            </div>
+                                            <div class="flex-shrink-0">
+                                                <div id="widget-customers" class="apex-charts" data-colors="#47ad77,#e3e9ee"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="flex-grow-1 overflow-hidden">
+                                                <h5 class="text-muted fw-normal mt-0" title="Nombre de clients">Clients</h5>
+                                                <h3 class="my-3">{{tot_client}}</h3>
+                                                <p class="mb-0 text-muted text-truncate">
+                                                    <span class="badge bg-info me-1">Total</span>
+                                                    <span>Clients actifs</span>
+                                                </p>
+                                            </div>
+                                            <div id="widget-orders" class="apex-charts" data-colors="#3e60d5,#e3e9ee"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="flex-grow-1 overflow-hidden">
+                                                <h5 class="text-muted fw-normal mt-0" title="Nombre de développeurs">Développeurs</h5>
+                                                <h3 class="my-3">{{tot_developpeur}}</h3>
+                                                <p class="mb-0 text-muted text-truncate">
+                                                    <span class="badge bg-info me-1">Total</span>
+                                                    <span>Équipe technique</span>
+                                                </p>
+                                            </div>
+                                            <div id="widget-revenue" class="apex-charts" data-colors="#16a7e9,#e3e9ee"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="col col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="flex-grow-1 overflow-hidden">
+                                                <h5 class="text-muted fw-normal mt-0" title="Nombre de projets">Projets</h5>
+                                                <h3 class="my-3">{{tot_projet}}</h3>
+                                                <p class="mb-0 text-muted text-truncate">
+                                                    <span class="badge bg-info me-1">Total</span>
+                                                    <span>Projets en cours</span>
+                                                </p>
+                                            </div>
+                                            <div id="widget-growth" class="apex-charts" data-colors="#ffc35a,#e3e9ee"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col col-lg-6 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="flex-grow-1 overflow-hidden">
+                                                <h5 class="text-muted fw-normal mt-0" title="Nombre d'équipes">Équipes</h5>
+                                                <h3 class="my-3">{{tot_equipe}}</h3>
+                                                <p class="mb-0 text-muted text-truncate">
+                                                    <span class="badge bg-info me-1">Total</span>
+                                                    <span>Équipes actives</span>
+                                                </p>
+                                            </div>
+                                            <div id="widget-conversation" class="apex-charts" data-colors="#f15776,#e3e9ee"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body p-0" style="height: calc(100vh - 250px);">
+                                        <iframe 
+                                            width="100%" 
+                                            height="100%" 
+                                            [src]="powerBiUrl"
+                                            frameborder="0"
+                                            style="border: none;"
+                                            allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+
+                          
+                       
+                        <!-- end row -->
+
+                        <!-- end row -->
+
+                    </div>
+                    <!-- container -->
+
+                </div>
+                <!-- content -->
+
+                <!-- Footer Start -->
+                <app-footer></app-footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+        </div>
+        <!-- END wrapper -->
+
+              
+        
+        
+
+    </body>
+
+<!-- Mirrored from coderthemes.com/attex-bundle/layouts/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 09:40:41 GMT -->
+</html> 

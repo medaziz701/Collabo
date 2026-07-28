@@ -1,0 +1,137 @@
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .boxed_wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Prend toute la hauteur de la vue */
+  }
+  
+  /* Contenu principal qui va s'étirer */
+  .sidebar-page-container {
+    flex: 1; /* Prend tout l'espace disponible */
+    padding-bottom: 60px; /* Espace pour le footer */
+  }
+  
+  /* Style du footer */
+  app-footer {
+    margin-top: auto; /* Pousse le footer en bas */
+    width: 100%;
+    background: #f8f9fa; /* Couleur de fond */
+    padding: 20px 0;
+    border-top: 1px solid #e9ecef;
+  }
+  
+
+  
+
+/* Styles généraux */
+.sidebar-page-container {
+    padding: 60px 0;
+}
+
+/* Styles du tableau */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.table th,
+.table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #e0e0e0;
+    vertical-align: top;
+}
+
+/* Couleurs des colonnes */
+.table thead th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.table thead th:nth-child(1) { background: #d4edda; }
+.table thead th:nth-child(2) { background: #e2e3e5; }
+.table thead th:nth-child(3) { background: #cce5ff; }
+.table thead th:nth-child(4) { background: #f5f5f5; }
+
+/* Style des boutons */
+.btn-outline-primary {
+    background: #007bff;
+    color: white !important;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.btn-outline-primary:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Style des étoiles */
+.star-rating {
+    display: flex;
+    gap: 3px;
+    margin: 5px 0;
+}
+
+.star-rating span {
+    color: #ffc107;
+    font-size: 16px;
+}
+
+/* Style des dates */
+td:nth-child(3) {
+    white-space: nowrap;
+    min-width: 180px;
+}
+
+/* Style du modal */
+.modal-content {
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.modal-header button {
+    color: #666;
+    font-size: 28px;
+    line-height: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .table td {
+        padding: 12px;
+        font-size: 0.95em;
+    }
+    
+    .star-rating span {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-responsive {
+        overflow-x: auto;
+    }
+    
+    .modal {
+        width: 95%;
+    }
+}
