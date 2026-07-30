@@ -68,3 +68,36 @@
     width: 100px; /* Pour le logo mobile ou petit écran */
     height: auto; 
 }
+
+.main-footer {
+    position: relative;
+    padding-top: 80px;
+    margin-top: 100px;
+}
+.main-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4a90e2, #6a5acd, #4a90e2);
+}
+
+/* Compact header styles */
+.header-lower {
+    min-height: 50px !important;
+}
+
+.logo-box img {
+    max-height: 35px !important;
+    width: auto !important;
+}
+
+.main-header .outer-container {
+    padding: 0px 30px !important;
+}
+
+.header-style-five .header-lower .outer-box {
+    padding: 8px 0 !important;
+}
