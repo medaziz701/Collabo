@@ -1,5 +1,6 @@
 package com.CollaboraPro.pfe.RestController;
 
+import com.CollaboraPro.pfe.DTO.ProjetDTO;
 import com.CollaboraPro.pfe.Entity.*;
 import com.CollaboraPro.pfe.Repository.DeveloppeurRepository;
 import com.CollaboraPro.pfe.Repository.EquipeRepository;
@@ -46,10 +47,13 @@ public class ProjetRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Projet>> afficherProjet() {// pour récupérer tous les projets
+    public ResponseEntity<List<ProjetDTO>> afficherProjet() {// pour récupérer tous les projets
         try {
             List<Projet> projets = projetService.afficherProjet();
-            return ResponseEntity.ok(projets);
+            List<ProjetDTO> projetDTOs = projets.stream()
+                    .map(ProjetDTO::fromEntity)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(projetDTOs);
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }

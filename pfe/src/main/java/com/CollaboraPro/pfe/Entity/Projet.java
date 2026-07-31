@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@ToString(exclude = {"taches", "equipe", "feedbacks", "client", "chefEquipe", "codeParts", "messages"})
 public class Projet {
 
     @Id
@@ -30,41 +31,40 @@ public class Projet {
     }
 
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("projet")
+    @JsonIgnore
     private List<Tache> taches;
-
 
 
 
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "equipe_id")
-    @JsonIgnoreProperties("projets")
+    @JsonIgnore
     private Equipe equipe;
 
     @OneToMany(mappedBy = "projet",cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("projet")
+    @JsonIgnore
     private List<Feedback> feedbacks;
 
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    @JsonIgnoreProperties("projets")
+    @JsonIgnore
     @ToString.Exclude
     private Client client;
 
 
     @ManyToOne
     @JoinColumn(name = "chef_equipe_id")
-    @JsonIgnoreProperties("equipesDirigees")
+    @JsonIgnore
     @ToString.Exclude
     private ChefEquipe chefEquipe;
 
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("projet")
+    @JsonIgnore
     private List<CodePart> codeParts;
 
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("projet")
+    @JsonIgnore
     private List<Message> messages;
 }
