@@ -29,7 +29,7 @@ public class Feedback {
 
     @ManyToOne
     @JoinColumn(name = "projet_id")
-    @JsonBackReference("feedback-projet")
+    @JsonIgnoreProperties("feedbacks")
     private Projet projet;
 
     @ManyToOne

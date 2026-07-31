@@ -39,6 +39,7 @@ public class Projet {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "equipe_id")
+    @JsonIgnoreProperties("projets")
     private Equipe equipe;
 
     @OneToMany(mappedBy = "projet",cascade = CascadeType.ALL, orphanRemoval = true)
