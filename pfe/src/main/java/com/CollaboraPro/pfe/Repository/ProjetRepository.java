@@ -19,4 +19,13 @@ public interface ProjetRepository extends JpaRepository<Projet,Long > {
 
     @Query("SELECT p FROM Projet p LEFT JOIN FETCH p.feedbacks")
     List<Projet> findAllWithFeedbacks();
+
+    @Query("SELECT COUNT(p) FROM Projet p")
+    long countTotalProjets();
+
+    @Query("SELECT COUNT(p) FROM Projet p WHERE p.statut = 'EN_COURS'")
+    long countProjetsEnCours();
+
+    @Query("SELECT COUNT(p) FROM Projet p WHERE p.statut = 'TERMINE'")
+    long countProjetsTermines();
 }

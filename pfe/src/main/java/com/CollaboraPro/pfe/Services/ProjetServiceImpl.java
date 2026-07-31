@@ -70,6 +70,13 @@ public class ProjetServiceImpl implements ProjetService {
 
         // Assignation des membres
         List<Developpeur> membres = developpeurRepository.findAllById(model.getDeveloppeursIds());
+
+        // Mise à jour de la disponibilité des membres
+        membres.forEach(m -> {
+            m.setDisponibilite(false);
+            developpeurRepository.save(m);
+        });
+
         equipe.setMembres(membres);
         equipe = equipeRepository.save(equipe);
 
@@ -239,24 +246,32 @@ public class ProjetServiceImpl implements ProjetService {
         Projet projet = projetRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Projet non trouvé"));
 
-        // 1. Supprimer les messages associés (si vous avez une table message)
+        // 1. Rendre les développeurs disponibles
+        if (projet.getEquipe() != null && projet.getEquipe().getMembres() != null) {
+            projet.getEquipe().getMembres().forEach(m -> {
+                m.setDisponibilite(true);
+                developpeurRepository.save(m);
+            });
+        }
+
+        // 2. Supprimer les messages associés (si vous avez une table message)
         messageRepository.deleteByProjetId(id);
 
-        // 2. Supprimer les feedbacks
+        // 3. Supprimer les feedbacks
         feedbackRepository.deleteByProjetId(id);
 
-        // 3. Supprimer les code parts
+        // 4. Supprimer les code parts
         codePartRepository.deleteByProjetId(id);
 
-        // 4. Supprimer les tâches
+        // 5. Supprimer les tâches
         tacheRepository.deleteByProjetId(id);
 
-        // 5. Supprimer l'équipe associée
+        // 6. Supprimer l'équipe associée
         if (projet.getEquipe() != null) {
             equipeRepository.delete(projet.getEquipe());
         }
 
-        // 6. Enfin supprimer le projet
+        // 7. Enfin supprimer le projet
         projetRepository.delete(projet);
     }
 

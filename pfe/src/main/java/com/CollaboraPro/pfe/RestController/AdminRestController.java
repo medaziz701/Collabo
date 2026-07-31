@@ -2,6 +2,8 @@ package com.CollaboraPro.pfe.RestController;
 
 import com.CollaboraPro.pfe.Entity.Admin;
 import com.CollaboraPro.pfe.Repository.AdminRepository;
+import com.CollaboraPro.pfe.Repository.DeveloppeurRepository;
+import com.CollaboraPro.pfe.Repository.ProjetRepository;
 import com.CollaboraPro.pfe.Services.AdminService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -27,6 +29,12 @@ public class AdminRestController {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    ProjetRepository projetRepository;
+
+    @Autowired
+    DeveloppeurRepository developpeurRepository;
 
 
     @RequestMapping(method = RequestMethod.POST )
@@ -125,5 +133,16 @@ public class AdminRestController {
 
         response.put("message", "Password reset successfully");
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @GetMapping("/statistiques")
+    public ResponseEntity<Map<String, Object>> getStatistiques() {
+        Map<String, Object> stats = new HashMap<>();
+        stats.put("totalProjets", projetRepository.countTotalProjets());
+        stats.put("projetsEnCours", projetRepository.countProjetsEnCours());
+        stats.put("projetsTermines", projetRepository.countProjetsTermines());
+        stats.put("totalDeveloppeurs", developpeurRepository.count());
+        stats.put("developpeursDisponibles", developpeurRepository.findByDisponibilite(true).size());
+        return ResponseEntity.ok(stats);
     }
 }
