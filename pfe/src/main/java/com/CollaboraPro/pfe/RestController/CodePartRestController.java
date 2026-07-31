@@ -72,38 +72,63 @@ public class CodePartRestController {
         }
     }
     @GetMapping("/projet/{projetId}")
-    public List<CodePart> getCodePartsByProjet(@PathVariable Long projetId) {
-        return codePartRepository.findByProjetId(projetId);
+    public ResponseEntity<List<CodePart>> getCodePartsByProjet(@PathVariable Long projetId) {
+        try {
+            List<CodePart> codeParts = codePartRepository.findByProjetId(projetId);
+            return ResponseEntity.ok(codeParts);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @GetMapping("/tache/{tacheId}")
-    public List<CodePart> getCodePartsByTache(@PathVariable Long tacheId) {
-        return codePartService.getCodePartsByTache(tacheId);
+    public ResponseEntity<List<CodePart>> getCodePartsByTache(@PathVariable Long tacheId) {
+        try {
+            List<CodePart> codeParts = codePartService.getCodePartsByTache(tacheId);
+            return ResponseEntity.ok(codeParts);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
 
 
     @GetMapping
-    public List<CodePart> getAllCodeParts() {
-        return codePartRepository.findAll();
+    public ResponseEntity<List<CodePart>> getAllCodeParts() {
+        try {
+            List<CodePart> codeParts = codePartRepository.findAll();
+            return ResponseEntity.ok(codeParts);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
 
 
 
     @PutMapping("/{id}")
-    public CodePart updateCodePart(@PathVariable Long id, @RequestBody CodePart updatedPart) {
-        CodePart part = codePartRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("CodePart not found"));
+    public ResponseEntity<CodePart> updateCodePart(@PathVariable Long id, @RequestBody CodePart updatedPart) {
+        try {
+            CodePart part = codePartRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("CodePart not found"));
 
-        part.setContent(updatedPart.getContent());
-        return codePartRepository.save(part);
+            part.setContent(updatedPart.getContent());
+            CodePart savedPart = codePartRepository.save(part);
+            return ResponseEntity.ok(savedPart);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     // DELETE - supprimer
     @DeleteMapping("/{id}")
-    public void deleteCodePart(@PathVariable Long id) {
-        codePartRepository.deleteById(id);
+    public ResponseEntity<Void> deleteCodePart(@PathVariable Long id) {
+        try {
+            codePartRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
 
