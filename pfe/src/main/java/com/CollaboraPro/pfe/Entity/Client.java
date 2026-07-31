@@ -37,7 +37,7 @@ public class Client {
 
     @ManyToOne
     @JoinColumn(name = "admin_id")
-    @JsonIgnore
+    @JsonIgnoreProperties("clientsGeres")
     private Admin managedByAdmin;
 
 
