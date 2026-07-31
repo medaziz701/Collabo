@@ -4,6 +4,7 @@ import { Developpeur } from '../Entity/Developpeur';
 import { ChefEquipe } from '../Entity/ChefEquipe.Entity';
 import { Client } from '../Entity/Client.Entity';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../environments/environment';
 
 
 
@@ -16,8 +17,8 @@ import { Contact } from '../Entity/Contact.Entity';
   providedIn: 'root'
 })
 export class CrudService {// haka rbatna angular b spring boot
-  apiUrl="http://localhost:8081/api"//ay haja ndeclariwha ta7t export
-  loginUserUrl="http://localhost:8081/api/admin/login"
+  apiUrl = environment.apiUrl;
+  loginUserUrl = environment.apiUrl + "/admin/login";
 
   constructor(private http:HttpClient) { }//http hedhi jet bfadhel fel module "HttpClientModule" 
  
