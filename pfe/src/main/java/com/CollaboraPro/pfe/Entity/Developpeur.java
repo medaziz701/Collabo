@@ -45,7 +45,7 @@ public class Developpeur {
 
     @ManyToOne
     @JoinColumn(name = "admin_id")
-    @JsonIgnore
+    @JsonIgnoreProperties("developpeursGeres")
     private Admin managedByAdmin;
 
 
