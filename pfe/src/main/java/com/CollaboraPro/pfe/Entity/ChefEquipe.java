@@ -44,7 +44,7 @@ public class ChefEquipe {
 
     @ManyToOne
     @JoinColumn(name = "admin_id")
-    @JsonIgnore
+    @JsonIgnoreProperties("chefsCrees")
     private Admin createdByAdmin;
 
     @OneToMany(mappedBy = "chefEquipe")

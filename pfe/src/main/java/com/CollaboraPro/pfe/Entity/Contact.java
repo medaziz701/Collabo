@@ -19,7 +19,7 @@ public class Contact {
 
         @ManyToOne
         @JoinColumn(name = "admin_id")
-        @JsonIgnore
+        @JsonIgnoreProperties("contactsAssocies")
         private Admin managedByAdmin;
 
 
