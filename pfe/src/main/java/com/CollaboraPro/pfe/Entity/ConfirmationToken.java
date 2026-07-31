@@ -1,5 +1,6 @@
 package com.CollaboraPro.pfe.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class ConfirmationToken {
 
     @OneToOne(targetEntity = ChefEquipe.class, fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(nullable = false, name = "chefEquipeID")// FetchType.LAZY pour chargé seulement quand nécessaire
+    @JsonIgnore
     private ChefEquipe chefEquipe;//orphanRemoval = true Si le token est supprimé le développeur associé l'est aussi
 
 
