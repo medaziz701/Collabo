@@ -49,14 +49,14 @@ public class Projet {
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-
+    @JsonIgnoreProperties("projets")
     @ToString.Exclude
     private Client client;
 
 
     @ManyToOne
     @JoinColumn(name = "chef_equipe_id")
-    @JsonBackReference("projet-chef-reference")
+    @JsonIgnoreProperties("equipesDirigees")
     @ToString.Exclude
     private ChefEquipe chefEquipe;
 
