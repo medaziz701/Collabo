@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
-@ToString(exclude = {"equipesDirigees", "createdByAdmin", "projet"})//Cela signifie que ces champs ne seront pas inclus dans la méthode toString() générée.  our éviter des boucles infinies lors de l'appel à toString()
+@ToString(exclude = {"equipesDirigees", "createdByAdmin"})//Cela signifie que ces champs ne seront pas inclus dans la méthode toString() générée.  our éviter des boucles infinies lors de l'appel à toString()
 //relation inverse vers ChefEquipe avec admin, alors appeler toString() peut entraîner une boucle infinie
 public class ChefEquipe {
 

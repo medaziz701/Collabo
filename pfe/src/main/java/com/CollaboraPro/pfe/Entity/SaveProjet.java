@@ -17,8 +17,6 @@ public class SaveProjet {
     private LocalDate datefin;
     private String description;
     private Projet.StatutProjet statut;
-    @Lob
-    @Column(columnDefinition = "LONGTEXT")
     private Long idClient;
     private List<Long> developpeursIds;
     private String nomEquipe;
