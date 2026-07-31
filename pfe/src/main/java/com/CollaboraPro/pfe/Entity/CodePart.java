@@ -26,7 +26,10 @@ public class CodePart {
 
     @ManyToOne
     @JoinColumn(name = "projet_id")
-    @JsonIgnoreProperties({"codeParts", "taches"})
+    @JsonIgnoreProperties("codeParts")
     private Projet projet;
 
+    @OneToMany(mappedBy = "codePart")
+    @JsonIgnore
+    private List<Commentaire> commentaires;
 }
