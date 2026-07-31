@@ -1,6 +1,6 @@
 [build]
   command = "cd front && npm install && npm run build -- --configuration production"
-  publish = "dist/front"
+  publish = "front/dist/front"
 
 [build.environment]
   NODE_VERSION = "18"
