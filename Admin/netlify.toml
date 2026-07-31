@@ -1,0 +1,9 @@
+[build]
+  base = "Admin"
+  command = "npm install && ng build --configuration production"
+  publish = "dist/admin/browser"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
