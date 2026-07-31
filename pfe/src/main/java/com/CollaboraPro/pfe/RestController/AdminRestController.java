@@ -3,6 +3,7 @@ package com.CollaboraPro.pfe.RestController;
 import com.CollaboraPro.pfe.Entity.Admin;
 import com.CollaboraPro.pfe.Repository.AdminRepository;
 import com.CollaboraPro.pfe.Repository.DeveloppeurRepository;
+import com.CollaboraPro.pfe.Repository.EquipeRepository;
 import com.CollaboraPro.pfe.Repository.ProjetRepository;
 import com.CollaboraPro.pfe.Services.AdminService;
 import io.jsonwebtoken.Jwts;
@@ -35,6 +36,9 @@ public class AdminRestController {
 
     @Autowired
     DeveloppeurRepository developpeurRepository;
+
+    @Autowired
+    EquipeRepository equipeRepository;
 
 
     @RequestMapping(method = RequestMethod.POST )
@@ -143,6 +147,7 @@ public class AdminRestController {
         stats.put("projetsTermines", projetRepository.countProjetsTermines());
         stats.put("totalDeveloppeurs", developpeurRepository.count());
         stats.put("developpeursDisponibles", developpeurRepository.findByDisponibilite(true).size());
+        stats.put("totalEquipes", equipeRepository.count());
         return ResponseEntity.ok(stats);
     }
 }
