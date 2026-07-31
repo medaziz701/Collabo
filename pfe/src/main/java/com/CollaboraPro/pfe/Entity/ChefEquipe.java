@@ -47,6 +47,10 @@ public class ChefEquipe {
     @JsonIgnore
     private Admin createdByAdmin;
 
+    @OneToMany(mappedBy = "chefEquipe")
+    @JsonIgnore
+    private List<PlanningC> planningCs;
+
 
 
 

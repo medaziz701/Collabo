@@ -1,5 +1,6 @@
 package com.CollaboraPro.pfe.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
@@ -19,6 +20,7 @@ public class Notification {
 
     @ManyToOne
     @JoinColumn(name = "admin_id")
+    @JsonIgnore
     private Admin admin;
 
 
