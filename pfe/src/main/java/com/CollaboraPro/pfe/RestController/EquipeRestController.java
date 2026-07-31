@@ -19,7 +19,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/equipe")
+@RequestMapping("/equipes")
 public class EquipeRestController {
 
     @Autowired
@@ -88,6 +88,15 @@ public class EquipeRestController {
     @GetMapping("/chef/{chefId}")
     public List<Equipe> trouverEquipesParChef(@PathVariable Long chefId) {
         return equipeService.trouverEquipesParChef(chefId);
+    }
+
+    @GetMapping("/{equipeId}/membres")
+    public ResponseEntity<?> getMembres(@PathVariable Long equipeId) {
+        Equipe equipe = equipeRepository.findById(equipeId).orElse(null);
+        if (equipe == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(equipe.getMembres());
     }
 
     @PostMapping("/{equipeId}/membres/{developpeurId}")
