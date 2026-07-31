@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Data
-@ToString(exclude = {"membres", "projets", "feedbacks", "chefEquipe"})
+@ToString(exclude = {"membres", "projets", "chefEquipe"})
 public class Equipe {
 
     @Id
