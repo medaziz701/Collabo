@@ -96,9 +96,13 @@ public class DeveloppeurRestController {
             // Gestion de l'état
             if (developpeur.isEtat() != existingDev.isEtat()) {
                 String etat = developpeur.isEtat() ? "Accepté" : "Bloqué";
-                emailDService.SendSimpleMessage(existingDev.getEmail(),
-                        "État de votre compte",
-                        "Votre compte a été " + etat);
+                try {
+                    emailDService.SendSimpleMessage(existingDev.getEmail(),
+                            "État de votre compte",
+                            "Votre compte a été " + etat);
+                } catch (Exception e) {
+                    System.err.println("Failed to send email: " + e.getMessage());
+                }
                 existingDev.setEtat(developpeur.isEtat());
             }
 
