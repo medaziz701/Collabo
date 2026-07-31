@@ -107,4 +107,23 @@ public class AdminRestController {
         Optional<Admin> admin = adminService.afficherAdminById(id);
         return admin;
     }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<Map<String, Object>> resetPassword(@RequestBody Map<String, String> request) {
+        HashMap<String, Object> response = new HashMap<>();
+        String email = request.get("email");
+        String newPassword = request.get("newPassword");
+
+        Admin admin = adminRepository.findAdminByEmail(email);
+        if (admin == null) {
+            response.put("message", "Admin not found !");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+
+        admin.setMp(this.bCryptPasswordEncoder.encode(newPassword));
+        adminRepository.save(admin);
+
+        response.put("message", "Password reset successfully");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }
