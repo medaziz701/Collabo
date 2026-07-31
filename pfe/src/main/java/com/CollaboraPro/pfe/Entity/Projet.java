@@ -50,14 +50,12 @@ public class Projet {
     @ManyToOne
     @JoinColumn(name = "client_id")
     @JsonIgnore
-    @ToString.Exclude
     private Client client;
 
 
     @ManyToOne
     @JoinColumn(name = "chef_equipe_id")
     @JsonIgnore
-    @ToString.Exclude
     private ChefEquipe chefEquipe;
 
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
