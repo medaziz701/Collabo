@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-liste-chefEquipe',
   templateUrl: './liste-chefEquipe.component.html',
-  styleUrls: ['./liste-chefEquipe.component.css']
+  styleUrls: ['./liste-chefequipe.component.css']
 })
 export class ListeChefequipeComponent {
 listeChefEquipe: ChefEquipe[];
