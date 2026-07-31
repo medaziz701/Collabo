@@ -19,7 +19,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin("*")
 @RequestMapping(value = "/admin")
-public class adminRestController {
+public class AdminRestController {
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
