@@ -121,10 +121,13 @@ public class DeveloppeurRestController {
 
     }
     @RequestMapping(value = "/{id}" , method = RequestMethod.GET)
-    public Optional<Developpeur> getDeveloppeurById(@PathVariable("id") Long id){
-
+    public ResponseEntity<Optional<Developpeur>> getDeveloppeurById(@PathVariable("id") Long id){
         Optional<Developpeur> developpeur = developpeurService.afficherDeveloppeurById(id);
-        return developpeur;
+        if (developpeur.isPresent()) {
+            return ResponseEntity.ok(developpeur);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
