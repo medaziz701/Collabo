@@ -14,6 +14,7 @@ public class CodePart {
 
     private String filename;
     @Lob
+    @JsonIgnore
     private String content;
     private String author;
 
