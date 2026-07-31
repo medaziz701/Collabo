@@ -76,7 +76,7 @@ public class DeveloppeurRestController {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Developpeur modifierdeveloppeur(@PathVariable("id") Long id, @RequestBody Developpeur developpeur) {
+    public ResponseEntity<Developpeur> modifierdeveloppeur(@PathVariable("id") Long id, @RequestBody Developpeur developpeur) {
         return developpeurRepository.findById(id).map(existingDev -> {
             // Mise à jour des champs de base
             existingDev.setNom(developpeur.getNom());
@@ -103,7 +103,8 @@ public class DeveloppeurRestController {
             }
 
             return developpeurRepository.save(existingDev);
-        }).orElse(null);
+        }).map(ResponseEntity::ok)
+         .orElse(ResponseEntity.notFound().build());
     }
 
 
