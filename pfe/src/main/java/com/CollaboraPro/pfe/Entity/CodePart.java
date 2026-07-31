@@ -1,7 +1,6 @@
 package com.CollaboraPro.pfe.Entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,12 +18,10 @@ public class CodePart {
 
     @ManyToOne
     @JoinColumn(name = "tache_id")
-    @JsonIgnore
     private Tache tache;
 
     @ManyToOne
     @JoinColumn(name = "projet_id")
-    @JsonIgnore
     private Projet projet;
 
 }
