@@ -42,72 +42,87 @@ public class ProjetServiceImpl implements ProjetService {
 
     @Override
     public Projet ajouterProjet(SaveProjet model) {
-        // Création basique du projet
-        Projet projet = SaveProjet.toEntity(model);
+        try {
+            // Création basique du projet
+            Projet projet = SaveProjet.toEntity(model);
 
-        // Assignation du client
-        Client client = clientRepository.findById(model.getIdClient()).orElseThrow();
-        projet.setClient(client);
+            // Assignation du client
+            Client client = clientRepository.findById(model.getIdClient())
+                    .orElseThrow(() -> new RuntimeException("Client non trouvé avec ID: " + model.getIdClient()));
+            projet.setClient(client);
 
-        if(model.getIdChefEquipe() != null) {
-            ChefEquipe chefEquipe = chefEquipeRepository.findById(model.getIdChefEquipe())
-                    .orElseThrow(() -> new RuntimeException("Chef d'équipe non trouvé"));
-            projet.setChefEquipe(chefEquipe);
-        }
+            if(model.getIdChefEquipe() != null) {
+                ChefEquipe chefEquipe = chefEquipeRepository.findById(model.getIdChefEquipe())
+                        .orElseThrow(() -> new RuntimeException("Chef d'équipe non trouvé avec ID: " + model.getIdChefEquipe()));
+                projet.setChefEquipe(chefEquipe);
+            }
 
-        // Création de l'équipe
-        Equipe equipe = new Equipe();
-        equipe.setNomEquipe(model.getNomEquipe());
-        equipe.setDescription(model.getDescriptionEquipe());
-        equipe.setDomaineSpecialisation(model.getDomaineSpecialisation());
-        equipe.setDateCreation(LocalDate.now());
-        equipe.setDateDerniereModification(LocalDate.now());
-        if(model.getIdChefEquipe() != null) {
-            ChefEquipe chefEquipe = chefEquipeRepository.findById(model.getIdChefEquipe())
-                    .orElseThrow(() -> new RuntimeException("Chef d'équipe non trouvé"));
-            equipe.setChefEquipe(chefEquipe);
-        }
+            // Création de l'équipe
+            Equipe equipe = new Equipe();
+            equipe.setNomEquipe(model.getNomEquipe());
+            equipe.setDescription(model.getDescriptionEquipe());
+            equipe.setDomaineSpecialisation(model.getDomaineSpecialisation());
+            equipe.setDateCreation(LocalDate.now());
+            equipe.setDateDerniereModification(LocalDate.now());
+            if(model.getIdChefEquipe() != null) {
+                ChefEquipe chefEquipe = chefEquipeRepository.findById(model.getIdChefEquipe())
+                        .orElseThrow(() -> new RuntimeException("Chef d'équipe non trouvé avec ID: " + model.getIdChefEquipe()));
+                equipe.setChefEquipe(chefEquipe);
+            }
 
-        // Assignation des membres
-        List<Developpeur> membres = developpeurRepository.findAllById(model.getDeveloppeursIds());
+            // Assignation des membres
+            List<Developpeur> membres = developpeurRepository.findAllById(model.getDeveloppeursIds());
 
-        // Mise à jour de la disponibilité des membres
-        membres.forEach(m -> {
-            m.setDisponibilite(false);
-            developpeurRepository.save(m);
-        });
-
-        equipe.setMembres(membres);
-        equipe = equipeRepository.save(equipe);
-
-        // Assignation de l'équipe et sauvegarde
-        projet.setEquipe(equipe);
-        Projet savedProjet = projetRepository.save(projet);
-
-        // Création des tâches
-        if(model.getTachesDeveloppeurs() != null && !model.getTachesDeveloppeurs().isEmpty()) {
-            model.getTachesDeveloppeurs().forEach((devId, tacheInfo) -> {
-                Tache tache = new Tache();
-                tache.setDescription(tacheInfo.getDescription());
-                tache.setDateCreation(LocalDate.now());
-                tache.setDateLimite(tacheInfo.getDateLimite()); // Stockage direct de la date
-                tache.setStatut(Tache.StatutTache.A_FAIRE);
-                tache.setProjet(savedProjet);
-
-                Developpeur dev = developpeurRepository.findById(devId)
-                        .orElseThrow(() -> new RuntimeException("Développeur non trouvé"));
-                tache.setAssigneA(dev);
-
-                tacheRepository.save(tache);
+            // Mise à jour de la disponibilité des membres
+            membres.forEach(m -> {
+                m.setDisponibilite(false);
+                developpeurRepository.save(m);
             });
-        }
 
-        return savedProjet;
+            equipe.setMembres(membres);
+            equipe = equipeRepository.save(equipe);
+
+            // Assignation de l'équipe et sauvegarde
+            projet.setEquipe(equipe);
+            Projet savedProjet = projetRepository.save(projet);
+
+            // Création des tâches
+            if(model.getTachesDeveloppeurs() != null && !model.getTachesDeveloppeurs().isEmpty()) {
+                model.getTachesDeveloppeurs().forEach((devId, tacheInfo) -> {
+                    Tache tache = new Tache();
+                    tache.setDescription(tacheInfo.getDescription());
+                    tache.setDateCreation(LocalDate.now());
+                    tache.setDateLimite(tacheInfo.getDateLimite()); // Stockage direct de la date
+                    tache.setStatut(Tache.StatutTache.A_FAIRE);
+                    tache.setProjet(savedProjet);
+
+                    Developpeur dev = developpeurRepository.findById(devId)
+                            .orElseThrow(() -> new RuntimeException("Développeur non trouvé avec ID: " + devId));
+                    tache.setAssigneA(dev);
+
+                    tacheRepository.save(tache);
+                });
+            }
+
+            return savedProjet;
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la création du projet: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Erreur lors de la création du projet: " + e.getMessage(), e);
+        }
     }
 
     @Override
     public List<Projet> afficherProjet() {
-        return projetRepository.findAll();
+        try {
+            List<Projet> projets = projetRepository.findAll();
+            System.out.println("Nombre de projets récupérés: " + projets.size());
+            return projets;
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération des projets: " + e.getMessage());
+            e.printStackTrace();
+            throw new RuntimeException("Erreur lors de la récupération des projets: " + e.getMessage(), e);
+        }
     }
 
     @Override
