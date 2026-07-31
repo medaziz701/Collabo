@@ -1,7 +1,7 @@
 [build]
   base = "Admin"
   command = "npm install && ng build --configuration production"
-  publish = "dist/admin/browser"
+  publish = "dist/admin"
 
 [[redirects]]
   from = "/*"
