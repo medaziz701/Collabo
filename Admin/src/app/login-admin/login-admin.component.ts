@@ -37,7 +37,7 @@ export class LoginAdminComponent {
         this.router.navigate(['homeAdmin']).then(() => window.location.reload());
       },
       err => {
-        this.messageCommande = `<div class="alert alert-danger">${err.error.error || 'Erreur de connexion'}</div>`;
+        this.messageCommande = `<div class="alert alert-danger">${err.error.message || 'Erreur de connexion'}</div>`;
       }
     );
   }
