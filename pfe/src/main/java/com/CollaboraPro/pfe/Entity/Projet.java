@@ -30,6 +30,7 @@ public class Projet {
     }
 
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("projet")
     private List<Tache> taches;
 
 
@@ -41,7 +42,7 @@ public class Projet {
     private Equipe equipe;
 
     @OneToMany(mappedBy = "projet",cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("feedback-projet")
+    @JsonIgnoreProperties("projet")
     private List<Feedback> feedbacks;
 
 
@@ -59,7 +60,7 @@ public class Projet {
     private ChefEquipe chefEquipe;
 
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)
-
+    @JsonIgnoreProperties("projet")
     private List<CodePart> codeParts;
 
     @OneToMany(mappedBy = "projet", cascade = CascadeType.ALL, orphanRemoval = true)

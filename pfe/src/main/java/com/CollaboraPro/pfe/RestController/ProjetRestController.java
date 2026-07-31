@@ -46,8 +46,13 @@ public class ProjetRestController {
     }
 
     @GetMapping
-    public List<Projet> afficherProjet() {// pour récupérer tous les projets
-        return projetService.afficherProjet();
+    public ResponseEntity<List<Projet>> afficherProjet() {// pour récupérer tous les projets
+        try {
+            List<Projet> projets = projetService.afficherProjet();
+            return ResponseEntity.ok(projets);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @GetMapping("/client/{id}")
