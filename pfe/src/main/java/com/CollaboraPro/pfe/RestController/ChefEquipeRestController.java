@@ -1,5 +1,6 @@
 package com.CollaboraPro.pfe.RestController;
 
+import com.CollaboraPro.pfe.DTO.ChefEquipeDTO;
 import com.CollaboraPro.pfe.Entity.Admin;
 import com.CollaboraPro.pfe.Entity.ChefEquipe;
 import com.CollaboraPro.pfe.Entity.Developpeur;
@@ -23,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -129,9 +131,10 @@ public class ChefEquipeRestController {
 
 
     @RequestMapping(method = RequestMethod.GET )
-    public List<ChefEquipe> afficherChefEquipe(){
-        return chefEquipeService.afficherChefEquipe();
-
+    public List<ChefEquipeDTO> afficherChefEquipe(){
+        return chefEquipeService.afficherChefEquipe().stream()
+                .map(ChefEquipeDTO::fromEntity)
+                .collect(Collectors.toList());
     }
 
 
@@ -169,10 +172,10 @@ public class ChefEquipeRestController {
     }
 
     @RequestMapping(value = "/{id}" , method = RequestMethod.GET)
-    public Optional<ChefEquipe> getChefEquipeById(@PathVariable("id") Long id){
-
+    public ResponseEntity<ChefEquipeDTO> getChefEquipeById(@PathVariable("id") Long id){
         Optional<ChefEquipe> chefEquipe = chefEquipeService.afficherChefEquipeById(id);
-        return chefEquipe;
+        return chefEquipe.map(entity -> ResponseEntity.ok(ChefEquipeDTO.fromEntity(entity)))
+                .orElse(ResponseEntity.notFound().build());
     }
 
 
