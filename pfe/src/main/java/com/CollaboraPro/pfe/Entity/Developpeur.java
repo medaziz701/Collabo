@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
-@ToString(exclude = {"equipes", "tachesAssignees"})
+@ToString(exclude = {"equipes", "tachesAssignees", "managedByAdmin"})
 public class Developpeur {
 
     @Id

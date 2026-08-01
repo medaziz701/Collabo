@@ -140,11 +140,11 @@ public class DeveloppeurRestController {
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> loginDeveloppeur(@RequestBody Developpeur developpeur) {// Retournera une réponse HTTP avec un corps au format Map
         try {
-            System.out.println("in login-developpeur"+developpeur);//Affiche dans la console les données reçues (pour débogage)
+            System.out.println("in login-developpeur, email: " + developpeur.getEmail());//Affiche dans la console les données reçues (pour débogage)
             HashMap<String, Object> response = new HashMap<>();//Crée une Map pour construire la réponse JSON
 
             Developpeur userFromDB = developpeurRepository.findDeveloppeurByEmail(developpeur.getEmail());
-            System.out.println("userFromDB+developpeur"+userFromDB);
+            System.out.println("userFromDB found: " + (userFromDB != null ? userFromDB.getEmail() : "null"));
             if (userFromDB == null) {
                 response.put("message", "Developpeur not found !");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);//Retourne un statut HTTP 404 (NOT_FOUND)
