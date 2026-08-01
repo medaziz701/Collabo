@@ -186,9 +186,9 @@
                 <strong>Fin:</strong> {{projet.datefin}}
             </td>
             <td class="team-col" style="font-size: 16px;">
-                <div *ngIf="projet.equipe">
-                    <strong>{{projet.equipe.nomEquipe}}</strong><br>
-                    <small>({{projet.equipe.domaineSpecialisation}})</small>
+                <div *ngIf="projet.nomEquipe">
+                    <strong>{{projet.nomEquipe}}</strong><br>
+                    <small>({{projet.equipe?.domaineSpecialisation}})</small>
 
                     <div *ngIf="projet.equipe.membresInfo" class="mt-2">
 

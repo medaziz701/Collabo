@@ -80,10 +80,10 @@ export class ListeProjetComponent implements OnInit {
         statut: projet.statut
       },
       equipe: {
-        nomEquipe: projet.equipe?.nomEquipe || '',
+        nomEquipe: projet.nomEquipe || '',
         description: projet.equipe?.description || '',
         domaineSpecialisation: projet.equipe?.domaineSpecialisation || '',
-        membresIds: projet.equipe?.membres?.map((m: any) => m.id) || []
+        membresIds: projet.membres?.map((m: any) => m.id) || []
       },
       taches: this.prepareTachesData(projet.taches)
     };
