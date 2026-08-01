@@ -17,6 +17,23 @@ public class ProjetDTO {
     private String clientNom;
     private Long chefEquipeId;
     private String chefEquipeNom;
+    private EquipeInfo equipe;
+    private List<MembreInfo> membres;
+
+    @Data
+    public static class EquipeInfo {
+        private Long id;
+        private String nomEquipe;
+        private String description;
+        private String domaineSpecialisation;
+    }
+
+    @Data
+    public static class MembreInfo {
+        private Long id;
+        private String nom;
+        private String prenom;
+    }
 
     public static ProjetDTO fromEntity(Projet projet) {
         ProjetDTO dto = new ProjetDTO();
@@ -30,6 +47,28 @@ public class ProjetDTO {
         if (projet.getEquipe() != null) {
             dto.setEquipeId(projet.getEquipe().getId());
             dto.setNomEquipe(projet.getEquipe().getNomEquipe());
+
+            // Populate equipe info
+            EquipeInfo equipeInfo = new EquipeInfo();
+            equipeInfo.setId(projet.getEquipe().getId());
+            equipeInfo.setNomEquipe(projet.getEquipe().getNomEquipe());
+            equipeInfo.setDescription(projet.getEquipe().getDescription());
+            equipeInfo.setDomaineSpecialisation(projet.getEquipe().getDomaineSpecialisation());
+            dto.setEquipe(equipeInfo);
+
+            // Populate membres info
+            if (projet.getEquipe().getMembres() != null) {
+                List<MembreInfo> membresInfo = projet.getEquipe().getMembres().stream()
+                        .map(membre -> {
+                            MembreInfo membreInfo = new MembreInfo();
+                            membreInfo.setId(membre.getId());
+                            membreInfo.setNom(membre.getNom());
+                            membreInfo.setPrenom(membre.getPrenom());
+                            return membreInfo;
+                        })
+                        .collect(java.util.stream.Collectors.toList());
+                dto.setMembres(membresInfo);
+            }
         }
 
         if (projet.getClient() != null) {
