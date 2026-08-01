@@ -1,5 +1,6 @@
 package com.CollaboraPro.pfe.RestController;
 
+import com.CollaboraPro.pfe.DTO.TacheDTO;
 import com.CollaboraPro.pfe.Entity.Tache;
 import com.CollaboraPro.pfe.Services.TacheService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -46,15 +48,17 @@ public class TacheRestController {
     }
 
     @GetMapping
-    public List<Tache> afficherTaches() {
-        return tacheService.afficherTaches();
+    public List<TacheDTO> afficherTaches() {
+        return tacheService.afficherTaches().stream()
+                .map(TacheDTO::fromEntity)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> afficherTacheById(@PathVariable Long id) {
         Optional<Tache> tache = tacheService.afficherTacheById(id);
         if (tache.isPresent()) {
-            return ResponseEntity.ok(tache.get());
+            return ResponseEntity.ok(TacheDTO.fromEntity(tache.get()));
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tache not found");
         }
@@ -62,8 +66,8 @@ public class TacheRestController {
 
     // Dans TacheController.java
     @PutMapping("/{id}/terminer")
-    public ResponseEntity<Tache> marquerTacheTerminee(@PathVariable Long id) {
-        return ResponseEntity.ok(tacheService.marquerTacheTerminee(id));
+    public ResponseEntity<TacheDTO> marquerTacheTerminee(@PathVariable Long id) {
+        return ResponseEntity.ok(TacheDTO.fromEntity(tacheService.marquerTacheTerminee(id)));
     }
 
     @GetMapping("/projet/{projetId}/toutesTerminees")
