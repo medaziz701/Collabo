@@ -142,12 +142,27 @@ public class AdminRestController {
     @GetMapping("/statistiques")
     public ResponseEntity<Map<String, Object>> getStatistiques() {
         Map<String, Object> stats = new HashMap<>();
-        stats.put("totalProjets", projetRepository.countTotalProjets());
-        stats.put("projetsEnCours", projetRepository.countProjetsEnCours());
-        stats.put("projetsTermines", projetRepository.countProjetsTermines());
-        stats.put("totalDeveloppeurs", developpeurRepository.count());
-        stats.put("developpeursDisponibles", developpeurRepository.findByDisponibilite(true).size());
-        stats.put("totalEquipes", equipeRepository.count());
+        long totalProjets = projetRepository.countTotalProjets();
+        long projetsEnCours = projetRepository.countProjetsEnCours();
+        long projetsTermines = projetRepository.countProjetsTermines();
+        long totalDeveloppeurs = developpeurRepository.count();
+        long developpeursDisponibles = developpeurRepository.findByDisponibilite(true).size();
+        long totalEquipes = equipeRepository.count();
+
+        System.out.println("Statistiques:");
+        System.out.println("Total projets: " + totalProjets);
+        System.out.println("Projets en cours: " + projetsEnCours);
+        System.out.println("Projets termines: " + projetsTermines);
+        System.out.println("Total developpeurs: " + totalDeveloppeurs);
+        System.out.println("Developpeurs disponibles: " + developpeursDisponibles);
+        System.out.println("Total equipes: " + totalEquipes);
+
+        stats.put("totalProjets", totalProjets);
+        stats.put("projetsEnCours", projetsEnCours);
+        stats.put("projetsTermines", projetsTermines);
+        stats.put("totalDeveloppeurs", totalDeveloppeurs);
+        stats.put("developpeursDisponibles", developpeursDisponibles);
+        stats.put("totalEquipes", totalEquipes);
         return ResponseEntity.ok(stats);
     }
 }
