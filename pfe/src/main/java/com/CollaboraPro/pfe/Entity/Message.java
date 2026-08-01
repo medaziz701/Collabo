@@ -18,7 +18,7 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "expediteur_id")
-    @JsonIgnoreProperties({"messagesEnvoyes", "messagesRecus"})
+    @JsonIgnore
     private Developpeur expediteur;
 
     @ManyToOne
@@ -28,7 +28,7 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "destinataire_id")
-    @JsonIgnoreProperties({"messagesEnvoyes", "messagesRecus"})
+    @JsonIgnore
     private Developpeur destinataire;
 
 

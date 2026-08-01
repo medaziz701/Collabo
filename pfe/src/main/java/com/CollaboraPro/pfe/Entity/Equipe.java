@@ -38,6 +38,7 @@ public class Equipe {
 
     @ManyToOne
     @JoinColumn(name = "chef_equipe_id")
+    @JsonIgnoreProperties("equipesDirigees")
     private ChefEquipe chefEquipe;
 
     @OneToMany(mappedBy = "equipe")
@@ -50,6 +51,7 @@ public class Equipe {
             joinColumns = @JoinColumn(name = "equipe_id"),
             inverseJoinColumns = @JoinColumn(name = "developpeur_id")
     )
+    @JsonIgnoreProperties("equipes")
     private List<Developpeur> membres;
 
 
