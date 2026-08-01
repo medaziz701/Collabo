@@ -73,8 +73,8 @@ envoyerMessage(): void {
     // Récupérer tous les projets où le développeur est membre d'équipe
     this.service.getProjet().subscribe(
       (data: Projet[]) => {
-        this.projets = data.filter(projet => 
-          projet.equipe?.membres?.some((membre: any) => membre.id === this.devInfo.id)
+        this.projets = data.filter(projet =>
+          projet.membres?.some((membre: any) => membre.id === this.devInfo.id)
         );
         this.loadTaches();
       },
