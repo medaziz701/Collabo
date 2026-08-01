@@ -127,14 +127,14 @@ public class ProjetServiceImpl implements ProjetService {
 
     @Override
     public List<Projet> getProjetByClient(Long id) {
-        return projetRepository.findByClientId(id);
+        return projetRepository.findByClientIdWithDetails(id);
     }
 
 
     @Override
     public List<Projet> getProjetByChefEquipe(Long id) {
 
-        return projetRepository.findByChefEquipeId(id);
+        return projetRepository.findByChefEquipeIdWithDetails(id);
     }
 
     @Override

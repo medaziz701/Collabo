@@ -35,4 +35,10 @@ public interface ProjetRepository extends JpaRepository<Projet,Long > {
 
     @Query("SELECT DISTINCT p FROM Projet p LEFT JOIN FETCH p.equipe e LEFT JOIN FETCH e.membres LEFT JOIN FETCH p.client LEFT JOIN FETCH p.chefEquipe WHERE p.id = :id")
     Optional<Projet> findByIdWithDetails(Long id);
+
+    @Query("SELECT DISTINCT p FROM Projet p LEFT JOIN FETCH p.equipe e LEFT JOIN FETCH e.membres LEFT JOIN FETCH p.client LEFT JOIN FETCH p.chefEquipe WHERE p.client.id = :clientId")
+    List<Projet> findByClientIdWithDetails(Long clientId);
+
+    @Query("SELECT DISTINCT p FROM Projet p LEFT JOIN FETCH p.equipe e LEFT JOIN FETCH e.membres LEFT JOIN FETCH p.client LEFT JOIN FETCH p.chefEquipe WHERE p.chefEquipe.id = :chefEquipeId")
+    List<Projet> findByChefEquipeIdWithDetails(Long chefEquipeId);
 }
