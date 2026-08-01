@@ -161,9 +161,9 @@ selectCodePart(id: number): void {
 
   
   checkIfUserIsAssigned(tache: Tache): boolean {
-    return this.currentUser && 
-           (tache.assigneA?.id === this.currentUser.id || 
-            tache.projet?.equipe?.membres?.some(m => m.id === this.currentUser.id));
+    return this.currentUser &&
+           (tache.assigneA?.id === this.currentUser.id ||
+            tache.projet?.membres?.some(m => m.id === this.currentUser.id));
   }
 
   addCodePart(): void {
