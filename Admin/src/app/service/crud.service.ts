@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Developpeur } from '../Entity/Developpeur';
 import { ChefEquipe } from '../Entity/ChefEquipe.Entity';
 import { Client } from '../Entity/Client.Entity';
+import { Equipe } from '../Entity/Equipe.Entity';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../environments/environment';
 
@@ -27,8 +28,8 @@ export class CrudService {// haka rbatna angular b spring boot
   getDeveloppeur(): Observable<Developpeur[]>{
     return this.http.get<Developpeur[]>(this.apiUrl +"/developpeur");
   }
-  getEquipe(): Observable<Developpeur[]>{
-    return this.http.get<Developpeur[]>(this.apiUrl +"/equipe");
+  getEquipe(): Observable<Equipe[]>{
+    return this.http.get<Equipe[]>(this.apiUrl +"/equipes");
   }
   onDeleteDeveloppeur(id : number){
     const url =`${this.apiUrl+"/developpeur"}/${id}` 
