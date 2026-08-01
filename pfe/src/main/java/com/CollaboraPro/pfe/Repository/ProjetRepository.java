@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProjetRepository extends JpaRepository<Projet,Long > {
 
@@ -28,4 +29,10 @@ public interface ProjetRepository extends JpaRepository<Projet,Long > {
 
     @Query("SELECT COUNT(p) FROM Projet p WHERE p.statut = 'TERMINE'")
     long countProjetsTermines();
+
+    @Query("SELECT DISTINCT p FROM Projet p LEFT JOIN FETCH p.equipe e LEFT JOIN FETCH e.membres LEFT JOIN FETCH p.client LEFT JOIN FETCH p.chefEquipe")
+    List<Projet> findAllWithDetails();
+
+    @Query("SELECT DISTINCT p FROM Projet p LEFT JOIN FETCH p.equipe e LEFT JOIN FETCH e.membres LEFT JOIN FETCH p.client LEFT JOIN FETCH p.chefEquipe WHERE p.id = :id")
+    Optional<Projet> findByIdWithDetails(Long id);
 }

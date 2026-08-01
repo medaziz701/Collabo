@@ -115,7 +115,7 @@ public class ProjetServiceImpl implements ProjetService {
     @Override
     public List<Projet> afficherProjet() {
         try {
-            List<Projet> projets = projetRepository.findAll();
+            List<Projet> projets = projetRepository.findAllWithDetails();
             System.out.println("Nombre de projets récupérés: " + projets.size());
             return projets;
         } catch (Exception e) {
@@ -251,7 +251,7 @@ public class ProjetServiceImpl implements ProjetService {
 
     @Override
     public Optional<Projet> afficherProjetById(Long id) {
-        return projetRepository.findById(id);
+        return projetRepository.findByIdWithDetails(id);
     }
 
 
