@@ -48,10 +48,17 @@ public class TacheRestController {
     }
 
     @GetMapping
-    public List<TacheDTO> afficherTaches() {
-        return tacheService.afficherTaches().stream()
-                .map(TacheDTO::fromEntity)
-                .collect(Collectors.toList());
+    public ResponseEntity<List<TacheDTO>> afficherTaches() {
+        try {
+            List<TacheDTO> taches = tacheService.afficherTaches().stream()
+                    .map(TacheDTO::fromEntity)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(taches);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération des tâches: " + e.getMessage());
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     @GetMapping("/{id}")

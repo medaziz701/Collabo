@@ -29,6 +29,10 @@ public interface TacheRepository  extends JpaRepository<Tache, Long> {
     void deleteByProjetIdAndAssigneAId(@Param("projetId") Long projetId,
                                        @Param("developpeurId") Long developpeurId);
 
+    @Query("SELECT DISTINCT t FROM Tache t LEFT JOIN FETCH t.projet p LEFT JOIN FETCH p.equipe e LEFT JOIN FETCH e.membres LEFT JOIN FETCH p.client LEFT JOIN FETCH p.chefEquipe LEFT JOIN FETCH t.assigneA")
+    List<Tache> findAllWithDetails();
 
+    @Query("SELECT DISTINCT t FROM Tache t LEFT JOIN FETCH t.projet p LEFT JOIN FETCH p.equipe e LEFT JOIN FETCH e.membres LEFT JOIN FETCH p.client LEFT JOIN FETCH p.chefEquipe LEFT JOIN FETCH t.assigneA WHERE t.id = :id")
+    Optional<Tache> findByIdWithDetails(@Param("id") Long id);
 
 }
