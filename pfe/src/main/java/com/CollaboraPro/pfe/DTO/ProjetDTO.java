@@ -3,6 +3,8 @@ package com.CollaboraPro.pfe.DTO;
 import com.CollaboraPro.pfe.Entity.Projet;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ProjetDTO {
     private Long id;
