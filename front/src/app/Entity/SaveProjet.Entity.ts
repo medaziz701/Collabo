@@ -8,9 +8,13 @@ export interface Equipe {
   nomEquipe?: string;
   description?: string;
   domaineSpecialisation?: string;
-  membres?: Developpeur[]; 
+}
 
-} 
+export interface MembreInfo {
+  id?: number;
+  nom?: string;
+  prenom?: string;
+}
 
 export class Projet {
   id?: number;
@@ -20,7 +24,8 @@ export class Projet {
   description?: string;
   statut?: string;
   img?: string;
-  equipe?: Equipe;// Ajouté pour correspondre au backend
+  equipe?: Equipe;
+  membres?: MembreInfo[];  // Ajouté pour correspondre au backend ProjetDTO
   taches?: Partial<Tache>[];
   client?: Client;
   idClient?: number;
@@ -30,7 +35,12 @@ export class Projet {
   descriptionEquipe?: string;
   domaineSpecialisation?: string;
   tachesDeveloppeurs?: {[key: number]: Tache};
-  chefEquipe?: ChefEquipe // 👈 Ajouté ici
+  chefEquipe?: ChefEquipe;
+  equipeId?: number;
+  clientId?: number;
+  chefEquipeId?: number;
+  clientNom?: string;
+  chefEquipeNom?: string;
 }
 
 

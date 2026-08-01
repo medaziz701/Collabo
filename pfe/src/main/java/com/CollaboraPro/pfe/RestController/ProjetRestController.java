@@ -56,6 +56,8 @@ public class ProjetRestController {
                     .collect(Collectors.toList());
             return ResponseEntity.ok(projetDTOs);
         } catch (Exception e) {
+            System.err.println("Erreur lors de la récupération des projets: " + e.getMessage());
+            e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
     }
