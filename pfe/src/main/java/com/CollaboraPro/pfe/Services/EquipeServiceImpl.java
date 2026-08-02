@@ -33,8 +33,18 @@ public class EquipeServiceImpl implements EquipeService{
 
     @Override
     public void supprimerEquipe(Long id) {
-        equipeRepository.deleteById(id);
-
+        Equipe equipe = equipeRepository.findById(id).orElse(null);
+        if (equipe != null) {
+            // Remettre la disponibilité des membres à true avant suppression
+            List<Developpeur> membres = equipe.getMembres();
+            if (membres != null && !membres.isEmpty()) {
+                membres.forEach(m -> {
+                    m.setDisponibilite(true);
+                    developpeurRepository.save(m);
+                });
+            }
+            equipeRepository.deleteById(id);
+        }
     }
 
     @Override
@@ -59,6 +69,8 @@ public class EquipeServiceImpl implements EquipeService{
         Developpeur developpeur = developpeurRepository.findById(developpeurId).orElse(null);
 
         if (equipe != null && developpeur != null && !equipe.getMembres().contains(developpeur)) {
+            developpeur.setDisponibilite(false);
+            developpeurRepository.save(developpeur);
             equipe.getMembres().add(developpeur);
             equipeRepository.save(equipe);
         }
@@ -71,6 +83,8 @@ public class EquipeServiceImpl implements EquipeService{
 
         if (equipe != null && developpeur != null) {
             equipe.getMembres().remove(developpeur);
+            developpeur.setDisponibilite(true);
+            developpeurRepository.save(developpeur);
             equipeRepository.save(equipe);
         }
     }

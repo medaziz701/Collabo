@@ -253,6 +253,14 @@ public class ProjetServiceImpl implements ProjetService {
 
         // 5. Supprimer l'équipe associée
         if (projet.getEquipe() != null) {
+            // Remettre la disponibilité des membres à true avant suppression
+            List<Developpeur> membres = projet.getEquipe().getMembres();
+            if (membres != null && !membres.isEmpty()) {
+                membres.forEach(m -> {
+                    m.setDisponibilite(true);
+                    developpeurRepository.save(m);
+                });
+            }
             equipeRepository.delete(projet.getEquipe());
         }
 
