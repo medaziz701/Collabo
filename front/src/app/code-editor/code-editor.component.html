@@ -73,62 +73,78 @@
   </div>
 
   <!-- Code de la tâche -->
-  <div class="card shadow-sm mb-4">
-    <div class="card-header">
-      <h4 class="mb-0">
-        Code que j'ai soumis
-        <span class="badge bg-info float-end">{{ codeParts.length }} fichier(s)</span>
-        
-      </h4>
+  <div class="code-section mb-4">
+    <div class="code-section-header">
+      <h3 class="mb-0">
+        <i class="fas fa-code me-2"></i>Code que j'ai soumis
+        <span class="badge bg-light text-dark ms-2">{{ codeParts.length }} fichier(s)</span>
+      </h3>
     </div>
-    <div class="card-body">
-      <div *ngIf="codeParts.length > 0; else noCode">
-        <div *ngFor="let part of codeParts" class="code-item mb-3">
-          <div class="d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">
-              {{ part.filename }}
-              <small class="text-muted ms-2">- {{ part.author }}</small>
-            </h5>
-            <div *ngIf="isAuthor(part)" class="btn-group">
-              <button (click)="editCodePart(part)" class="btn btn-sm btn-outline-primary">
-                <i class="fas fa-edit"></i> Modifier
+    <div class="code-cards-container">
+      <div *ngIf="codeParts.length > 0; else noCode" class="code-cards-grid">
+        <div *ngFor="let part of codeParts" class="code-card" [class.expanded]="isFileVisible(part.id)">
+          <!-- Card Header -->
+          <div class="code-card-header" (click)="toggleFileVisibility(part.id)">
+            <div class="code-card-title">
+              <span class="filename">{{ part.filename }}</span>
+              <span class="language-badge" [style.background-color]="getLanguageColor(part.filename)">
+                {{ getLanguage(part.filename) }}
+              </span>
+            </div>
+            <div class="code-card-meta">
+              <span class="author">{{ part.author }}</span>
+              <span class="line-count">{{ getLineCount(part.content) }} lignes</span>
+            </div>
+            <div class="code-card-actions">
+              <button class="btn-icon" (click)="$event.stopPropagation(); toggleFileVisibility(part.id)">
+                <i class="fas" [ngClass]="isFileVisible(part.id) ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
               </button>
-              <button (click)="deleteCodePart(part)" class="btn btn-sm btn-outline-danger ms-2">
-                <i class="fas fa-trash"></i> Supprimer
-              </button>
+              <div *ngIf="isAuthor(part)" class="edit-actions" (click)="$event.stopPropagation()">
+                <button (click)="editCodePart(part)" class="btn-icon btn-edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button (click)="deleteCodePart(part)" class="btn-icon btn-delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Zone d'affichage/édition -->
-          <div *ngIf="isFileVisible(part.id)" class="mt-2">
+          <!-- Card Body -->
+          <div class="code-card-body" [class.visible]="isFileVisible(part.id)">
             <div *ngIf="!isEditing(part); else editMode">
-              <pre class="code-block bg-light p-3">{{ part.content }}</pre>
+              <div *ngIf="part.content && part.content.trim(); else emptyContent">
+                <pre [highlight]="part.content" [language]="getLanguage(part.filename)"></pre>
+              </div>
+              <ng-template #emptyContent>
+                <div class="empty-code">
+                  <i class="fas fa-file-code"></i>
+                  <p>Code vide</p>
+                </div>
+              </ng-template>
             </div>
 
             <ng-template #editMode>
               <div class="editing-container">
-                <textarea [(ngModel)]="editedContent" class="form-control code-area" rows="10"></textarea>
+                <textarea [(ngModel)]="editedContent" class="form-control code-area" rows="15"></textarea>
                 <div class="edit-actions mt-2">
                   <button (click)="saveEditedPart()" class="btn btn-success btn-sm me-2">
-                    <i class="fas fa-check"></i> Enregistrer
+                    <i class="fas fa-check me-1"></i> Enregistrer
                   </button>
                   <button (click)="cancelEdit()" class="btn btn-secondary btn-sm">
-                    <i class="fas fa-times"></i> Annuler
+                    <i class="fas fa-times me-1"></i> Annuler
                   </button>
                 </div>
               </div>
             </ng-template>
           </div>
-
-          <button (click)="toggleFileVisibility(part.id)" class="btn btn-sm btn-link mt-2">
-            {{ isFileVisible(part.id) ? 'Masquer le code' : 'Afficher le code' }}
-          </button>
         </div>
       </div>
 
       <ng-template #noCode>
-        <div class="alert alert-info">
-          Aucun code n'a été ajouté à cette tâche.
+        <div class="empty-state">
+          <i class="fas fa-code-branch"></i>
+          <p>Aucun code n'a été ajouté à cette tâche.</p>
         </div>
       </ng-template>
     </div>

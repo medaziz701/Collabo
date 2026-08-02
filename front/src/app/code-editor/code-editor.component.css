@@ -289,3 +289,222 @@ textarea.form-control:focus {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   z-index: 1000;
 }
+
+/* Code Section Styles */
+.code-section {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.code-section-header {
+  background: linear-gradient(90deg, #6e7994, #222121);
+  color: #fff;
+  padding: 16px 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.code-cards-container {
+  padding: 20px;
+}
+
+.code-cards-grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* Code Card Styles */
+.code-card {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.code-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #61afef;
+}
+
+.code-card.expanded {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.code-card-header {
+  background: #fff;
+  padding: 12px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid #e9ecef;
+  transition: background 0.2s ease;
+}
+
+.code-card-header:hover {
+  background: #f1f3f5;
+}
+
+.code-card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.filename {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  font-family: 'Fira Code', monospace;
+}
+
+.language-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.code-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.author {
+  font-weight: 500;
+}
+
+.line-count {
+  background: #e9ecef;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.code-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-icon {
+  background: transparent;
+  border: none;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.btn-icon:hover {
+  background: #e9ecef;
+  color: #333;
+}
+
+.btn-icon.btn-edit:hover {
+  background: #61afef;
+  color: #fff;
+}
+
+.btn-icon.btn-delete:hover {
+  background: #dc3545;
+  color: #fff;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.code-card-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  background: #282c34;
+}
+
+.code-card-body.visible {
+  max-height: 2000px;
+  padding: 16px;
+}
+
+/* Highlight.js override for dark theme */
+.code-card-body pre {
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.empty-code {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+
+.empty-code i {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.empty-code p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6c757d;
+}
+
+.empty-state i {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.editing-container {
+  background: #282c34;
+  padding: 16px;
+  border-radius: 0 0 8px 8px;
+}
+
+.editing-container .code-area {
+  background: #1e2227;
+  color: #abb2bf;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 12px;
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.editing-container .edit-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}

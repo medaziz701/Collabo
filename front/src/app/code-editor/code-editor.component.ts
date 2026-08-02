@@ -320,4 +320,75 @@ isProjectFileVisible(fileId: number): boolean {
   return this.visibleProjectFiles.has(fileId);
 }
 
+// Language detection based on file extension
+getLanguage(filename: string): string {
+  const ext = filename.split('.').pop()?.toLowerCase() || '';
+  const languageMap: { [key: string]: string } = {
+    'js': 'javascript',
+    'ts': 'typescript',
+    'html': 'html',
+    'css': 'css',
+    'scss': 'scss',
+    'sass': 'sass',
+    'json': 'json',
+    'xml': 'xml',
+    'py': 'python',
+    'java': 'java',
+    'c': 'c',
+    'cpp': 'cpp',
+    'h': 'c',
+    'hpp': 'cpp',
+    'cs': 'csharp',
+    'php': 'php',
+    'rb': 'ruby',
+    'go': 'go',
+    'rs': 'rust',
+    'swift': 'swift',
+    'kt': 'kotlin',
+    'sql': 'sql',
+    'sh': 'bash',
+    'bash': 'bash',
+    'zsh': 'bash',
+    'md': 'markdown',
+    'yaml': 'yaml',
+    'yml': 'yaml',
+    'txt': 'plaintext'
+  };
+  return languageMap[ext] || 'plaintext';
+}
+
+// Get language color badge
+getLanguageColor(filename: string): string {
+  const ext = filename.split('.').pop()?.toLowerCase() || '';
+  const colorMap: { [key: string]: string } = {
+    'js': '#f7df1e',
+    'ts': '#3178c6',
+    'html': '#e34c26',
+    'css': '#264de4',
+    'scss': '#c6538c',
+    'json': '#f7df1e',
+    'py': '#3776ab',
+    'java': '#b07219',
+    'c': '#555555',
+    'cpp': '#00599c',
+    'cs': '#239120',
+    'php': '#777bb4',
+    'rb': '#cc342d',
+    'go': '#00add8',
+    'rs': '#dea584',
+    'swift': '#f05138',
+    'kt': '#7f52ff',
+    'sql': '#e48e00',
+    'sh': '#89e051',
+    'md': '#083fa1',
+    'yaml': '#cb171e'
+  };
+  return colorMap[ext] || '#6c757d';
+}
+
+// Count lines of code
+getLineCount(content: string): number {
+  return content ? content.split('\n').length : 0;
+}
+
 }

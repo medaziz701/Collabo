@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HighlightModule } from 'ngx-highlightjs';
+import 'highlight.js/styles/github-dark.css';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -78,6 +80,7 @@ import { CommentSectionComponent } from './comment-section/comment-section.compo
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    HighlightModule,
 
 
     CalendarModule.forRoot({
