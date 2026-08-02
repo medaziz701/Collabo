@@ -20,6 +20,7 @@ public class Feedback {
 
     private int noteEtoiles;
     @Column(columnDefinition = "TEXT")
+    @JsonIgnore
     private String commentaire;
 
 

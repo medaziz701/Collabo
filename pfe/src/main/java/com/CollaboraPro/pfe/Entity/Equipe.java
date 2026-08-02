@@ -34,6 +34,7 @@ public class Equipe {
     private Integer nombreMembres;
 
     @Column(name = "membres_info", columnDefinition = "TEXT")
+    @JsonIgnore
     private String membresInfo; // Stocké comme JSON
 
     @ManyToOne
