@@ -78,47 +78,34 @@ public class ClientRestController {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> modifierclient(@PathVariable("id") Long id, @RequestBody Client client) {
-        try {
-            return clientRepository.findById(id).map(existingClient -> {
-                // Mise à jour des champs de base
-                existingClient.setNom(client.getNom());
-                existingClient.setPrenom(client.getPrenom());
-                existingClient.setTlf(client.getTlf());
-                existingClient.setEmail(client.getEmail());
-                existingClient.setAdresse(client.getAdresse());
-                existingClient.setGenre(client.getGenre());
-                existingClient.setCin(client.getCin());
+    public Client modifierclient(@PathVariable("id") Long id, @RequestBody Client client) {
+        return clientRepository.findById(id).map(existingClient -> {
+            // Mise à jour des champs de base
+            existingClient.setNom(client.getNom());
+            existingClient.setPrenom(client.getPrenom());
+            existingClient.setTlf(client.getTlf());
+            existingClient.setEmail(client.getEmail());
+            existingClient.setAdresse(client.getAdresse());
+            existingClient.setGenre(client.getGenre());
+            existingClient.setCin(client.getCin());
 
-                // Gestion sécurisée du mot de passe
-                if (client.getMp() != null && !client.getMp().isEmpty()
-                        && !bCryptPasswordEncoder.matches(client.getMp(), existingClient.getMp())) {
-                    existingClient.setMp(bCryptPasswordEncoder.encode(client.getMp()));
-                }
+            // Gestion sécurisée du mot de passe
+            if (client.getMp() != null && !client.getMp().isEmpty()
+                    && !bCryptPasswordEncoder.matches(client.getMp(), existingClient.getMp())) {
+                existingClient.setMp(bCryptPasswordEncoder.encode(client.getMp()));
+            }
 
-                // Gestion de l'état avec notification
-                if (client.isEtat() != existingClient.isEtat()) {
-                    String etat = client.isEtat() ? "Accepté" : "Bloqué";
-                    try {
-                        emailDService.SendSimpleMessage(existingClient.getEmail(),
-                                "État de votre compte",
-                                "Votre compte a été " + etat);
-                    } catch (Exception e) {
-                        System.err.println("Erreur lors de l'envoi de l'email: " + e.getMessage());
-                    }
-                    existingClient.setEtat(client.isEtat());
-                }
+            // Gestion de l'état avec notification
+            if (client.isEtat() != existingClient.isEtat()) {
+                String etat = client.isEtat() ? "Accepté" : "Bloqué";
+                emailDService.SendSimpleMessage(existingClient.getEmail(),
+                        "État de votre compte",
+                        "Votre compte a été " + etat);
+                existingClient.setEtat(client.isEtat());
+            }
 
-                Client savedClient = clientRepository.save(existingClient);
-                return ResponseEntity.ok(savedClient);
-            }).orElseThrow(() -> new RuntimeException("Client non trouvé"));
-        } catch (Exception e) {
-            System.err.println("Erreur lors de la modification du client: " + e.getMessage());
-            e.printStackTrace();
-            HashMap<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Erreur serveur: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-        }
+            return clientRepository.save(existingClient);
+        }).orElseThrow(() -> new RuntimeException("Client non trouvé"));
     }
 
 

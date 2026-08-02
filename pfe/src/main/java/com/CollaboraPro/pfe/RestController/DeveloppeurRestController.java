@@ -76,47 +76,39 @@ public class DeveloppeurRestController {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> modifierdeveloppeur(@PathVariable("id") Long id, @RequestBody Developpeur developpeur) {
-        try {
-            return developpeurRepository.findById(id).map(existingDev -> {
-                // Mise à jour des champs de base
-                existingDev.setNom(developpeur.getNom());
-                existingDev.setPrenom(developpeur.getPrenom());
-                existingDev.setTlf(developpeur.getTlf());
-                existingDev.setEmail(developpeur.getEmail());
-                existingDev.setAdresse(developpeur.getAdresse());
-                existingDev.setGenre(developpeur.getGenre());
-                existingDev.setSpecialite(developpeur.getSpecialite());
+    public ResponseEntity<Developpeur> modifierdeveloppeur(@PathVariable("id") Long id, @RequestBody Developpeur developpeur) {
+        return developpeurRepository.findById(id).map(existingDev -> {
+            // Mise à jour des champs de base
+            existingDev.setNom(developpeur.getNom());
+            existingDev.setPrenom(developpeur.getPrenom());
+            existingDev.setTlf(developpeur.getTlf());
+            existingDev.setEmail(developpeur.getEmail());
+            existingDev.setAdresse(developpeur.getAdresse());
+            existingDev.setGenre(developpeur.getGenre());
+            existingDev.setSpecialite(developpeur.getSpecialite());
 
-                // Ne re-hasher le mot de passe QUE s'il est explicitement fourni et non vide
-                if (developpeur.getMp() != null && !developpeur.getMp().isEmpty()
-                        && !bCryptPasswordEncoder.matches(developpeur.getMp(), existingDev.getMp())) {
-                    existingDev.setMp(bCryptPasswordEncoder.encode(developpeur.getMp()));
+            // Ne re-hasher le mot de passe QUE s'il est explicitement fourni et non vide
+            if (developpeur.getMp() != null && !developpeur.getMp().isEmpty()
+                    && !bCryptPasswordEncoder.matches(developpeur.getMp(), existingDev.getMp())) {
+                existingDev.setMp(bCryptPasswordEncoder.encode(developpeur.getMp()));
+            }
+
+            // Gestion de l'état
+            if (developpeur.isEtat() != existingDev.isEtat()) {
+                String etat = developpeur.isEtat() ? "Accepté" : "Bloqué";
+                try {
+                    emailDService.SendSimpleMessage(existingDev.getEmail(),
+                            "État de votre compte",
+                            "Votre compte a été " + etat);
+                } catch (Exception e) {
+                    System.err.println("Failed to send email: " + e.getMessage());
                 }
+                existingDev.setEtat(developpeur.isEtat());
+            }
 
-                // Gestion de l'état
-                if (developpeur.isEtat() != existingDev.isEtat()) {
-                    String etat = developpeur.isEtat() ? "Accepté" : "Bloqué";
-                    try {
-                        emailDService.SendSimpleMessage(existingDev.getEmail(),
-                                "État de votre compte",
-                                "Votre compte a été " + etat);
-                    } catch (Exception e) {
-                        System.err.println("Failed to send email: " + e.getMessage());
-                    }
-                    existingDev.setEtat(developpeur.isEtat());
-                }
-
-                Developpeur savedDev = developpeurRepository.save(existingDev);
-                return ResponseEntity.ok(savedDev);
-            }).orElse(ResponseEntity.notFound().build());
-        } catch (Exception e) {
-            System.err.println("Erreur lors de la modification du développeur: " + e.getMessage());
-            e.printStackTrace();
-            HashMap<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Erreur serveur: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-        }
+            return developpeurRepository.save(existingDev);
+        }).map(ResponseEntity::ok)
+         .orElse(ResponseEntity.notFound().build());
     }
 
 
