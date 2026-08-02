@@ -15,7 +15,7 @@ public class CodePart {
     private Long id;
 
     private String filename;
-    @Lob
+    @Column(columnDefinition = "TEXT")
     @JsonIgnore
     private String content;
     private String author;
