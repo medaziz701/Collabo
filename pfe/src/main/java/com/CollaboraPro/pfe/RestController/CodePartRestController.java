@@ -68,17 +68,28 @@ public class CodePartRestController {
             return ResponseEntity.ok(codePartRepository.save(codePart));
 
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.internalServerError().body("Erreur lors de la création: " + e.getMessage());
         }
     }
     @GetMapping("/projet/{projetId}")
-    public List<CodePart> getCodePartsByProjet(@PathVariable Long projetId) {
-        return codePartRepository.findByProjetId(projetId);
+    public ResponseEntity<?> getCodePartsByProjet(@PathVariable Long projetId) {
+        try {
+            return ResponseEntity.ok(codePartRepository.findByProjetIdWithRelations(projetId));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Erreur lors de la récupération des code parts: " + e.getMessage());
+        }
     }
 
     @GetMapping("/tache/{tacheId}")
-    public List<CodePart> getCodePartsByTache(@PathVariable Long tacheId) {
-        return codePartService.getCodePartsByTache(tacheId);
+    public ResponseEntity<?> getCodePartsByTache(@PathVariable Long tacheId) {
+        try {
+            return ResponseEntity.ok(codePartRepository.findByTacheIdWithRelations(tacheId));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body("Erreur lors de la récupération des code parts: " + e.getMessage());
+        }
     }
 
 
