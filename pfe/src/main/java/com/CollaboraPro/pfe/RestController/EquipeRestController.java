@@ -1,7 +1,5 @@
 package com.CollaboraPro.pfe.RestController;
 
-import com.CollaboraPro.pfe.DTO.DeveloppeurDTO;
-import com.CollaboraPro.pfe.DTO.EquipeDTO;
 import com.CollaboraPro.pfe.Entity.Admin;
 import com.CollaboraPro.pfe.Entity.Developpeur;
 import com.CollaboraPro.pfe.Entity.Equipe;
@@ -18,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -39,7 +36,7 @@ public class EquipeRestController {
         equipe.setDateCreation(LocalDate.now());
         equipe.setDateDerniereModification(LocalDate.now());
         Equipe savedEquipe = equipeService.ajouterEquipe(equipe);
-        return ResponseEntity.status(HttpStatus.CREATED).body(EquipeDTO.fromEntity(savedEquipe));
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedEquipe);
     }
 
 
@@ -49,7 +46,7 @@ public class EquipeRestController {
         equipe.setId(id);
         equipe.setDateDerniereModification(LocalDate.now());
         Equipe updatedEquipe = equipeService.modifierEquipe(equipe);
-        return ResponseEntity.ok(EquipeDTO.fromEntity(updatedEquipe));
+        return ResponseEntity.ok(updatedEquipe);
     }
 
     @GetMapping("/{id}/details")
@@ -73,23 +70,24 @@ public class EquipeRestController {
     }
 
     @GetMapping
-    public List<EquipeDTO> afficherEquipes() {
-        return equipeService.afficherEquipe().stream()
-                .map(EquipeDTO::fromEntity)
-                .collect(Collectors.toList());
+    public List<Equipe> afficherEquipes() {
+        return equipeService.afficherEquipe();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EquipeDTO> afficherEquipeById(@PathVariable Long id) {
+    public ResponseEntity<Object> afficherEquipeById(@PathVariable Long id) {
         Optional<Equipe> equipe = equipeService.afficherEquipeById(id);
-        return equipe.map(entity -> ResponseEntity.ok(EquipeDTO.fromEntity(entity)))
-                .orElse(ResponseEntity.notFound().build());
+        if (equipe.isPresent()) {
+            return ResponseEntity.ok(equipe.get());
+        } else {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Équipe non trouvée");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
     }
     @GetMapping("/chef/{chefId}")
-    public List<EquipeDTO> trouverEquipesParChef(@PathVariable Long chefId) {
-        return equipeService.trouverEquipesParChef(chefId).stream()
-                .map(EquipeDTO::fromEntity)
-                .collect(Collectors.toList());
+    public List<Equipe> trouverEquipesParChef(@PathVariable Long chefId) {
+        return equipeService.trouverEquipesParChef(chefId);
     }
 
     @GetMapping("/{equipeId}/membres")
@@ -98,9 +96,7 @@ public class EquipeRestController {
         if (equipe == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(equipe.getMembres().stream()
-                .map(DeveloppeurDTO::fromEntity)
-                .collect(Collectors.toList()));
+        return ResponseEntity.ok(equipe.getMembres());
     }
 
     @PostMapping("/{equipeId}/membres/{developpeurId}")

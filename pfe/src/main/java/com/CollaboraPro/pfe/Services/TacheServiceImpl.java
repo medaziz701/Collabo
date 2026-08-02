@@ -47,12 +47,12 @@ public class TacheServiceImpl implements TacheService {
 
     @Override
     public List<Tache> afficherTaches() {
-        return tacheRepository.findAllWithDetails();
+        return tacheRepository.findAll();
     }
 
     @Override
     public Optional<Tache> afficherTacheById(Long id) {
-        return tacheRepository.findByIdWithDetails(id);
+        return tacheRepository.findById(id);
     }
 
 

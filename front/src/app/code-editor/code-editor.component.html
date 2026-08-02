@@ -32,7 +32,7 @@
       <div class="card-body">
         <p><strong>Description:</strong> {{ tache.projet.description }}</p>
         <p><strong>Votre tâche:</strong> {{ tache.description }}</p>
-        <p><strong>Équipe:</strong> {{ tache.projet?.nomEquipe || tache.projet?.equipe?.nomEquipe }}</p>
+        <p><strong>Équipe:</strong> {{ tache.projet.equipe.nomEquipe }}</p>
         <p><strong>Situation actuelle de la tâche :</strong> <span class="badge bg-secondary">{{ tache.statut }}</span></p>
 
         <!-- Affichage du statut avec la description si terminée -->

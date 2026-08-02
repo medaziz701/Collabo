@@ -1,7 +1,6 @@
 package com.CollaboraPro.pfe.RestController;
 
 import com.CollaboraPro.pfe.DTO.ProjetDTO;
-import com.CollaboraPro.pfe.DTO.TacheDTO;
 import com.CollaboraPro.pfe.Entity.*;
 import com.CollaboraPro.pfe.Repository.DeveloppeurRepository;
 import com.CollaboraPro.pfe.Repository.EquipeRepository;
@@ -56,82 +55,44 @@ public class ProjetRestController {
                     .collect(Collectors.toList());
             return ResponseEntity.ok(projetDTOs);
         } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération des projets: " + e.getMessage());
-            e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }
     }
 
     @GetMapping("/client/{id}")
-    public ResponseEntity<List<ProjetDTO>> getProjetsByClient(@PathVariable Long id) {
-        try {
-            List<Projet> projets = projetService.getProjetByClient(id);
-            List<ProjetDTO> projetDTOs = projets.stream()
-                    .map(ProjetDTO::fromEntity)
-                    .collect(Collectors.toList());
-            return ResponseEntity.ok(projetDTOs);
-        } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération des projets du client: " + e.getMessage());
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
-        }
+    public List<Projet> getProjetsByClient(@PathVariable Long id) {//pour récupérer les projets d'un client spécifique
+        return projetService.getProjetByClient(id);
     }
 
     @GetMapping("/{id}/equipe")
     public ResponseEntity<?> getEquipeByProjet(@PathVariable Long id) {
-        try {
-            Optional<Projet> projet = projetRepository.findByIdWithDetails(id);
-            if (projet.isPresent() && projet.get().getEquipe() != null) {
-                Equipe equipe = projet.get().getEquipe();
+        Optional<Projet> projet = projetRepository.findById(id);
+        if (projet.isPresent() && projet.get().getEquipe() != null) {
+            Equipe equipe = projet.get().getEquipe();
 
-                // Récupérer les membres actuels depuis la base
-                List<Developpeur> membres = developpeurRepository.findByEquipeId(equipe.getId());
+            // Récupérer les membres actuels depuis la base
+            List<Developpeur> membres = developpeurRepository.findByEquipeId(equipe.getId());
 
-                HashMap<String, Object> response = new HashMap<>();
-                response.put("id", equipe.getId());
-                response.put("nom", equipe.getNomEquipe());
-                response.put("nombreMembres", equipe.getNombreMembres());
-                response.put("membres", membres); // Envoyer les objets membres complets
+            HashMap<String, Object> response = new HashMap<>();
+            response.put("id", equipe.getId());
+            response.put("nom", equipe.getNomEquipe());
+            response.put("nombreMembres", equipe.getNombreMembres());
+            response.put("membres", membres); // Envoyer les objets membres complets
 
-                return ResponseEntity.ok(response);
-            }
-            return ResponseEntity.notFound().build();
-        } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération de l'équipe du projet: " + e.getMessage());
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
+            return ResponseEntity.ok(response);
         }
+        return ResponseEntity.notFound().build();
     }
 
 
     @GetMapping("/{id}/taches")
-    public ResponseEntity<List<TacheDTO>> getTachesByProjet(@PathVariable Long id) {
-        try {
-            List<Tache> taches = tacheRepository.findByProjetId(id);
-            List<TacheDTO> tacheDTOs = taches.stream()
-                    .map(TacheDTO::fromEntity)
-                    .collect(Collectors.toList());
-            return ResponseEntity.ok(tacheDTOs);
-        } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération des tâches du projet: " + e.getMessage());
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
-        }
+    public ResponseEntity<List<Tache>> getTachesByProjet(@PathVariable Long id) {
+        return ResponseEntity.ok(tacheRepository.findByProjetId(id));
     }
 
     @RequestMapping("get-all-by-id-ChefEquipe/{id}")
-    public ResponseEntity<List<ProjetDTO>> listProjetByChefEquipe(@PathVariable Long id){
-        try {
-            List<Projet> projets = projetService.getProjetByChefEquipe(id);
-            List<ProjetDTO> projetDTOs = projets.stream()
-                    .map(ProjetDTO::fromEntity)
-                    .collect(Collectors.toList());
-            return ResponseEntity.ok(projetDTOs);
-        } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération des projets du chef d'équipe: " + e.getMessage());
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
-        }
+    public List<Projet> listProjetByChefEquipe(@PathVariable Long id){
+        return projetService.getProjetByChefEquipe(id);
     }
     // ProjetController.java
     @GetMapping("/projet/{id}/chef-id")

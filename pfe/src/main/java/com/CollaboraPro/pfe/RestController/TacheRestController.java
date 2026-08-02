@@ -1,6 +1,5 @@
 package com.CollaboraPro.pfe.RestController;
 
-import com.CollaboraPro.pfe.DTO.TacheDTO;
 import com.CollaboraPro.pfe.Entity.Tache;
 import com.CollaboraPro.pfe.Services.TacheService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -48,24 +46,15 @@ public class TacheRestController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TacheDTO>> afficherTaches() {
-        try {
-            List<TacheDTO> taches = tacheService.afficherTaches().stream()
-                    .map(TacheDTO::fromEntity)
-                    .collect(Collectors.toList());
-            return ResponseEntity.ok(taches);
-        } catch (Exception e) {
-            System.err.println("Erreur lors de la récupération des tâches: " + e.getMessage());
-            e.printStackTrace();
-            return ResponseEntity.internalServerError().build();
-        }
+    public List<Tache> afficherTaches() {
+        return tacheService.afficherTaches();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> afficherTacheById(@PathVariable Long id) {
         Optional<Tache> tache = tacheService.afficherTacheById(id);
         if (tache.isPresent()) {
-            return ResponseEntity.ok(TacheDTO.fromEntity(tache.get()));
+            return ResponseEntity.ok(tache.get());
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tache not found");
         }
@@ -73,8 +62,8 @@ public class TacheRestController {
 
     // Dans TacheController.java
     @PutMapping("/{id}/terminer")
-    public ResponseEntity<TacheDTO> marquerTacheTerminee(@PathVariable Long id) {
-        return ResponseEntity.ok(TacheDTO.fromEntity(tacheService.marquerTacheTerminee(id)));
+    public ResponseEntity<Tache> marquerTacheTerminee(@PathVariable Long id) {
+        return ResponseEntity.ok(tacheService.marquerTacheTerminee(id));
     }
 
     @GetMapping("/projet/{projetId}/toutesTerminees")

@@ -1,6 +1,5 @@
 package com.CollaboraPro.pfe.RestController;
 
-import com.CollaboraPro.pfe.DTO.DeveloppeurDTO;
 import com.CollaboraPro.pfe.Entity.*;
 import com.CollaboraPro.pfe.Repository.DeveloppeurRepository;
 import com.CollaboraPro.pfe.Repository.EquipeRepository;
@@ -20,7 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin("*")
@@ -110,7 +108,7 @@ public class DeveloppeurRestController {
                 }
 
                 Developpeur savedDev = developpeurRepository.save(existingDev);
-                return ResponseEntity.ok(DeveloppeurDTO.fromEntity(savedDev));
+                return ResponseEntity.ok(savedDev);
             }).orElse(ResponseEntity.notFound().build());
         } catch (Exception e) {
             System.err.println("Erreur lors de la modification du développeur: " + e.getMessage());
@@ -131,16 +129,18 @@ public class DeveloppeurRestController {
 
 
     @RequestMapping(method = RequestMethod.GET )
-    public List<DeveloppeurDTO> afficherDeveloppeur(){
-        return developpeurService.afficherDeveloppeur().stream()
-                .map(DeveloppeurDTO::fromEntity)
-                .collect(Collectors.toList());
+    public List<Developpeur> afficherDeveloppeur(){
+        return developpeurService.afficherDeveloppeur();
+
     }
     @RequestMapping(value = "/{id}" , method = RequestMethod.GET)
-    public ResponseEntity<DeveloppeurDTO> getDeveloppeurById(@PathVariable("id") Long id){
+    public ResponseEntity<Optional<Developpeur>> getDeveloppeurById(@PathVariable("id") Long id){
         Optional<Developpeur> developpeur = developpeurService.afficherDeveloppeurById(id);
-        return developpeur.map(entity -> ResponseEntity.ok(DeveloppeurDTO.fromEntity(entity)))
-                .orElse(ResponseEntity.notFound().build());
+        if (developpeur.isPresent()) {
+            return ResponseEntity.ok(developpeur);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
@@ -225,11 +225,9 @@ public class DeveloppeurRestController {
 
 
     @GetMapping("/disponibles")
-    public ResponseEntity<List<DeveloppeurDTO>> getDeveloppeursDisponibles() {
+    public ResponseEntity<List<Developpeur>> getDeveloppeursDisponibles() {
         List<Developpeur> devs = developpeurService.findDeveloppeursDisponibles();
-        return ResponseEntity.ok(devs.stream()
-                .map(DeveloppeurDTO::fromEntity)
-                .collect(Collectors.toList()));
+        return ResponseEntity.ok(devs);
     }
     @PutMapping("/{id}/disponibilite")
     public ResponseEntity<?> updateDisponibilite(@PathVariable Long id, @RequestBody boolean disponible) {

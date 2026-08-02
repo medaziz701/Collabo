@@ -39,13 +39,13 @@ public class EquipeServiceImpl implements EquipeService{
 
     @Override
     public List<Equipe> afficherEquipe() {
-        return equipeRepository.findAllWithDetails();
+        return
+                equipeRepository.findAll();
     }
 
     @Override
     public Optional<Equipe> afficherEquipeById(Long id) {
-        return equipeRepository.findByIdWithDetails(id);
-    }
+        return equipeRepository.findById(id);    }
 
     @Override
     public List<Equipe> trouverEquipesParChef(Long chefId) {

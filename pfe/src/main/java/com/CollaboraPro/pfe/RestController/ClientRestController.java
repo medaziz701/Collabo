@@ -1,5 +1,4 @@
 package com.CollaboraPro.pfe.RestController;
-import com.CollaboraPro.pfe.DTO.ClientDTO;
 import com.CollaboraPro.pfe.Entity.Admin;
 import com.CollaboraPro.pfe.Entity.ChefEquipe;
 import com.CollaboraPro.pfe.Entity.Client;
@@ -24,7 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController// Indique que c'est un contrôleur Spring avec des réponses au format JSON
 @CrossOrigin("*")// Autorise les requêtes CORS depuis n'importe quelle origine
@@ -112,7 +110,7 @@ public class ClientRestController {
                 }
 
                 Client savedClient = clientRepository.save(existingClient);
-                return ResponseEntity.ok(ClientDTO.fromEntity(savedClient));
+                return ResponseEntity.ok(savedClient);
             }).orElseThrow(() -> new RuntimeException("Client non trouvé"));
         } catch (Exception e) {
             System.err.println("Erreur lors de la modification du client: " + e.getMessage());
@@ -134,10 +132,9 @@ public class ClientRestController {
 
 
     @RequestMapping(method = RequestMethod.GET )
-    public List<ClientDTO> afficherClient(){
-        return clientService.afficherClient().stream()
-                .map(ClientDTO::fromEntity)
-                .collect(Collectors.toList());
+    public List<Client> afficherClient(){
+        return clientService.afficherClient();
+
     }
 
 
@@ -190,10 +187,10 @@ public class ClientRestController {
     }
 
     @RequestMapping(value = "/{id}" , method = RequestMethod.GET)
-    public ResponseEntity<ClientDTO> getClientById(@PathVariable("id") Long id){
+    public Optional<Client> getClientById(@PathVariable("id") Long id){
+
         Optional<Client> client = clientService.afficherClientById(id);
-        return client.map(entity -> ResponseEntity.ok(ClientDTO.fromEntity(entity)))
-                .orElse(ResponseEntity.notFound().build());
+        return client;// Retourne le client correspondant à l'ID
     }
 
 
