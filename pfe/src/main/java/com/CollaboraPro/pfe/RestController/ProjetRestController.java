@@ -150,10 +150,13 @@ public class ProjetRestController {
         }
     }
     @RequestMapping(value = "/{id}" , method = RequestMethod.GET)
-    public Optional<Projet> getProjetById(@PathVariable("id") Long id){
-
+    public ResponseEntity<Optional<Projet>> getProjetById(@PathVariable("id") Long id){
         Optional<Projet> projet = projetService.afficherProjetById(id);
-        return projet;
+        if (projet.isPresent()) {
+            return ResponseEntity.ok(projet);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PutMapping("/{id}")
