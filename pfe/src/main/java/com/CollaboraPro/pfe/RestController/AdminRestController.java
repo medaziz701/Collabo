@@ -2,9 +2,6 @@ package com.CollaboraPro.pfe.RestController;
 
 import com.CollaboraPro.pfe.Entity.Admin;
 import com.CollaboraPro.pfe.Repository.AdminRepository;
-import com.CollaboraPro.pfe.Repository.DeveloppeurRepository;
-import com.CollaboraPro.pfe.Repository.EquipeRepository;
-import com.CollaboraPro.pfe.Repository.ProjetRepository;
 import com.CollaboraPro.pfe.Services.AdminService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -30,15 +27,6 @@ public class AdminRestController {
 
     @Autowired
     AdminService adminService;
-
-    @Autowired
-    ProjetRepository projetRepository;
-
-    @Autowired
-    DeveloppeurRepository developpeurRepository;
-
-    @Autowired
-    EquipeRepository equipeRepository;
 
 
     @RequestMapping(method = RequestMethod.POST )
@@ -137,32 +125,5 @@ public class AdminRestController {
 
         response.put("message", "Password reset successfully");
         return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
-
-    @GetMapping("/statistiques")
-    public ResponseEntity<Map<String, Object>> getStatistiques() {
-        Map<String, Object> stats = new HashMap<>();
-        long totalProjets = projetRepository.countTotalProjets();
-        long projetsEnCours = projetRepository.countProjetsEnCours();
-        long projetsTermines = projetRepository.countProjetsTermines();
-        long totalDeveloppeurs = developpeurRepository.count();
-        long developpeursDisponibles = developpeurRepository.findByDisponibilite(true).size();
-        long totalEquipes = equipeRepository.count();
-
-        System.out.println("Statistiques:");
-        System.out.println("Total projets: " + totalProjets);
-        System.out.println("Projets en cours: " + projetsEnCours);
-        System.out.println("Projets termines: " + projetsTermines);
-        System.out.println("Total developpeurs: " + totalDeveloppeurs);
-        System.out.println("Developpeurs disponibles: " + developpeursDisponibles);
-        System.out.println("Total equipes: " + totalEquipes);
-
-        stats.put("totalProjets", totalProjets);
-        stats.put("projetsEnCours", projetsEnCours);
-        stats.put("projetsTermines", projetsTermines);
-        stats.put("totalDeveloppeurs", totalDeveloppeurs);
-        stats.put("developpeursDisponibles", developpeursDisponibles);
-        stats.put("totalEquipes", totalEquipes);
-        return ResponseEntity.ok(stats);
     }
 }

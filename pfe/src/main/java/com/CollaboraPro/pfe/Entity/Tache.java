@@ -40,7 +40,7 @@ public class Tache {
 
     @ManyToOne
     @JoinColumn(name = "developpeur_id")
-    @JsonIgnoreProperties("tachesAssignees")
+
     private Developpeur assigneA;
 
     public enum StatutTache {

@@ -1,7 +1,6 @@
 package com.CollaboraPro.pfe.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -23,6 +22,5 @@ public class PlanningC {
 
     @ManyToOne
     @JoinColumn(name = "chef_equipe_id")
-    @JsonIgnoreProperties("planningCs")
     private ChefEquipe chefEquipe;
 }

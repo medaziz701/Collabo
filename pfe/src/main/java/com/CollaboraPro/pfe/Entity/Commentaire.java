@@ -1,7 +1,6 @@
 package com.CollaboraPro.pfe.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
@@ -19,7 +18,7 @@ public class Commentaire {
 
     @ManyToOne
     @JoinColumn(name = "code_part_id")
-    @JsonIgnoreProperties("commentaires")
+    @JsonIgnore
     private CodePart codePart;
 
     @ManyToOne

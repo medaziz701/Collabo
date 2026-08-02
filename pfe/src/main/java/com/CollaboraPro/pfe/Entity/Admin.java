@@ -42,9 +42,5 @@ public class Admin {
     @OneToMany(mappedBy = "managedByAdmin")
     @JsonIgnore
     private List<Contact> contactsAssocies;
-
-    @OneToMany(mappedBy = "admin")
-    @JsonIgnore
-    private List<Notification> notifications;
 }
 

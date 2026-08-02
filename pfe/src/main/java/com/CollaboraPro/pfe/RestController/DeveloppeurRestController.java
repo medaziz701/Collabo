@@ -139,77 +139,69 @@ public class DeveloppeurRestController {
 
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> loginDeveloppeur(@RequestBody Developpeur developpeur) {// Retournera une réponse HTTP avec un corps au format Map
-        try {
-            System.out.println("in login-developpeur, email: " + developpeur.getEmail());//Affiche dans la console les données reçues (pour débogage)
-            HashMap<String, Object> response = new HashMap<>();//Crée une Map pour construire la réponse JSON
+        System.out.println("in login-developpeur"+developpeur);//Affiche dans la console les données reçues (pour débogage)
+        HashMap<String, Object> response = new HashMap<>();//Crée une Map pour construire la réponse JSON
 
-            Developpeur userFromDB = developpeurRepository.findDeveloppeurByEmail(developpeur.getEmail());
-            System.out.println("userFromDB found: " + (userFromDB != null ? userFromDB.getEmail() : "null"));
-            if (userFromDB == null) {
-                response.put("message", "Developpeur not found !");
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);//Retourne un statut HTTP 404 (NOT_FOUND)
+        Developpeur userFromDB = developpeurRepository.findDeveloppeurByEmail(developpeur.getEmail());
+        System.out.println("userFromDB+developpeur"+userFromDB);
+        if (userFromDB == null) {
+            response.put("message", "Developpeur not found !");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);//Retourne un statut HTTP 404 (NOT_FOUND)
+        }
+        else {
+            // Vérifier d'abord l'état du compte
+            if (!userFromDB.isEtat()) {
+                response.put("message", "Votre compte n'est pas encore activé par l'administrateur");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
             }
-            else {
-                // Vérifier d'abord l'état du compte
-                if (!userFromDB.isEtat()) {
-                    response.put("message", "Votre compte n'est pas encore activé par l'administrateur");
-                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-                }
-                boolean compare = this.bCryptPasswordEncoder.matches(developpeur.getMp(), userFromDB.getMp());//Compare le mot de passe fourni avec le hash stocké en base
-                System.out.println("compare"+compare);//matches() prend en paramètres :le hash BCrypt stocké et mot de passe en clair
-                if (!compare) {
-                    response.put("message", "developpeur not found !");
-                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);//Même réponse que si l'email n'existe pas (pour ne pas révéler d'info)
-                }else
-                {
-                    Map<String, Object> clientData = new HashMap<>();
-                    clientData.put("id", userFromDB.getId());
-                    clientData.put("email", userFromDB.getEmail());
-                    clientData.put("nom", userFromDB.getNom());
-                    clientData.put("prenom", userFromDB.getPrenom());
-                    // Ajouter seulement les champs nécessaires
+            boolean compare = this.bCryptPasswordEncoder.matches(developpeur.getMp(), userFromDB.getMp());//Compare le mot de passe fourni avec le hash stocké en base
+            System.out.println("compare"+compare);//matches() prend en paramètres :le hash BCrypt stocké et mot de passe en clair
+            if (!compare) {
+                response.put("message", "developpeur not found !");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);//Même réponse que si l'email n'existe pas (pour ne pas révéler d'info)
+            }else
+            {
+                Map<String, Object> clientData = new HashMap<>();
+                clientData.put("id", userFromDB.getId());
+                clientData.put("email", userFromDB.getEmail());
+                clientData.put("nom", userFromDB.getNom());
+                clientData.put("prenom", userFromDB.getPrenom());
+                // Ajouter seulement les champs nécessaires
 
-                    String token = Jwts.builder()
-                            .claim("data", clientData) // Utiliser les données simplifiées
-                            .signWith(SignatureAlgorithm.HS256, "SECRET")
-                            .compact();
+                String token = Jwts.builder()
+                        .claim("data", clientData) // Utiliser les données simplifiées
+                        .signWith(SignatureAlgorithm.HS256, "SECRET")
+                        .compact();
 
-                    response.put("token", token);
-                    response.put("user", clientData);
+                response.put("token", token);
+                response.put("user", clientData);
 
 
-                    return ResponseEntity.status(HttpStatus.OK).body(response);
+                return ResponseEntity.status(HttpStatus.OK).body(response);
 
-                    //Map pour Structure les données de réponse dans json
+                //Map pour Structure les données de réponse dans json
 
-                    // Reçoit email + mot de passe
+                // Reçoit email + mot de passe
 
-                    // Cherche le développeur en base
+                // Cherche le développeur en base
 
-                    // Si non trouvé → erreur 404
+                // Si non trouvé → erreur 404
 
-                    //Si trouvé → vérifie le mot de passe
+                //Si trouvé → vérifie le mot de passe
 
-                    // Si mot de passe incorrect → erreur 404
+                // Si mot de passe incorrect → erreur 404
 
-                    // Si tout est bon → génère et retourne un JWT
+                // Si tout est bon → génère et retourne un JWT
 
-                    //JWT Contient les infos du développeur
+                //JWT Contient les infos du développeur
 
-                    //Permettra l'authentification sur les requêtes suivantes
+                //Permettra l'authentification sur les requêtes suivantes
 
-                    // Réponses : Toujours au même format (Map)
+                // Réponses : Toujours au même format (Map)
 
-
-                }
 
             }
-        } catch (Exception e) {
-            System.err.println("Erreur lors du login développeur: " + e.getMessage());
-            e.printStackTrace();
-            HashMap<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Erreur serveur: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+
         }
     }
 

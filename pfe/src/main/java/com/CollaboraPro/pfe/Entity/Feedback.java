@@ -3,7 +3,6 @@ package com.CollaboraPro.pfe.Entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import lombok.Data;
@@ -30,7 +29,7 @@ public class Feedback {
 
     @ManyToOne
     @JoinColumn(name = "projet_id")
-    @JsonIgnoreProperties("feedbacks")
+    @JsonBackReference("feedback-projet")
     private Projet projet;
 
     @ManyToOne

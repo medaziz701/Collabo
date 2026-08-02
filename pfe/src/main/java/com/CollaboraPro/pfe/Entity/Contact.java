@@ -1,7 +1,6 @@
 package com.CollaboraPro.pfe.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,7 +19,7 @@ public class Contact {
 
         @ManyToOne
         @JoinColumn(name = "admin_id")
-        @JsonIgnoreProperties("contactsAssocies")
+        @JsonIgnore
         private Admin managedByAdmin;
 
 

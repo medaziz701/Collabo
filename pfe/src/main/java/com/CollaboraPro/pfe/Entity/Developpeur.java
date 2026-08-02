@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
-@ToString(exclude = {"equipes", "tachesAssignees", "managedByAdmin"})
+@ToString(exclude = {"equipes", "tachesAssignees", "documentsUploades"})
 public class Developpeur {
 
     @Id
@@ -45,7 +45,7 @@ public class Developpeur {
 
     @ManyToOne
     @JoinColumn(name = "admin_id")
-    @JsonIgnoreProperties("developpeursGeres")
+    @JsonIgnore
     private Admin managedByAdmin;
 
 
