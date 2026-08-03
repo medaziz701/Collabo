@@ -246,6 +246,15 @@ public class ClientRestController {
                 .compact();
     }
 
+    @GetMapping("/generate-hash")
+    public ResponseEntity<Map<String, String>> generateHash(@RequestParam String password) {
+        Map<String, String> response = new HashMap<>();
+        String hash = this.bCryptPasswordEncoder.encode(password);
+        response.put("password", password);
+        response.put("hash", hash);
+        return ResponseEntity.ok(response);
+    }
+
 
 
 
