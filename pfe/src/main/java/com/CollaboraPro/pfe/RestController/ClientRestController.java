@@ -128,6 +128,7 @@ public class ClientRestController {
     @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> loginClient(@RequestBody Client client) {
         System.out.println("in login-client: " + client);
+        System.out.println("Received password: '" + client.getMp() + "'");
         HashMap<String, Object> response = new HashMap<>();
 
         Client userFromDB = clientRepository.findClientByEmail(client.getEmail());
@@ -144,8 +145,14 @@ public class ClientRestController {
             }
 
             // Vérification du mot de passe
+            System.out.println("Stored hash: '" + userFromDB.getMp() + "'");
             boolean passwordMatch = this.bCryptPasswordEncoder.matches(client.getMp(), userFromDB.getMp());
             System.out.println("passwordMatch: " + passwordMatch);
+
+            // Test avec un hash connu pour "aaaaaa"
+            String testHash = "$2a$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy";
+            boolean testMatch = this.bCryptPasswordEncoder.matches("aaaaaa", testHash);
+            System.out.println("Test match with known hash: " + testMatch);
 
             if (!passwordMatch) {
                 response.put("message", "Client not found !"); // Même message que pour email incorrect (sécurité)
