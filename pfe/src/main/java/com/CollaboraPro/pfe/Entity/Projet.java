@@ -54,7 +54,7 @@ public class Projet {
 
     @ManyToOne
     @JoinColumn(name = "chef_equipe_id")
-    @JsonBackReference("projet-chef-reference")
+    @JsonIgnoreProperties({"projet"})
     @ToString.Exclude
     private ChefEquipe chefEquipe;
 

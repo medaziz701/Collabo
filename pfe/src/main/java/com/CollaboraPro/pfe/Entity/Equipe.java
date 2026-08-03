@@ -51,7 +51,7 @@ public class Equipe {
             joinColumns = @JoinColumn(name = "equipe_id"),
             inverseJoinColumns = @JoinColumn(name = "developpeur_id")
     )
-    @JsonManagedReference("equipe-membres")
+    @JsonIgnoreProperties({"equipes"})
     private List<Developpeur> membres;
 
 

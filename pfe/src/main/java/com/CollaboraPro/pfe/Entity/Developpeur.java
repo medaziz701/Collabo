@@ -31,7 +31,7 @@ public class Developpeur {
     private boolean disponibilite = true;
 
     @ManyToMany(mappedBy = "membres")
-    @JsonBackReference("equipe-membres")
+    @JsonIgnoreProperties({"membres"})
     private List<Equipe> equipes;
 
 
