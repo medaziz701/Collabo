@@ -33,6 +33,9 @@ public class CodePartRestController {
     @PostMapping
     public ResponseEntity<?> addCodePart(@RequestBody Map<String, Object> request) {
         try {
+            System.out.println("Received request: " + request);
+            System.out.println("Content field: " + request.get("content"));
+
             // Vérification des champs obligatoires
             if (!request.containsKey("tache") || !request.containsKey("filename")
                     || !request.containsKey("content") || !request.containsKey("author")) {
@@ -60,12 +63,17 @@ public class CodePartRestController {
             // Création du CodePart
             CodePart codePart = new CodePart();
             codePart.setFilename(request.get("filename").toString());
-            codePart.setContent(request.get("content").toString());
+            String content = request.get("content").toString();
+            codePart.setContent(content);
             codePart.setAuthor(request.get("author").toString());
             codePart.setTache(tache);
             codePart.setProjet(projet); // Ajout du projet
 
-            return ResponseEntity.ok(codePartRepository.save(codePart));
+            System.out.println("CodePart before save - filename: " + codePart.getFilename() + ", content length: " + (content != null ? content.length() : 0));
+            CodePart saved = codePartRepository.save(codePart);
+            System.out.println("CodePart after save - id: " + saved.getId() + ", content: " + saved.getContent());
+
+            return ResponseEntity.ok(saved);
 
         } catch (Exception e) {
             e.printStackTrace();
