@@ -27,12 +27,32 @@ public class CommentaireServiceImpl implements CommentaireService{
     private EquipeRepository equipeRepository;
 
     public Commentaire creerCommentaire(Long codePartId, String contenu, String auteur) {
+        System.out.println("creerCommentaire - codePartId: " + codePartId + ", contenu: " + contenu + ", auteur: " + auteur);
+
         CodePart codePart = codePartRepository.findById(codePartId)
                 .orElseThrow(() -> new RuntimeException("CodePart introuvable"));
 
+        System.out.println("CodePart found: " + codePart.getFilename());
         Projet projet = codePart.getProjet();
+        System.out.println("Projet: " + (projet != null ? projet.getNom() : "null"));
+
+        if (projet == null) {
+            throw new RuntimeException("Projet is null for CodePart: " + codePartId);
+        }
+
         Equipe equipe = projet.getEquipe();
+        System.out.println("Equipe: " + (equipe != null ? equipe.getNomEquipe() : "null"));
+
+        if (equipe == null) {
+            throw new RuntimeException("Equipe is null for Projet: " + projet.getId());
+        }
+
         ChefEquipe chefEquipe = equipe.getChefEquipe();
+        System.out.println("ChefEquipe: " + (chefEquipe != null ? chefEquipe.getNom() : "null"));
+
+        if (chefEquipe == null) {
+            throw new RuntimeException("ChefEquipe is null for Equipe: " + equipe.getId());
+        }
 
         Commentaire commentaire = new Commentaire();
         commentaire.setContenu(contenu);
