@@ -200,7 +200,15 @@
                 </div>
 
                 <div *ngIf="isProjectFileVisible(part.id)" class="mt-3">
-                  <pre class="code-block bg-light p-3">{{part.content}}</pre>
+                  <div *ngIf="part.content && part.content.trim(); else emptyProjectContent">
+                    <pre [highlight]="part.content" [language]="getLanguage(part.filename)"></pre>
+                  </div>
+                  <ng-template #emptyProjectContent>
+                    <div class="empty-code">
+                      <i class="fas fa-file-code"></i>
+                      <p>Code vide</p>
+                    </div>
+                  </ng-template>
                   <div *ngIf="isAuthor(part) && part.tache.id !== tache.id" class="mt-2">
                     <span class="badge bg-warning">Ce code appartient à une autre tâche</span>
                   </div>
