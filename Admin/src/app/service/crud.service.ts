@@ -126,8 +126,16 @@ markAllAsRead(): Observable<void> {
   return this.http.put<void>(`${this.apiUrl}/notifications/marquer-toutes-lues`, {});
 }
 
-
-
-
+getChefEquipeId(): number {
+  var token = localStorage.getItem("myTokenAdmin");
+  const helper = new JwtHelperService();
+  const decodedToken = helper.decodeToken(token);
+  return decodedToken?.data?.id;
 }
 
+soumettreLivrable(projetId: number, chefEquipeId: number): Observable<Projet> {
+  const url = `${this.apiUrl}/projet/${projetId}/soumettre-livrable`;
+  return this.http.post<Projet>(url, { chefEquipeId });
+}
+
+}

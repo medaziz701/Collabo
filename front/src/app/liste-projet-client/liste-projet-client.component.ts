@@ -83,6 +83,26 @@ export class ListeProjetClientComponent implements OnInit {
   getStarsArray(rating: number): any[] {//Array(5)  crée un tableau de 5 éléments  .fill(0) remplit le tableau avec des zéros (valeurs initiales)
     return Array(5).fill(0).map((_, i) => i < rating);//i représente l’index (de 0 à 4) Si l’index est inférieur à rating, renvoie true (étoile pleine)Sinon, false (étoile vide).
   }
+
+  downloadProjet(projetId: number): void {
+    const clientInfo = this.service.getClientInfo();
+    this.service.downloadProjet(projetId, clientInfo.id).subscribe({
+      next: (blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `projet_${projetId}.zip`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      },
+      error: (err) => {
+        alert('Erreur lors du téléchargement: ' + err.error);
+        console.error(err);
+      }
+    });
+  }
 }
 //_ : indique que la valeur de l’élément n’est pas utilisée , i c’est l’index (position)
 //exemple getStarsArray(3)  // Résultat : [true, true, true, false, false]

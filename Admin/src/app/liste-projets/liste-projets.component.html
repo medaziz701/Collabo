@@ -89,6 +89,12 @@
                                                         <button class="btn btn-primary btn-sm mr-2" (click)="updateProjetStatut(projet)">
                                                             Changer Statut
                                                           </button>
+                                                      <button *ngIf="!projet.livraisonValidee" class="btn btn-success btn-sm mr-2" (click)="soumettreLivrable(projet)">
+                                                            Soumettre Livrable
+                                                          </button>
+                                                      <span *ngIf="projet.livraisonValidee" class="badge bg-success">
+                                                          Livrable soumis le {{ projet.dateLivraison }}
+                                                      </span>
                                                       <button class="btn btn-danger btn-sm" (click)="DeleteProjet(projet)">
                                                         Supprimer
                                                       </button>

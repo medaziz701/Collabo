@@ -39,7 +39,7 @@ export class ListeProjetsComponent {
       'Entrez le nouveau statut:',
       projet.statut
     );
-  
+
     if (newStatut && ['EN_COURS', 'TERMINE', 'ANNULE'].includes(newStatut)) {
       this.service.updateProjetStatut(projet.id, newStatut).subscribe(updatedProjet => {
         const index = this.listeProjet.findIndex(p => p.id === projet.id);
@@ -52,6 +52,21 @@ export class ListeProjetsComponent {
       alert('Statut invalide! Les options sont: EN_COURS, TERMINE, ANNULE');
     }
   }
- 
-  
+
+  soumettreLivrable(projet: Projet) {
+    if (confirm(`Confirmer la soumission du livrable pour le projet "${projet.nom}" ?`)) {
+      const chefEquipeId = this.service.getChefEquipeId();
+      this.service.soumettreLivrable(projet.id, chefEquipeId).subscribe(updatedProjet => {
+        const index = this.listeProjet.findIndex(p => p.id === projet.id);
+        if (index !== -1) {
+          this.listeProjet[index] = updatedProjet;
+        }
+        alert('Livrable soumis avec succès!');
+      }, error => {
+        alert('Erreur lors de la soumission: ' + error.error);
+      });
+    }
+  }
+
+
 }
