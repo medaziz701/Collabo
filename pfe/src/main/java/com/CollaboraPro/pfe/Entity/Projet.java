@@ -22,8 +22,6 @@ public class Projet {
     private String description;
     @Enumerated(EnumType.STRING)
     private StatutProjet statut;
-    private boolean livraisonValidee = false;
-    private String dateLivraison;
 
 
 

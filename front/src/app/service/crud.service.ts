@@ -345,12 +345,6 @@ getPlanningByDeveloppeurId(developpeurId: number): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}/planningC/get-by-developpeur-id/${developpeurId}`);
 }
 
-downloadProjet(projetId: number, clientId: number): Observable<Blob> {
-  return this.http.get(`${this.apiUrl}/projet/${projetId}/download?clientId=${clientId}`, {
-    responseType: 'blob'
-  });
-}
-
 
 // Créer un commentaire
 createComment(codePartId: number, contenu: string, auteur: string): Observable<any> {

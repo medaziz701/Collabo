@@ -97,12 +97,11 @@
                       <thead class="thead-dark">
                           <tr>
                               <th>Projet</th>
-
+                             
                               <th>Description</th>
                               <th>Dates</th>
-                              <th>Téléchargement</th>
                               <th>Feedback</th>
-
+                              
                           </tr>
                       </thead>
                       <tbody>
@@ -116,14 +115,6 @@
                               </td>
                               <td>
                                   {{ projet.datedeb | date:'dd/MM/yyyy' }} - {{ projet.datefin | date:'dd/MM/yyyy' }}
-                              </td>
-                              <td>
-                                  <button *ngIf="projet.livraisonValidee" class="btn btn-primary btn-sm" (click)="downloadProjet(projet.id)">
-                                      Télécharger le projet
-                                  </button>
-                                  <span *ngIf="!projet.livraisonValidee" class="text-muted small">
-                                      En attente de validation par l'équipe
-                                  </span>
                               </td>
                               <td>
                                   <!-- Section Feedback dans le tableau -->
