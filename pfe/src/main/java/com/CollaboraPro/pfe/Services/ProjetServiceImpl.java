@@ -211,6 +211,15 @@ public class ProjetServiceImpl implements ProjetService {
                     .orElseThrow(() -> new RuntimeException("Projet non trouvé"));
             projet.setStatut(Projet.StatutProjet.TERMINE);
             projetRepository.save(projet);
+
+            // Remettre tous les développeurs de l'équipe disponibles
+            Equipe equipe = projet.getEquipe();
+            if (equipe != null && equipe.getMembres() != null) {
+                for (Developpeur dev : equipe.getMembres()) {
+                    dev.setDisponibilite(true);
+                    developpeurRepository.save(dev);
+                }
+            }
         }
     }
     @Override
