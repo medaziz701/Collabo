@@ -202,6 +202,8 @@ public class ProjetServiceImpl implements ProjetService {
 
 
     public void updateProjetStatut(Long projetId) {
+        System.out.println("updateProjetStatut (auto) - projetId: " + projetId);
+
         List<Tache> taches = tacheRepository.findByProjetId(projetId);
         boolean toutesTerminees = !taches.isEmpty() && taches.stream()
                 .allMatch(t -> t.getStatut() == Tache.StatutTache.TERMINEE);
@@ -215,6 +217,7 @@ public class ProjetServiceImpl implements ProjetService {
             // Remettre tous les développeurs de l'équipe disponibles
             Equipe equipe = projet.getEquipe();
             if (equipe != null && equipe.getMembres() != null) {
+                System.out.println("Mise a jour disponibilite pour " + equipe.getMembres().size() + " developpeurs du projet " + projetId);
                 for (Developpeur dev : equipe.getMembres()) {
                     dev.setDisponibilite(true);
                     developpeurRepository.save(dev);
@@ -224,13 +227,29 @@ public class ProjetServiceImpl implements ProjetService {
     }
     @Override
     public Projet updateProjetStatut(Long projetId, String nouveauStatut) {
+        System.out.println("updateProjetStatut - projetId: " + projetId + ", nouveauStatut: " + nouveauStatut);
+
         Projet projet = projetRepository.findById(projetId)
                 .orElseThrow(() -> new RuntimeException("Projet non trouvé"));
 
         try {
             Projet.StatutProjet statut = Projet.StatutProjet.valueOf(nouveauStatut);
             projet.setStatut(statut);
-            return projetRepository.save(projet);
+            Projet savedProjet = projetRepository.save(projet);
+
+            // Si le statut devient TERMINE, remettre les développeurs disponibles
+            if (statut == Projet.StatutProjet.TERMINE) {
+                Equipe equipe = projet.getEquipe();
+                if (equipe != null && equipe.getMembres() != null) {
+                    System.out.println("Mise a jour disponibilite pour " + equipe.getMembres().size() + " developpeurs du projet " + projetId);
+                    for (Developpeur dev : equipe.getMembres()) {
+                        dev.setDisponibilite(true);
+                        developpeurRepository.save(dev);
+                    }
+                }
+            }
+
+            return savedProjet;
         } catch (IllegalArgumentException e) {
             throw new RuntimeException("Statut invalide: " + nouveauStatut);
         }
