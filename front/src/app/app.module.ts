@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HighlightModule } from 'ngx-highlightjs';
-import 'highlight.js/styles/github-dark.css';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
