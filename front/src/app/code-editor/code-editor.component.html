@@ -114,7 +114,7 @@
           <div class="code-card-body" [class.visible]="isFileVisible(part.id)">
             <div *ngIf="!isEditing(part); else editMode">
               <div *ngIf="part.content && part.content.trim(); else emptyContent">
-                <pre [highlight]="part.content" [language]="getLanguage(part.filename)"></pre>
+                <pre [highlight]="part.content"></pre>
               </div>
               <ng-template #emptyContent>
                 <div class="empty-code">
@@ -201,7 +201,7 @@
 
                 <div *ngIf="isProjectFileVisible(part.id)" class="mt-3">
                   <div *ngIf="part.content && part.content.trim(); else emptyProjectContent">
-                    <pre [highlight]="part.content" [language]="getLanguage(part.filename)"></pre>
+                    <pre [highlight]="part.content"></pre>
                   </div>
                   <ng-template #emptyProjectContent>
                     <div class="empty-code">
