@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    
+<!-- Mirrored from coderthemes.com/attex-bundle/layouts/tables-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 09:39:51 GMT -->
+<head>
+        <meta charset="utf-8" />
+        <title>Datatables | Attex - Bootstrap 5 Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    </head>
+
+    <body>
+        <!-- Begin page -->
+        <div class="wrapper">
+
+            
+            <!-- ========== Topbar Start ========== -->
+            <app-header></app-header>
+            <!-- ========== Topbar End ========== -->
+
+            <!-- ========== Left Sidebar Start ========== -->
+          <app-menu></app-menu>
+            <!-- ========== Left Sidebar End ========== -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+
+                    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                       
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+ <h4 class="page-title">CONTACTS</h4>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                       
+                                        
+
+                                        <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                                            <thead>
+                                              <tr>
+                                                <th>Id</th>
+                                                <th>Nom</th>
+                                                <th>Prénom</th>
+                                                <th>Email</th>
+                                                <th>Téléphone</th>
+                                                <th>Sujet</th>
+                                                <th>Description</th>
+                                                <th>Action</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr *ngFor="let Contact of listeContact">
+                                                <td>{{Contact.id}}</td>
+                                                <td>{{Contact.nom}}</td>
+                                                <td>{{Contact.prenom}}</td>
+                                                <td>{{Contact.email}}</td>
+                                                <td>{{Contact.tlf}}</td>
+                                                <td>{{Contact.sujet}}</td>
+                                                <td>{{Contact.msg}}</td>
+                                                <td>
+                                                  <button (click)="DeleteContact(Contact)" type="submit" class="btn btn-danger">Supprimer</button>
+                                                </td>
+                                              </tr>
+                                              <tr *ngIf="listeContact?.length === 0">
+                                                <td colspan="8" class="text-center">Aucun contact trouvé</td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div> <!-- end row-->
+
+
+                        
+
+
+                        
+                        
+                        
+
+
+                       
+
+
+                      
+
+
+                        
+
+                        
+
+                        
+
+
+                       
+
+                       
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+                <!-- Footer Start -->
+                <app-footer></app-footer>
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+        </div>
+        <!-- END wrapper -->
+
+      
+        
+
+    </body>
+
+<!-- Mirrored from coderthemes.com/attex-bundle/layouts/tables-datatable.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 09:40:27 GMT -->
+</html>

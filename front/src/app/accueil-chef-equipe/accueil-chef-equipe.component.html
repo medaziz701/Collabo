@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>CollaboraPro - Tableau de bord Chef d'équipe</title>
+
+<!-- Fav Icon -->
+</head>
+
+<body>
+    <div class="boxed_wrapper ltr">
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="C" class="letters-loading">C</span>
+                            <span data-text-preloader="O" class="letters-loading">O</span>
+                            <span data-text-preloader="L" class="letters-loading">L</span>
+                            <span data-text-preloader="L" class="letters-loading">L</span>
+                            <span data-text-preloader="A" class="letters-loading">A</span>
+                            <span data-text-preloader="B" class="letters-loading">B</span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+        <!-- main header -->
+        <app-header></app-header>
+        <!-- main-header end -->
+
+        <!-- page-title -->
+        <section class="page-title centred pt_110">
+            <div class="auto-container">
+                <div class="content-box">
+                      <h1 style="color: blue;">Tableau de bord</h1>
+                    <p>Suivez la progression des tâches que vous supervisez</p>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+
+<div class="container">
+
+  <div *ngFor="let projetAvecTaches of projetsAvecTaches" class="projet-card">
+    <h2>{{ projetAvecTaches.projet.nom }}</h2>
+    <p class="description">Description: {{ projetAvecTaches.projet.description }}</p>
+
+    <p>Statut: <span class="statut {{ projetAvecTaches.projet.statut }}">{{ projetAvecTaches.projet.statut }}</span></p>
+    <p>Avancement: {{ projetAvecTaches.pourcentageTermine | number:'1.0-0' }}%</p>
+
+    <div class="progress-bar">
+      <div class="progress" [style.width.%]="projetAvecTaches.pourcentageTermine"></div>
+    </div>
+
+    <!-- Ajout d'une div avec une classe pour l'espacement -->
+    <div class="spacer"></div>
+   <div class="stats">
+     
+    </div>
+    <h3>Équipe: {{ projetAvecTaches.projet.equipe?.nomEquipe }}</h3>
+    
+
+    <div class="taches-container">
+      <div *ngFor="let tache of projetAvecTaches.taches" class="tache-item {{getTacheClass(tache)}}">
+        <h4>{{ tache.description }}</h4>
+        <p>Assigné à: {{ tache.assigneA?.nom }}</p>
+        <p>Date limite: {{ tache.dateLimite }}</p>
+        <p>Statut: {{ tache.statut }}</p>
+        
+
+
+<div class="comment-section">
+    <!-- Modifiez l'appel à showComments -->
+<button class="btn-comment" (click)="showComments(tache)">
+ 
+    <i class="fas fa-comments"></i> 
+    {{ selectedTacheId === tache.id ? 'Masquer' : 'Voir' }} commentaire
+  </button>
+
+  <div *ngIf="selectedTacheId === tache.id" class="comment-modal">
+    
+
+    <div *ngIf="tacheComments.length === 0" class="no-comments">
+      Aucun commentaire
+    </div>
+
+    <div *ngFor="let comment of tacheComments" class="comment-item">
+      <div class="comment-header">
+        <span class="comment-date">
+          {{ comment.date_creation | date:'dd/MM/yy HH:mm' }}
+        </span>
+      </div>
+      <p class="comment-content">{{ comment.contenu }}</p>
+    </div>
+  </div>
+</div>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+        <!-- main-footer -->
+        <app-footer></app-footer>
+        <!-- main-footer end -->
+    </div>
+</body>
+</html>

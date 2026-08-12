@@ -1,0 +1,43 @@
+ <h4 class="page-title">LISTE - GESTIONNAIRES D'EQUIPE </h4>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <table id="basic-datatable" class="table table-striped dt-responsive nowrap w-100">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let chefEquipe of listeChefEquipe">
+                            <td>{{chefEquipe.id}}</td>
+                            <td>{{chefEquipe.nom}}</td>
+                            <td>{{chefEquipe.prenom}}</td>
+                            <td>{{chefEquipe.email}}</td>
+                            <td>{{chefEquipe.tlf}}</td>
+                            <td>
+                                <button *ngIf="!chefEquipe.etat" class="btn btn-sm btn-light btn-3d" (click)="updateChefEquipeEtat(chefEquipe)">
+                                    <i class="fas fa-lock" style="color: black;"></i>
+                                </button>
+                                <button *ngIf="chefEquipe.etat" class="btn btn-sm btn-secondary btn-3d" (click)="updateChefEquipeEtat(chefEquipe)">
+                                    <i class="fas fa-check" ></i>      
+                                </button>
+                                <button (click)="DeleteChefEquipe(chefEquipe)" type="submit" class="btn btn-danger">Supprimer</button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="listeChefEquipe?.length === 0">
+                            <td colspan="7" class="text-center">Aucun chef d'équipe trouvé</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
