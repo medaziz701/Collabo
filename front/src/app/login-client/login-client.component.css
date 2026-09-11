@@ -1,0 +1,6 @@
+
+.container {
+    padding: 22px; /* Augmente l'espace intérieur */
+    font-size: 2.9em; /* Augmente la taille du texte */
+    transform: scale(1.1); /* Agrandit l'élément et son contenu */
+}

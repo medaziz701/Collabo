@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>CollaboraPro - Tableau de bord Chef d'équipe</title>
+
+<!-- Fav Icon -->
+</head>
+
+<body>
+    <div class="boxed_wrapper ltr">
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="C" class="letters-loading">C</span>
+                            <span data-text-preloader="O" class="letters-loading">O</span>
+                            <span data-text-preloader="L" class="letters-loading">L</span>
+                            <span data-text-preloader="L" class="letters-loading">L</span>
+                            <span data-text-preloader="A" class="letters-loading">A</span>
+                            <span data-text-preloader="B" class="letters-loading">B</span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+        <!-- main header -->
+        <app-header></app-header>
+        <!-- main-header end -->
+
+        <!-- page-title -->
+        <section class="page-title centred pt_110">
+            <div class="auto-container">
+                <div class="content-box">
+                    <h1 style="color: blue;">Tableau de bord</h1>
+                    <p>Vue globale des projets et tâches de votre équipe</p>
+                </div>
+            </div>
+        </section>
+
+ <section class="chat-window" *ngIf="chatVisible">
+          <div class="chat-header">
+        <h4>Discussion avec {{ selectedDestinataire?.prenom }} </h4>
+            <button (click)="fermerChat()" class="btn btn-close">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          
+          <div class="message-container">
+  <div *ngFor="let message of messages" 
+       class="message {{message.expediteur.id === devInfo.id ? 'sent' : 'received'}}">
+    <div class="message-content">
+      <p>{{ message.contenu }}</p>
+      <div class="message-meta">
+        <span class="date">{{ message.dateEnvoi | date:'dd/MM/yyyy' }}</span>
+        <span class="time">{{ message.dateEnvoi | date:'HH:mm' }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+          
+          <div class="message-input">
+            <input [(ngModel)]="nouveauMessage" 
+                   placeholder="Écrivez votre message..."
+                   (keyup.enter)="envoyerMessage()">
+            <button (click)="envoyerMessage()">Envoyer</button>
+          </div>
+        </section>
+
+
+
+
+
+
+
+
+
+<div class="container">
+  
+ 
+
+  <div *ngIf="projetsAvecTaches.length === 0" class="no-tasks">
+    <p>Vous n'êtes actuellement affecté à aucun projet.</p>
+  </div>
+
+  <div *ngFor="let projetData of projetsAvecTaches" class="projet-card">
+    <div class="projet-header">
+      <h2>{{ projetData.projet.nom }}</h2>
+      <span class="client-name">Client: {{ projetData.projet.client?.nom || 'Non spécifié' }}</span>
+    </div>
+    
+    <p class="projet-description">{{ projetData.projet.description }}</p>
+    
+    <div class="projet-info">
+      <div>
+        <span class="info-label">Chef d'équipe:</span>
+        <span>{{ projetData.projet.equipe?.chefEquipe?.nom || 'Non spécifié' }}</span>
+      </div>
+      <div>
+        <span class="info-label">Statut projet:</span>
+        <span class="statut-badge">{{ projetData.projet.statut }}</span>
+      </div>
+    </div>
+
+    <div class="progress-container">
+      <span>Avancement global: {{ projetData.pourcentageTermine | number:'1.0-0' }}%</span>
+      <div class="progress-bar">
+        <div class="progress" [style.width.%]="projetData.pourcentageTermine"></div>
+      </div>
+    </div>
+
+    <div class="progress-container">
+      <span>Votre avancement: {{ projetData.monPourcentageTermine | number:'1.0-0' }}%</span>
+      <div class="progress-bar">
+        <div class="progress my-progress" [style.width.%]="projetData.monPourcentageTermine"></div>
+      </div>
+    </div>
+
+    <div class="taches-section">
+      <h3>Toutes les tâches du projet</h3>
+      <div class="stats">
+        <span class="completed-stat">{{ projetData.tachesTerminees.length }} terminées</span>
+        <span class="pending-stat">{{ projetData.tachesEnCours.length }} en cours</span>
+        
+      </div>
+
+      <div class="taches-container">
+        <div *ngFor="let tache of projetData.taches" class="tache-item {{getTacheClass(tache)}}" [class.my-task]="isMaTache(tache)">
+          <div class="tache-header">
+            
+            <h4>{{ tache.description }}</h4>
+            <span class="tache-statut">{{ tache.statut }}</span>
+            <div class="chat-container">
+             
+ 
+</div>
+           
+
+          
+          </div>
+          
+          <div class="tache-details">
+            <p><strong>Assigné à:</strong> {{ tache.assigneA?.prenom || 'Non assigné' }}</p>
+            <p><strong>Date limite:</strong> {{ tache.dateLimite | date:'dd/MM/yyyy' }}</p>
+              <span *ngIf="isMaTache(tache)" class="my-task-badge">Ma tâche</span>
+            <div class="tache-footer">
+    <button *ngIf="tache.assigneA?.id && tache.assigneA?.id !== devInfo.id" 
+            (click)="ouvrirChat(tache.assigneA, projetData.projet.id)" 
+            class="btn btn-chat">
+      <i class="fas fa-comment-dots"></i> Contacter
+    </button>
+  </div>
+          </div>
+          
+          <div *ngIf="isMaTache(tache) && tache.statut !== 'TERMINEE'" class="tache-actions">
+            <button (click)="marquerTacheTerminee(tache.id)" class="action-btn">
+              Marquer comme terminée
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+        <!-- main-footer -->
+        <app-footer></app-footer>
+        <!-- main-footer end -->
+    </div>
+</body>
+</html>

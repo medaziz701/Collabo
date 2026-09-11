@@ -1,0 +1,103 @@
+.user-profile-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f39c12;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.user-info {
+    position: relative;
+}
+
+.user-name {
+    font-weight: 500;
+    color: #333;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    min-width: 160px;
+    z-index: 1000;
+    display: none;
+}
+
+.user-profile-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 8px 20px;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* Logo grand format */
+.logo-lg img {
+    width: 100px; /* Par exemple, ajuster la taille selon ce que tu veux */
+    height: auto; /* Pour garder les proportions */
+}
+
+/* Logo petit format */
+.logo-sm img {
+    width: 100px; /* Pour le logo mobile ou petit écran */
+    height: auto; 
+}
+
+.main-footer {
+    position: relative;
+    padding-top: 80px;
+    margin-top: 100px;
+}
+.main-footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #4a90e2, #6a5acd, #4a90e2);
+}
+
+/* Compact header styles */
+.header-lower {
+    min-height: 50px !important;
+}
+
+.logo-box img {
+    max-height: 35px !important;
+    width: auto !important;
+}
+
+.main-header .outer-container {
+    padding: 0px 30px !important;
+}
+
+.header-style-five .header-lower .outer-box {
+    padding: 8px 0 !important;
+}

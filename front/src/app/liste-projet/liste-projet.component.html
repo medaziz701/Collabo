@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>CollaboraPro - Tableau de bord Chef d'équipe</title>
+
+<!-- Fav Icon -->
+
+</head>
+
+<body>
+    <div class="boxed_wrapper ltr">
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="C" class="letters-loading">C</span>
+                            <span data-text-preloader="O" class="letters-loading">O</span>
+                            <span data-text-preloader="L" class="letters-loading">L</span>
+                            <span data-text-preloader="L" class="letters-loading">L</span>
+                            <span data-text-preloader="A" class="letters-loading">A</span>
+                            <span data-text-preloader="B" class="letters-loading">B</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+        <!-- main header -->
+        <app-header></app-header>
+        <!-- main-header end -->
+
+        <!-- page-title -->
+        <section class="page-title centred pt_110">
+            <div class="auto-container">
+                <div class="content-box">
+               <h1 style="color: blue;">Mes Projets</h1>
+                    <p>Liste des projets que vous supervisez</p>
+
+                </div>
+            </div>
+        </section>
+        <!-- page-title end -->
+         <!-- Edit Project Modal -->
+        <!-- Modal d'édition -->
+<div *ngIf="showEditForm" class="modal-overlay">
+  <div class="modal-content">
+    <h2 class="modal-title">Modifier le projet et l'équipe</h2>
+
+    <!-- Formulaire Projet -->
+    <div class="form-section project-section">
+      <h3 class="section-title">Informations du projet</h3>
+      <div class="form-group">
+        <label class="form-label">Nom du projet:</label>
+        <input type="text" [(ngModel)]="editFormData.projet.nom" name="nomProjet" class="form-input">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date début:</label>
+        <input type="date" [(ngModel)]="editFormData.projet.datedeb" name="dateDebut" class="form-input">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date fin:</label>
+        <input type="date" [(ngModel)]="editFormData.projet.datefin" name="dateFin" class="form-input">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description:</label>
+        <textarea [(ngModel)]="editFormData.projet.description" name="descriptionProjet" class="form-textarea"></textarea>
+      </div>
+    </div>
+
+    <!-- Formulaire Équipe -->
+    <div class="form-section team-section">
+      <h3 class="section-title">Informations de l'équipe</h3>
+      <div class="form-group">
+        <label class="form-label">Nom de l'équipe:</label>
+        <input type="text" [(ngModel)]="editFormData.equipe.nomEquipe" name="nomEquipe" class="form-input">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description:</label>
+        <textarea [(ngModel)]="editFormData.equipe.description" name="descriptionEquipe" class="form-textarea"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Domaine de spécialisation:</label>
+        <input type="text" [(ngModel)]="editFormData.equipe.domaineSpecialisation" name="domaineEquipe" class="form-input">
+      </div>
+    </div>
+
+    <!-- Membres existants et tâches -->
+
+    <div class="form-section members-section">
+      <h3 class="section-title">Membres actuels et leurs tâches</h3>
+      <div *ngFor="let membre of projetToEdit.equipe?.membres" class="member-task">
+        <div class="member-header">
+           <button class="btn-remove-member" (click)="removeMember(membre.id)">
+  <i class="fas fa-trash-alt"></i> Supprimer
+</button>
+
+  </div>
+        <h4 class="member-name">{{ membre.nom }} {{ membre.prenom }}</h4>
+        <div class="form-group">
+          <label class="form-label">Tâche:</label>
+          <input type="text"
+                [ngModel]="getSafeTacheDescription(membre.id)"
+                (ngModelChange)="setSafeTacheDescription(membre.id, $event)"
+                [name]="'tacheDesc'+membre.id"
+                class="form-input">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Date limite:</label>
+          <input type="date"
+                [(ngModel)]="editFormData.taches[membre.id].dateLimite"
+                [name]="'tacheDate'+membre.id"
+                class="form-input">
+        </div>
+      </div>
+    </div>
+
+    <!-- Ajout de nouveaux membres -->
+    <div class="form-section add-members-section">
+      <h3 class="section-title">Ajouter des membres</h3>
+      <div *ngFor="let dev of listDeveloppeursDisponibles" class="dev-checkbox">
+        <input type="checkbox" [id]="'dev'+dev.id" (change)="onDeveloppeurSelectionChange($event, dev.id)" class="checkbox-input">
+        <label [for]="'dev'+dev.id" class="checkbox-label">{{ dev.nom }} {{ dev.prenom }} ({{ dev.specialite }})</label>
+      </div>
+    </div>
+
+    <!-- Boutons -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-cancel" (click)="showEditForm = false">Annuler</button>
+      <button type="button" class="btn btn-save" (click)="submitEditForm()">Enregistrer</button>
+
+    </div>
+  </div>
+</div>
+
+
+        <!-- Projects Section -->
+        <section class="sidebar-page-container p_relative pt_80 pb_80">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-12">
+                <div class="projects-table-container p_relative"> <!-- Ajout de p_relative -->
+  <div class="table-responsive-xl">
+   <table class="table table-modern" style="table-layout: auto;" width="100%" cellpadding="20" cellspacing="20">
+    <thead class="table-header">
+        <tr>
+            <th class="status-col" style="font-size: 16px;">Statut</th>
+            <th class="project-col" style="font-size: 16px;">Projet</th>
+            <th class="description-col" style="font-size: 16px;">Description</th>
+            <th class="client-col" style="font-size: 16px;">Client</th>
+            <th class="dates-col" style="font-size: 16px;">Dates</th>
+            <th class="team-col" style="font-size: 16px;">Équipe</th>
+            <th class="feedback-col" style="font-size: 16px;">Feedback Client</th>
+            <th class="actions-col" style="font-size: 16px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let projet of MesProjet">
+            <td class="status-col" style="font-size: 16px;">
+                <span class="status-badge" [ngClass]="{
+                    'status-completed': projet.statut === 'TERMINE',
+                    'status-inprogress': projet.statut === 'EN_COURS',
+                    'status-pending': projet.statut === 'ANNULE'
+                }">{{projet.statut}}</span>
+            </td>
+            <td class="project-col" style="font-size: 16px;">
+                <h4 class="project-name">{{projet.nom}}</h4>
+            </td>
+            <td class="description-col" style="font-size: 16px;">{{projet.description}}</td>
+            <td class="client-col" style="font-size: 16px;">
+                {{projet.client?.nom}} {{projet.client?.prenom}}<br>
+                <small>{{projet.client?.email}}</small>
+            </td>
+            <td class="dates-col" style="font-size: 16px;">
+                <strong>Début:</strong> {{projet.datedeb}}<br>
+                <strong>Fin:</strong> {{projet.datefin}}
+            </td>
+            <td class="team-col" style="font-size: 16px;">
+                <div *ngIf="projet.equipe">
+                    <strong>{{projet.equipe.nomEquipe}}</strong><br>
+                    <small>({{projet.equipe.domaineSpecialisation}})</small>
+
+                    <div *ngIf="projet.equipe.membresInfo" class="mt-2">
+
+                        <div *ngIf="!isString(projet.equipe.membresInfo)">
+                            <!-- membresInfo -->
+                            <div *ngFor="let membre of projet.equipe.membresInfo">
+                                • {{ membre.nom }} {{ membre.prenom }}
+                                <small>({{ membre.specialite }})</small>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+            <td class="feedback-col" style="font-size: 16px;">
+                <div *ngIf="projet.feedbacks && projet.feedbacks.length > 0">
+                    <div *ngFor="let feedback of projet.feedbacks">
+                        <div class="star-rating">
+                            <span *ngFor="let star of [1,2,3,4,5]">
+                                <i class="fa fa-star{{star <= feedback.noteEtoiles ? '' : '-o'}}"></i>
+                            </span>
+                        </div>
+                        <p>"{{feedback.commentaire}}"</p>
+                        <small>{{feedback.dateCreation | date}}</small>
+                    </div>
+                </div>
+                <div *ngIf="!projet.feedbacks || projet.feedbacks.length === 0">
+                    Aucun feedback pour l'instant
+                </div>
+            </td>
+            <td class="actions-col" style="font-size: 16px;">
+                <div class="action-buttons">
+                    <button class="btn btn-sm btn-danger" (click)="DeleteProjet(projet)">
+                        <i class="fa fa-trash"></i> Supprimer
+                    </button>
+                    <button class="btn btn-sm btn-primary" (click)="updateProjetStatut(projet)">
+                        <i class="fa fa-edit"></i> Statut
+                    </button>
+                    <button  class="btn btn-sm btn-warning" (click)="openEditModal(projet)">
+                        <i class="fa fa-pencil"></i> Modifier
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <!-- Projects Section end -->
+
+        <!-- main-footer -->
+        <app-footer></app-footer>
+        <!-- main-footer end -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: collabo-backend
+    env: docker
+    dockerContext: ./pfe
+    dockerfilePath: ./pfe/Dockerfile
+    plan: free
+    envVars:
+      - key: SUPABASE_DB_URL
+        sync: false
+      - key: SUPABASE_DB_USERNAME
+        sync: false
+      - key: SUPABASE_DB_PASSWORD
+        sync: false
+      - key: MAIL_USERNAME
+        value: kochbatimahdi56@gmail.com
+      - key: MAIL_PASSWORD
+        value: ptcgptnsysyuqtne
+      - key: GOOGLE_CLIENT_ID
+        value: 702562012013-0b5f07pjoputbu3d0jk2s368dnrm5k39.apps.googleusercontent.com
+      - key: GOOGLE_CLIENT_SECRET
+        value: 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

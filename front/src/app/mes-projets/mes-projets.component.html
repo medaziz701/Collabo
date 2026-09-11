@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<title>Jobaway - HTML 5 Template Preview</title>
+
+<!-- Fav Icon -->
+
+  
+
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper ltr">
+
+
+        <!-- preloader -->
+        <div class="loader-wrap">
+            <div class="preloader">
+                <div class="preloader-close"><i class="icon-27"></i></div>
+                <div id="handle-preloader" class="handle-preloader">
+                    <div class="animation-preloader">
+                        <div class="spinner"></div>
+                        <div class="txt-loading">
+                            <span data-text-preloader="j" class="letters-loading">
+                                j
+                            </span>
+                            <span data-text-preloader="o" class="letters-loading">
+                                o
+                            </span>
+                            <span data-text-preloader="b" class="letters-loading">
+                                b
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="w" class="letters-loading">
+                                w
+                            </span>
+                            <span data-text-preloader="a" class="letters-loading">
+                                a
+                            </span>
+                            <span data-text-preloader="y" class="letters-loading">
+                                y
+                            </span>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+        <!-- preloader end -->
+
+
+        <!-- page-direction -->
+       
+        <!-- page-direction end -->
+
+
+     
+
+
+        <!-- main header -->
+        <app-header></app-header>
+        <!-- main-header end -->
+
+
+        <!-- Mobile Menu  -->
+        
+        <!-- End Mobile Menu -->
+
+
+        <!-- page-title -->
+        <section class="page-title centred pt_110">
+            <div class="auto-container">
+                <div class="content-box">
+                     <h1 style="color: blue;">Nos Projets</h1>
+                     <p>Voici les projets sur lesquels vous travaillez</p>
+                </div>
+            </div>
+        </section>
+        <!-- page-title end -->
+
+
+        <!-- sidebar-page-container end -->
+
+
+        
+
+<!-- sidebar-page-container -->
+<section class="main-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <table class="project-table">
+                    <thead>
+                        <tr>
+                            <th>Statut</th>
+                            <th>Projet</th>
+                            <th>Votre Tâche</th>
+                            <th>Chef d'équipe</th>
+                            <th>Description Projet</th>
+                            <th>Équipe</th>
+                            <th>Dates</th>
+                            <th>Client</th>
+                            <th>Membres</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tache of taches">
+                           <td>
+    <span [ngStyle]="{
+        'background-color': tache.statut === 'Terminé' ? '#28a745' : 
+                          tache.statut === 'En cours' ? '#ffc107' : 
+                          '#dc3545',
+        'color': tache.statut === 'En cours' ? 'black' : 'white',
+        'padding': '6px 12px',
+        'border-radius': '20px',
+        'display': 'inline-block'
+    }">
+        {{tache.statut}}
+    </span>
+</td>
+                            <td>
+                                <h4><a href="blog-details.html">{{tache.projet?.nom}}</a></h4>
+                            </td>
+                            <td>{{ tache.description }}</td>
+                            <td>{{ tache.projet?.equipe?.chefEquipe?.nom }} {{ tache.projet?.equipe?.chefEquipe?.prenom }}</td>
+                            <td>{{ tache.projet?.description }}</td>
+                            <td>
+                                <strong>{{ tache.projet?.equipe.nomEquipe }}</strong><br>
+                                ({{ tache.projet?.equipe?.domaineSpecialisation }})
+                            </td>
+                            <td class="date-cell">
+                                <strong>Début:</strong> {{tache.projet?.datedeb}}<br>
+                                <strong>Date Limite:</strong> {{tache.dateLimite}}
+                            </td>
+                            <td>{{ tache.projet?.client?.nom }} {{ tache.projet?.client?.prenom }}</td>
+                            <td>
+    <div *ngIf="tache.projet?.equipe?.membresInfo?.length">
+        <div *ngFor="let membre of tache.projet.equipe.membresInfo" class="member-item">
+            • {{ membre?.nom }} {{ membre?.prenom }} 
+            <span class="member-specialite">({{ membre?.specialite }})</span><br>
+        </div>
+    </div>
+</td>
+                            <td>
+                                <a [routerLink]="['/tache', tache.id, 'code']" class="edit-btn">
+                                    <span class="btn-title">Éditer</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+
+        <!-- main-footer -->
+        <app-footer></app-footer>
+        <!-- main-footer end -->
+
+
+
+       
+        
+    </div>
+
+
+   
+
+</body><!-- End of .page_wrapper -->
+
+<!-- Mirrored from azim.hostlin.com/Jobaway/blog.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 26 Feb 2025 11:49:39 GMT -->
+</html>
