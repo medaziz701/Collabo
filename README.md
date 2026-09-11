@@ -2,7 +2,6 @@
 
 > Plateforme web collaborative de gestion de projets de développement, inspirée de GitHub, permettant la création de projets, l'assignation de tâches, le suivi de l'avancement et la communication en temps réel entre les membres de l'équipe.
 
-![screenshot](./screenshots/preview.png)
 
 ## 🚀 Stack technique
 
